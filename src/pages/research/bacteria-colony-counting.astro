@@ -64,7 +64,7 @@ const ink = '#3d1a22';
     </section>
 
     <!-- 3. WHAT WE DID -->
-    <h2 class="section-title">what we did, in three steps</h2>
+    <h2 class="section-title">what we did, in three steps:</h2>
 
     <section class="block">
       <div class="text">
@@ -101,32 +101,44 @@ const ink = '#3d1a22';
     <section class="block flip">
       <div class="text">
         <span class="step-tag" style="--c:var(--lilac)">step 2</span>
-        <h2>We made the dots easier to tell apart</h2>
-        <p>Dots often touch or look smudgy, which confuses a computer. So we designed a two-part cleanup:</p>
+        <h2>We cleaned up the photos so the dots are easier to count</h2>
         <p>
-          <b>Watershed:</b> picture the photo as a landscape where each dot is a little hill. Slowly flood it with water.
-          The lines where water from two hills meets show where one dot ends and the next begins.
+          A computer doesn't "see" dots the way we do. It just sees colored pixels. That causes two common mistakes,
+          so we combined two techniques to fix them:
         </p>
         <p>
-          <b>Falling-Ball:</b> picture rolling a tiny ball around each shape. It smooths rough edges and fills small gaps,
-          so each dot becomes one clean blob instead of a broken one.
+          <b>Problem 1: two dots touching look like one.</b> Imagine two coins touching on a table. Trace around them and you get
+          one peanut shape, so you'd count 1 instead of 2. The <b>Watershed</b> technique finds the middle of each dot and
+          draws a dividing line where they touch, so the computer counts <b>2</b>.
+        </p>
+        <p>
+          <b>Problem 2: one dot looks broken into pieces.</b> Glare or a blurry spot can leave gaps, so one dot looks like
+          two or three bits. The <b>Falling-Ball</b> technique smooths the edges and fills those gaps, like coloring in the
+          missing spots, so it's counted as <b>1</b> clean dot.
         </p>
       </div>
       <figure class="art sticker reveal">
-        <svg class="boil" viewBox="0 0 280 230" aria-label="Two hills with water rising between them, and a ball rolling around a blob to smooth it">
-          <text x="140" y="22" text-anchor="middle" class="hand">watershed</text>
-          <path d="M20 100 Q70 30 120 100 Q170 30 240 100" fill="#f6c6ae" stroke={ink} stroke-width="3" />
-          <path d="M20 100 L20 108 L260 108 L260 100" fill="none" stroke={ink} stroke-width="3" />
-          <path d="M84 86 Q104 92 120 100 Q136 92 156 86 L156 100 L84 100Z" fill="#9cc3e0" stroke={ink} stroke-width="2" opacity=".9" />
-          <path d="M120 44 L120 104" stroke="#b5476a" stroke-width="3" stroke-dasharray="5 5" />
-          <text x="128" y="52" class="hand small">dot ends here</text>
-          <text x="140" y="140" text-anchor="middle" class="hand">falling-ball</text>
-          <path d="M60 196 C50 168 92 156 108 168 C118 158 150 160 146 182 C160 196 130 214 112 204 C96 216 66 214 60 196Z" fill="#d3c7ea" stroke={ink} stroke-width="3" />
-          <path d="M98 176 l6 6 M120 194 l5 -4" stroke={ink} stroke-width="2.5" stroke-linecap="round" />
-          <path d="M170 186 l14 0 m-5 -5 l5 5 l-5 5" stroke={ink} stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-          <ellipse cx="226" cy="186" rx="40" ry="26" fill="#d3c7ea" stroke={ink} stroke-width="3" />
-          <circle cx="264" cy="164" r="9" fill="#f5e2a6" stroke={ink} stroke-width="2.5" />
-          <path d="M248 150 q10 -6 22 2" fill="none" stroke={ink} stroke-width="2" stroke-dasharray="3 4" />
+        <svg class="boil" viewBox="0 0 280 250" aria-label="Two touching dots get a dividing line so they count as 2; a broken dot gets filled in so it counts as 1">
+          <text x="140" y="20" text-anchor="middle" class="hand">problem 1: touching dots</text>
+          <circle cx="52" cy="66" r="22" fill="#b5476a" stroke={ink} stroke-width="3" />
+          <circle cx="86" cy="66" r="22" fill="#b5476a" stroke={ink} stroke-width="3" />
+          <rect x="40" y="58" width="58" height="16" fill="#b5476a" />
+          <text x="69" y="112" text-anchor="middle" class="hand small">computer sees: 1?</text>
+          <path d="M118 66 l16 0 m-6 -6 l6 6 l-6 6" stroke={ink} stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="176" cy="66" r="22" fill="#b5476a" stroke={ink} stroke-width="3" />
+          <circle cx="216" cy="66" r="22" fill="#b5476a" stroke={ink} stroke-width="3" />
+          <path d="M196 38 L196 94" stroke="#fffaf3" stroke-width="6" />
+          <path d="M196 34 L196 98" stroke={ink} stroke-width="2.5" stroke-dasharray="4 4" />
+          <text x="196" y="112" text-anchor="middle" class="hand small">counted: 2 ✓</text>
+
+          <text x="140" y="148" text-anchor="middle" class="hand">problem 2: broken dot</text>
+          <path d="M42 196 A24 24 0 0 1 64 172 L66 194 Z" fill="#b5476a" stroke={ink} stroke-width="2.5" />
+          <path d="M72 172 A24 24 0 0 1 92 198 L72 196 Z" fill="#b5476a" stroke={ink} stroke-width="2.5" />
+          <path d="M44 204 A24 24 0 0 0 88 206 L66 204 Z" fill="#b5476a" stroke={ink} stroke-width="2.5" />
+          <text x="66" y="240" text-anchor="middle" class="hand small">computer sees: 3?</text>
+          <path d="M118 196 l16 0 m-6 -6 l6 6 l-6 6" stroke={ink} stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="196" cy="196" r="25" fill="#b5476a" stroke={ink} stroke-width="3" />
+          <text x="196" y="240" text-anchor="middle" class="hand small">counted: 1 ✓</text>
         </svg>
       </figure>
     </section>
@@ -140,8 +152,9 @@ const ink = '#3d1a22';
           scratch, we gave it extra training on our bacteria photos.
         </p>
         <p>
-          Think of hiring someone who's already great at <mark style="--c:var(--butter)">"Where's Waldo"</mark>, then
-          teaching them to find bacteria dots instead. This is called <b>transfer learning</b>.
+          Think of a jeepney driver who already knows how to drive. You don't teach them driving all over again,
+          you just teach them a <mark style="--c:var(--butter)">new route</mark>. Reusing what an AI already knows like this
+          is called <b>transfer learning</b>.
         </p>
       </div>
       <figure class="art sticker reveal">
