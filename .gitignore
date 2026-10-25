@@ -2,19 +2,12 @@
 dist/
 node_modules/
 .astro/
+.wrangler/
 
-# private: your certificate PDFs and your content draft stay on your laptop only
-credentials/
-personal-website-content.docx
+# everything that stays on your laptop only:
+# certificates, the content draft, original logos and project images,
+# thesis files, raw screenshots, and old mockups
+/private/
 
 # macOS
 .DS_Store
-
-# original full-size logo files (the site uses the trimmed copies in public/logos/)
-assets/
-
-# private source files: thesis, slides, original project images (the site uses web copies in public/)
-/private/
-
-# raw screenshots for the Mingming page (the site uses the cropped copies in public/projects/mingming/)
-/mingming bot/
