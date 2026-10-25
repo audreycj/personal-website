@@ -4,7 +4,7 @@ import Doodle from '../components/Doodle.astro';
 import { site } from '../data/site';
 import { papers } from '../data/research';
 
-const orcid = site.links.find((l) => l.label === 'ORCID');
+const orcid = site.orcid ? { url: site.orcid } : undefined;
 ---
 <Base title="Research" description="Audrey's research papers and academic work.">
   <div class="wrap">
@@ -24,11 +24,11 @@ const orcid = site.links.find((l) => l.label === 'ORCID');
           </div>
           <h2>{p.title}</h2>
           <p class="authors">{p.authors}</p>
-          <p class="venue">{p.venue}</p>
+          <p class="venue">{p.venue.split(' · ').map((part, i) => <>{i > 0 && <span class="sep">•</span>}{part}</>)}</p>
           <p class="summary">{p.summary}</p>
           {p.recognition && (
             <div class="stamps">
-              {p.recognition.map((r) => <span class="stamp"><Doodle name="medal" color="peach" size={26} />{r}</span>)}
+              {p.recognition.map((r) => <span class="stamp"><Doodle name="medal" color="peach" size={26} /><span>{r.split(' · ').map((part, i) => <>{i > 0 && <span class="sep">•</span>}{part}</>)}</span></span>)}
             </div>
           )}
           {p.link && <a class="btn" style={`--c:var(--${p.color})`} href={p.link} target="_blank" rel="noopener">read the paper ↗</a>}
@@ -60,7 +60,7 @@ const orcid = site.links.find((l) => l.label === 'ORCID');
   /* a printed paper with a binder clip and a colored top edge */
   .paper {
     position: relative; background: var(--paper); border: 3px solid var(--ink); border-top: 14px solid var(--c);
-    border-radius: 6px; padding: 30px 28px 26px; box-shadow: 7px 7px 0 var(--ink), 14px 14px 0 -3px var(--paper), 14px 14px 0 0 var(--ink);
+    border-radius: 6px; padding: 36px 34px 34px; box-shadow: 7px 7px 0 var(--ink), 14px 14px 0 -3px var(--paper), 14px 14px 0 0 var(--ink);
   }
   .paper.in { transform: rotate(-1deg); }
   .clip {
@@ -68,18 +68,18 @@ const orcid = site.links.find((l) => l.label === 'ORCID');
     border: 3px solid var(--ink); border-bottom: 0; border-radius: 10px 10px 0 0; background: #c9c3cf;
   }
   .top-row { display: flex; justify-content: space-between; gap: 10px; font-family: var(--font-display); font-weight: 600; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; opacity: .75; }
-  .paper h2 { font-family: var(--font-display); font-size: 26px; line-height: 1.15; margin-top: 8px; }
-  .authors { font-size: 19px; font-style: italic; margin-top: 4px; }
-  .venue { font-size: 18px; opacity: .85; }
-  .summary { font-size: 20px; margin-top: 12px; }
-  .stamps { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 16px; }
+  .paper h2 { font-family: var(--font-display); font-size: 26px; line-height: 1.2; margin-top: 16px; }
+  .authors { font-size: 19px; font-style: italic; margin-top: 10px; }
+  .venue { font-size: 18px; opacity: .85; margin-top: 4px; }
+  .summary { font-size: 20px; line-height: 1.55; margin-top: 20px; padding-top: 18px; border-top: 2px dashed rgba(61, 26, 34, .25); }
+  .stamps { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 24px; }
   .stamp {
     display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-display); font-weight: 600; font-size: 15px;
     background: var(--butter); border: 2.5px solid var(--ink); border-radius: 999px; padding: 2px 14px 2px 6px;
   }
   .stamp:nth-child(even) { background: var(--peach); transform: rotate(1deg); }
   .stamp:nth-child(odd) { transform: rotate(-1deg); }
-  .paper .btn { margin-top: 16px; }
+  .paper .btn { margin-top: 22px; }
 
   .placeholder {
     border-style: dashed; border-top: 3px dashed var(--ink); box-shadow: none; text-align: center; font-size: 21px;

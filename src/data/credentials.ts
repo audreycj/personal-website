@@ -51,8 +51,8 @@ export const awards: Award[] = [
 ];
 
 export const languages = [
-  { name: 'Bisaya', note: 'my mother tongue', color: 'sage' },
-  { name: 'English', note: 'everything I read and watch', color: 'butter' },
-  { name: 'Filipino', note: 'learned in school', color: 'lilac' },
-  { name: '日本語', note: 'casually learning!', color: 'peach' },
+  { name: 'Bisaya', note: 'My mother tongue, the language I grew up speaking.', color: 'sage' },
+  { name: 'English', note: 'Comfortable speaking and writing it (TOEIC C1), and it\'s the language I learn most things in.', color: 'butter' },
+  { name: 'Filipino', note: 'Learned it in school, and I\'m comfortable conversing in it.', color: 'lilac' },
+  { name: '日本語', note: 'Casually learning it at my own pace, as a personal goal.', color: 'peach' },
 ];

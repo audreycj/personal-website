@@ -3,7 +3,6 @@
 // BASE LAYOUT: wraps every page (head, nav, footer, shared scripts)
 // ==========================================================
 import '../styles/global.css';
-import Cat from '../components/Cat.astro';
 import { site, nav } from '../data/site';
 
 interface Props { title?: string; description?: string; cozy?: boolean; journal?: boolean }
@@ -74,17 +73,14 @@ const isLastTab = here === nav.length - 1;
   )}
 
   <footer class="wrap foot">
-    <div class="foot-cats" aria-hidden="true">
-      <Cat coat="cream" size={64} />
-      <Cat coat="calico" size={64} />
-      <Cat coat="gray" size={64} />
-    </div>
-    <p class="foot-hello">say hi!</p>
-    <p class="foot-links">
-      {site.email && <a href={`mailto:${site.email}`}>{site.email}</a>}
-      {site.links.map((l) => <a href={l.url} target="_blank" rel="noopener">{l.label} ↗</a>)}
-    </p>
-    <p class="foot-small">© {new Date().getFullYear()} {site.name} · made with too many cat doodles</p>
+    {(site.email || site.links.length > 0) && <>
+      <p class="foot-hello">say hi!</p>
+      <p class="foot-links">
+        {site.email && <a href={`mailto:${site.email}`}>{site.email}</a>}
+        {site.links.map((l) => <a href={l.url} target="_blank" rel="noopener">{l.label} ↗</a>)}
+      </p>
+    </>}
+    <p class="foot-small">© {new Date().getFullYear()} {site.name}<span class="sep">•</span>made with too many cat doodles</p>
   </footer>
 
   <script>
@@ -170,8 +166,7 @@ const isLastTab = here === nav.length - 1;
 
   main { min-height: 70vh; }
 
-  .foot { text-align: center; padding-top: 110px; padding-bottom: 50px; }
-  .foot-cats { display: flex; justify-content: center; gap: 6px; margin-bottom: 6px; }
+  .foot { text-align: center; padding-top: 90px; padding-bottom: 50px; }
   .foot-hello { font-family: var(--font-display); font-weight: 700; font-size: 34px; }
   .foot-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 21px; margin-top: 4px; }
   .foot-links a { text-decoration: underline wavy; text-underline-offset: 5px; }

@@ -75,6 +75,9 @@ code {
   background: var(--ink); color: var(--pink-soft); border-radius: 6px; padding: 1px 7px; white-space: nowrap;
 }
 
+/* a bigger, roomier dot between items: "IBM • on Coursera" */
+.sep { display: inline-block; margin: 0 .6em; font-size: 1.35em; line-height: 0; vertical-align: -.06em; }
+
 /* little label above a card's text */
 .label {
   font-family: var(--font-display); font-weight: 600; font-size: 15px;

@@ -12,8 +12,11 @@ export const site = {
 
   // contact (leave email empty '' to hide it)
   email: '', // e.g. 'hello@audreynanual.com'
+  // shown on the Research page
+  orcid: 'https://orcid.org/0009-0002-5036-2934',
+
+  // footer links (the footer's "say hi!" only shows once there's an email or a link here)
   links: [
-    { label: 'ORCID', url: 'https://orcid.org/0009-0002-5036-2934' },
     // { label: 'GitHub', url: 'https://github.com/[your-username]' },
     // { label: 'LinkedIn', url: 'https://www.linkedin.com/in/[your-profile]' },
   ],
