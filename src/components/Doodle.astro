@@ -13,11 +13,14 @@ const { name, size = 64, color = 'sage', class: cls = '' } = Astro.props;
 
 const ICONS: Record<string, string> = {
   backpack: `
-    <path class="n" d="M32 18 C32 8 48 8 48 18"/>
-    <path class="m" d="M20 30 C20 20 28 16 40 16 C52 16 60 20 60 30 V64 C60 68 57 70 53 70 H27 C23 70 20 68 20 64Z"/>
-    <path class="p" d="M20 34 C30 41 50 41 60 34 V30 C60 22 52 19 40 19 C28 19 20 22 20 30Z"/>
-    <rect class="p" x="28" y="48" width="24" height="14" rx="4"/>
-    <path class="n" d="M34 54 H46"/>`,
+    <path class="m" d="M21 32 C14 42 14 56 18 67 L24 65 C21 55 21 43 24 36Z"/>
+    <path class="m" d="M59 32 C66 42 66 56 62 67 L56 65 C59 55 59 43 56 36Z"/>
+    <path class="n" d="M33 15 C33 7 47 7 47 15"/>
+    <path class="m" d="M23 26 C23 17 30 13 40 13 C50 13 57 17 57 26 V66 C57 70 54 72 50 72 H30 C26 72 23 70 23 66Z"/>
+    <path class="p" d="M23 26 C23 17 30 13 40 13 C50 13 57 17 57 26 V35 C49 41 31 41 23 35Z"/>
+    <rect class="a1" x="36" y="34" width="8" height="10" rx="2"/>
+    <path class="p" d="M28 51 H52 V64 C52 66 50 68 48 68 H32 C30 68 28 66 28 64Z"/>
+    <path class="n" d="M28 56 H52 M46 56 V61"/>`,
   boat: `
     <path class="n" d="M40 34 V16"/><path class="a2" d="M40 16 L54 21 L40 26Z"/>
     <rect class="p" x="22" y="34" width="34" height="16" rx="3"/>
