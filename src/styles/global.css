@@ -95,6 +95,7 @@ code {
   font-family: var(--font-display); font-weight: 700;
   font-size: clamp(48px, 9vw, 110px); line-height: .9; letter-spacing: -1px;
   text-transform: uppercase; text-shadow: 5px 5px 0 var(--paper);
+  margin-top: clamp(40px, 6vw, 72px); /* breathing room below the nav */
 }
 .page-intro { font-size: 24px; max-width: 680px; margin-top: 18px; }
 
