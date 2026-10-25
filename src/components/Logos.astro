@@ -30,6 +30,6 @@ const items = keys.map((k) => LOGOS[k]).filter(Boolean);
   /* the logo itself: scaled to fit, never stretched or recolored */
   .logo-tag img { display: block; height: var(--h); width: auto; max-width: calc(var(--h) * 3); object-fit: contain; }
   /* logos on a colored block: the block fills the tag, with a white ring inside the dark outline */
-  .logo-tag.filled { padding: 3px; }
-  .logo-tag.filled img { height: calc(var(--h) + 6px); width: calc(var(--h) + 6px); max-width: none; object-fit: cover; border-radius: 8px; }
+  .logo-tag.filled { padding: 2px; }
+  .logo-tag.filled img { height: calc(var(--h) + 12px); width: calc(var(--h) + 12px); max-width: none; object-fit: cover; border-radius: 9px; }
 </style>
