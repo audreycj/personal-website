@@ -12,8 +12,8 @@ const items = keys.map((k) => LOGOS[k]).filter(Boolean);
 {items.length > 0 && (
   <span class={`logos ${cls}`} style={`--h:${height}px`}>
     {items.map((l) => (
-      <span class="logo-tag" title={l.name}>
-        <img src={l.src} alt={`${l.name} logo`} loading="lazy" decoding="async" />
+      <span class:list={['logo-tag', { filled: l.fill }]} title={l.name}>
+        <img src={l.fill ?? l.src} alt={`${l.name} logo`} loading="lazy" decoding="async" />
       </span>
     ))}
   </span>
@@ -29,4 +29,7 @@ const items = keys.map((k) => LOGOS[k]).filter(Boolean);
   .logo-tag:nth-child(even) { transform: rotate(2deg); }
   /* the logo itself: scaled to fit, never stretched or recolored */
   .logo-tag img { display: block; height: var(--h); width: auto; max-width: calc(var(--h) * 3); object-fit: contain; }
+  /* logos on a colored block: the block fills the tag, with a white ring inside the dark outline */
+  .logo-tag.filled { padding: 3px; }
+  .logo-tag.filled img { height: calc(var(--h) + 6px); width: calc(var(--h) + 6px); max-width: none; object-fit: cover; border-radius: 8px; }
 </style>
