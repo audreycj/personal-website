@@ -13,21 +13,21 @@ export type Paper = {
   venue: string;
   summary: string;
   recognition?: string[];
-  link?: string;      // the published paper (DOI)
+  link?: string;      // the published version (DOI)
   explainer?: string; // a page on this site that explains it in plain language
-  origin?: string;    // where the work started (e.g., the original thesis)
+  origin?: string;    // an extra note, e.g., where it was later published
   color: 'sage' | 'butter' | 'lilac' | 'peach' | 'sky';
 };
 
 export const papers: Paper[] = [
   {
-    title: 'Automated Bacteria Colony Counting using Hybrid Image Segmentation Algorithm and YOLOv5 Transfer Learning Model',
-    authors: 'Reznee Mariel R. Galope, Cherry B. Lisondra, Audrey Carmel Jay J. Nanual',
-    year: '2024',
-    type: 'Journal article',
-    venue: 'IJIRMPS · Special Issue IPMESS-24 · January 2024',
+    title: 'Automated Bacteria Colony Counting Using Hybrid Image Segmentation Algorithm Framework and YOLOv5 Transfer Learning Model',
+    authors: 'Audrey Carmel Jay J. Nanual, Reznee Mariel R. Galope',
+    year: '2023',
+    type: 'Undergraduate thesis',
+    venue: 'BS Computer Science · Mapúa Malayan Colleges Mindanao',
     summary: 'We built a dataset of E. coli plate photos and a two-step image cleanup method, then trained an AI model to find and count bacteria colonies automatically, instead of counting them by eye.',
-    origin: 'Originally submitted as an undergraduate thesis by A. C. J. J. Nanual and R. M. R. Galope, Mapúa Malayan Colleges Mindanao, May 2023.',
+    origin: 'Later published in IJIRMPS, Special Issue IPMESS-24 (January 2024).',
     recognition: [
       'Champion · Mindanao Conference for IT Students 2023 Paper Presentation',
       'Finalist · Outstanding Student Research Awards 2023',

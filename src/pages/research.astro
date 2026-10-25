@@ -23,7 +23,7 @@ const orcid = site.orcid ? { url: site.orcid } : undefined;
             <span class="year">{p.year}</span>
           </div>
           <h2>{p.title}</h2>
-          <p class="authors">{p.authors}</p>
+          <p class="authors">{p.authors.split(', ').map((name, i) => <>{i > 0 && <span class="sep">•</span>}<span class="nowrap">{name}</span></>)}</p>
           <p class="venue">{p.venue.split(' · ').map((part, i) => <>{i > 0 && <span class="sep">•</span>}{part}</>)}</p>
           <p class="summary">{p.summary}</p>
           {p.origin && <p class="origin">{p.origin}</p>}
@@ -34,7 +34,7 @@ const orcid = site.orcid ? { url: site.orcid } : undefined;
           )}
           <div class="actions">
             {p.explainer && <a class="btn" style={`--c:var(--${p.color})`} href={p.explainer}>explain it simply →</a>}
-            {p.link && <a class="btn" style="--c:var(--paper)" href={p.link} target="_blank" rel="noopener">read the paper ↗</a>}
+            {p.link && <a class="btn" style="--c:var(--paper)" href={p.link} target="_blank" rel="noopener">read the published version ↗</a>}
           </div>
         </article>
       ))}
@@ -73,7 +73,11 @@ const orcid = site.orcid ? { url: site.orcid } : undefined;
   }
   .top-row { display: flex; justify-content: space-between; gap: 10px; font-family: var(--font-display); font-weight: 600; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; opacity: .75; }
   .paper h2 { font-family: var(--font-display); font-size: 26px; line-height: 1.2; margin-top: 16px; }
-  .authors { font-size: 19px; font-style: italic; margin-top: 10px; }
+  /* authors: small uppercase label, like the issuer line on award cards */
+  .authors {
+    margin-top: 14px; font-family: var(--font-display); font-weight: 600; font-size: 14px; line-height: 1.6;
+    text-transform: uppercase; letter-spacing: .8px; opacity: .75;
+  }
   .venue { font-size: 18px; opacity: .85; margin-top: 4px; }
   .summary { font-size: 20px; line-height: 1.55; margin-top: 20px; padding-top: 18px; border-top: 2px dashed rgba(61, 26, 34, .25); }
   .stamps { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 24px; }
