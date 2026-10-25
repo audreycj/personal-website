@@ -11,6 +11,12 @@ let stopIndex = 0; // used to alternate left/right
     <h1 class="page-title">The<br />Journey</h1>
     <p class="page-intro">
       How a girl who asked her mom to pick her college program ended up teaching IT, and is now building things to solve problems she actually has.
+    </p>
+    <p class="page-intro intro-2">
+      The <a href="/work">work</a>, <a href="/education">education</a>, and <a href="/credentials">credentials</a> tabs list the facts.
+      This page puts them all on one road, in order, and tells the story in between: what happened at each stop, and what I took away from it.
+    </p>
+    <p class="page-intro intro-2">
       Scroll down the path. Each stop has <mark style="--c:var(--lilac)">the full story</mark> behind it if you want more.
     </p>
   </div>
@@ -91,6 +97,8 @@ let stopIndex = 0; // used to alternate left/right
 </script>
 
 <style>
+  .page-intro.intro-2 { margin-top: 14px; }
+  .page-intro a { text-decoration: underline wavy; text-underline-offset: 5px; }
   .path { position: relative; margin-top: 70px; padding-bottom: 20px; }
   /* the dashed trail down the middle */
   .path::before {
