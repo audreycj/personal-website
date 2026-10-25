@@ -12,3 +12,6 @@ personal-website-content.docx
 
 # original full-size logo files (the site uses the trimmed copies in public/logos/)
 assets/
+
+# thesis manuscript, slides, and related files (private)
+/research/
