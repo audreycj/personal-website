@@ -45,10 +45,11 @@ const isLastTab = here === nav.length - 1;
   <header class="wrap top">
     {cozy
       ? <a href="/" class="brand">← back to the professional stuff</a>
-      : <a href="/" class="brand" aria-label="Audrey Nanual, home">
-          <img src="/favicon.svg" alt="" width="44" height="33" class="brand-cat" />
-          {path !== '/' && <span>audrey nanual</span>}
-        </a>}
+      : path === '/'
+        ? <span class="brand" aria-hidden="true"></span>
+        : <a href="/" class="brand" aria-label="Audrey Nanual, home">
+            <img src="/favicon.svg" alt="" width="44" height="33" class="brand-cat" />
+          </a>}
     {!cozy && (
       <nav aria-label="Main">
         {nav.map((item) => (
