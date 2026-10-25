@@ -5,18 +5,26 @@ import Shot from '../../components/Shot.astro';
 import Lightbox from '../../components/Lightbox.astro';
 
 const steps = [
-  { doodle: 'paw', color: 'peach', title: 'A student joins', text: 'They land in a welcome channel and click Register, or their section\'s button.' },
-  { doodle: 'notebook', color: 'butter', title: 'They fill in a form', text: 'First name, middle name, last name, suffix, and email.' },
-  { doodle: 'book', color: 'lilac', title: 'Mingming checks the list', text: 'Their name is matched against my official class list.' },
-  { doodle: 'sparkle', color: 'sage', title: 'Done!', text: 'Nickname set to "Last, First", and their section\'s channels unlock.' },
+  { doodle: 'paw', color: 'peach', title: 'A student joins', text: 'All they can see is #welcome, with a Register button (or one button per section).' },
+  { doodle: 'notebook', color: 'butter', title: 'They fill in a form', text: 'Complete first name, middle name, last name, suffix, and email.' },
+  { doodle: 'book', color: 'lilac', title: 'Mingming checks the list', text: 'It finds them on my class list, even with small typos, and reads their section from it.' },
+  { doodle: 'sparkle', color: 'sage', title: 'Done!', text: 'Their nickname becomes "Last, First M.", their section\'s channels open, and I get pinged if anything looks off.' },
 ];
 
 const features = [
-  { title: 'Class-list verification', text: 'With my class list uploaded, Mingming checks each name and assigns the section itself.', color: 'sage' },
-  { title: 'Section channels unlock automatically', text: 'Once registered, students get access to their own section\'s channels, so each class only sees what\'s meant for them.', color: 'sky' },
-  { title: 'Typos get flagged, not fixed', text: 'If a name doesn\'t match the list, the student\'s own spelling is kept and I get pinged to review it.', color: 'butter' },
-  { title: 'Emails collected', text: 'So I can reach students about grades outside Discord.', color: 'lilac' },
-  { title: 'Instructor commands', text: 'Twelve slash commands just for me, like <code>/unregistered</code> and <code>/export-roster</code>.', color: 'peach' },
+  { title: 'Forgiving name matching', text: 'It still finds a student who made a small typo, skipped an accent (ñ) or a second given name, or put their first and last names in the wrong boxes.', color: 'sage' },
+  { title: 'Registrar mistakes get caught', text: 'If a name truly differs from the class list, Mingming keeps the student\'s spelling, asks them to check with the Registrar, and pings me to review it.', color: 'butter' },
+  { title: 'Names come out tidy', text: '"jUaN dela CRUZ" becomes "Dela Cruz, Juan", and very long names shrink into initials to fit Discord\'s 32-character limit.', color: 'lilac' },
+  { title: 'Channels open by themselves', text: 'Each student gets their section\'s role, so they only see their own section\'s announcements and chat.', color: 'sky' },
+  { title: 'Careful with student data', text: 'Only I can download the emails, and it refuses to hand out any role that carries staff powers.', color: 'peach' },
+  { title: 'Eleven commands just for me', text: 'Like <code>/unregistered</code> to see who hasn\'t signed up yet, and <code>/export-roster</code> for a spreadsheet of the whole class.', color: 'sage' },
+];
+
+const numbers = [
+  { big: '3', small: 'class servers using it', color: 'peach' },
+  { big: '11', small: 'instructor commands', color: 'butter' },
+  { big: '140+', small: 'automated checks', color: 'lilac' },
+  { big: '₱0', small: 'to keep it running', color: 'sage' },
 ];
 
 const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Discord Interactions API'];
@@ -28,7 +36,7 @@ const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Disco
       <div>
         <span class="label">project 01 · personal project · 2026</span>
         <h1 class="page-title">Mingming</h1>
-        <p class="page-intro">A Discord bot that gets students registered with their proper names, so I can actually find them.</p>
+        <p class="page-intro">A Discord bot that gets students registered with their proper names, so I can actually find them. It now runs in all three of my class servers.</p>
         <p class="tags">{stack.map((t) => <span class="chip">{t}</span>)}</p>
       </div>
       <div class="hero-art">
@@ -81,6 +89,7 @@ const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Disco
     <p class="aside">
       Behind the scenes: when a student clicks the button, Discord sends a request to Mingming on Cloudflare. Mingming wakes up,
       does the job, saves the record to a small SQL database, and goes back to sleep. Nothing runs on my laptop, and it costs nothing.
+      Discord expects an answer within 3 seconds, so Mingming replies "thinking..." right away and finishes the work in the background.
     </p>
 
     <!-- FEATURES -->
@@ -91,6 +100,13 @@ const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Disco
           <h3>{f.title}</h3>
           <p set:html={f.text} />
         </div>
+      ))}
+    </div>
+
+    <!-- BY THE NUMBERS -->
+    <div class="numbers">
+      {numbers.map((n) => (
+        <div class="num sticker reveal" style={`--c:var(--${n.color})`}><b>{n.big}</b><span>{n.small}</span></div>
       ))}
     </div>
 
@@ -159,7 +175,13 @@ const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Disco
   .step p { font-size: 18px; line-height: 1.4; }
   .aside { font-size: 20px; max-width: 760px; margin-top: 30px; }
 
-  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 22px; }
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 26px; }
+  .numbers { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; margin-top: 60px; }
+  .num { display: flex; flex-direction: column; align-items: center; padding: 18px 14px; background: var(--c); text-align: center; }
+  .num b { font-family: var(--font-display); font-size: 46px; line-height: 1; }
+  .num span { font-size: 18px; margin-top: 6px; }
+  .num.in:nth-child(odd) { transform: rotate(-1.5deg); }
+  .num.in:nth-child(even) { transform: rotate(1.5deg); }
   .feature { padding: 22px; background: var(--c); }
   .feature h3 { font-family: var(--font-display); font-size: 22px; }
   .feature p { font-size: 19px; line-height: 1.4; margin-top: 4px; }
