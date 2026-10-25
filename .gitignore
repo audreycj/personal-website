@@ -9,3 +9,6 @@ personal-website-content.docx
 
 # macOS
 .DS_Store
+
+# original full-size logo files (the site uses the trimmed copies in public/logos/)
+assets/

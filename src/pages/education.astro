@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Doodle from '../components/Doodle.astro';
+import Logos from '../components/Logos.astro';
 import { schools } from '../data/resume';
 ---
 <Base title="Education" description="Audrey's education: Master's in IT at Mapúa, BS Computer Science (Magna Cum Laude), and earlier schooling.">
@@ -21,6 +22,7 @@ import { schools } from '../data/resume';
               <h2>{s.school}</h2>
               {s.location && <p class="loc">{s.location}</p>}
             </div>
+            <Logos keys={s.logos} height={56} class="head-logo" />
           </header>
 
           <div class="body">
@@ -81,6 +83,7 @@ import { schools } from '../data/resume';
   .card:hover .crest { transform: rotate(-8deg) scale(1.06); }
   .when { font-family: var(--font-display); font-weight: 600; font-size: 16px; display: flex; gap: 10px; align-items: center; }
   .now { background: var(--paper); border: 2.5px solid var(--ink); border-radius: 999px; padding: 0 10px; font-size: 13px; }
+  .head > div:not(.crest) { flex: 1; min-width: 0; }
   .head h2 { font-family: var(--font-display); font-size: clamp(24px, 3.6vw, 34px); line-height: 1.1; }
   .loc { font-size: 18px; }
 
@@ -108,6 +111,9 @@ import { schools } from '../data/resume';
   @media (max-width: 760px) {
     .head { padding: 16px 18px; gap: 14px; }
     .crest { width: 68px; height: 68px; }
+    .head { position: relative; padding-right: 84px; }
+    .head :global(.head-logo) { position: absolute; top: 14px; right: 12px; }
+    .head :global(.logo-tag img) { height: 40px; }
     .crest :global(.doodle) { width: 46px; height: 46px; }
     .body { padding: 18px 18px 20px; }
   }

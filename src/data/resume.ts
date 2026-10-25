@@ -21,6 +21,7 @@ export type Job = {
   end: string;
   doodle: string;
   color: Color;
+  logos?: string[];  // keys from logos.ts
   bullets: string[];
   skills?: string[];
   story?: string[];
@@ -35,6 +36,7 @@ export type School = {
   end: string;
   doodle: string;
   color: Color;
+  logos?: string[];  // keys from logos.ts
   honors?: string[];
   activities?: string[];
   story?: string[];
@@ -53,6 +55,7 @@ export const jobs: Job[] = [
     end: 'Present',
     doodle: 'javaboard',
     color: 'butter',
+    logos: ['dorsu'],
     bullets: [
       'Teach courses in the Bachelor of Science in Information Technology program',
       'Prepare lessons and learning materials, support students, and help with academic and administrative tasks',
@@ -76,6 +79,7 @@ export const jobs: Job[] = [
     end: 'Jul 2026',
     doodle: 'phone',
     color: 'sage',
+    logos: ['telemondo'],
     bullets: [
       'Designed wireframes and mockups in Figma for web and mobile applications',
       'Joined QA testing to identify and resolve design and user experience issues in the final product',
@@ -99,6 +103,7 @@ export const jobs: Job[] = [
     end: 'May 2023',
     doodle: 'coffee',
     color: 'peach',
+    logos: ['chatchatabc'],
     bullets: [
       'Researched and presented Java unit testing principles and tools (JUnit 5, JUnit Pioneer, AssertJ, Data Faker, Mockito, Easy Random, Database Rider, ModelAssert, Spring testing, TestContainers, Instancio, Selenide, JetBrains Aqua)',
       'Built presentation decks with Slidev, a Markdown-based slide tool',
@@ -124,6 +129,7 @@ export const jobs: Job[] = [
     end: 'Mar 2020',
     doodle: 'flag',
     color: 'lilac',
+    logos: ['mmcm'],
     bullets: [
       'Led scheduled campus tours for students, parents, guardians, and visitors',
       'Assisted with onsite entrance exams',
@@ -149,6 +155,7 @@ export const schools: School[] = [
     end: 'Present',
     doodle: 'book',
     color: 'lilac',
+    logos: ['mapua'],
     story: [
       'Part of it is for promotion in my job as a BSIT instructor at DOrSU. But I also wanted to keep learning, and to broaden and deepen my understanding of the field.',
       'In undergrad, I was overwhelmed by how new everything was, and the pandemic brought a kind of intellectual sluggishness during my second and third years. (Shifting programs wasn\'t an option. I just wanted to graduate, lol.) I couldn\'t get the whys and so-whats of the concepts being fed to me, or see how they connected to the real world.',
@@ -165,6 +172,7 @@ export const schools: School[] = [
     end: 'Jul 2023',
     doodle: 'gradcap',
     color: 'sage',
+    logos: ['mmcm'],
     honors: ['Magna Cum Laude', 'Gold Medal Awardee', 'Consistent Dean\'s Lister and President\'s Lister'],
     activities: ['Computing Students Society (Secretary, A.Y. 2020–2021)'],
     story: [
@@ -182,6 +190,7 @@ export const schools: School[] = [
     end: 'Apr 2019',
     doodle: 'boat',
     color: 'sky',
+    logos: ['silliman'],
     honors: ['Consistent high honors student'],
     activities: ['Red Cross Youth', 'Hijos de Davao'],
     story: [
@@ -198,6 +207,7 @@ export const schools: School[] = [
     end: '2017',
     doodle: 'backpack',
     color: 'peach',
+    logos: ['ihma'],
     honors: ['Finished with High Honors'],
     activities: [
       'Vice President, Student Coordinating Group (student government), A.Y. 2016–2017',

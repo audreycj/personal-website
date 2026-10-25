@@ -79,7 +79,7 @@ export const chapters: Chapter[] = [
         doodle: 'chart',
         color: 'sky',
         title: '2nd Runner-Up: Philippine Junior Data Science Challenge',
-        place: 'UP Data Science Society',
+        place: 'University of the Philippines Data Science Society',
         bullets: ['Month-long event with talks, workshops, and an exploratory data analysis competition'],
         story: ['A classmate recruited me and two others. This was my first taste of data analytics, and I\'m still learning it through online courses today.'],
       },

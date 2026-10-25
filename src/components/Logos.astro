@@ -1,0 +1,32 @@
+---
+// ==========================================================
+// LOGO STICKERS: real logos shown as-is on small white tags.
+// Usage: <Logos keys={['ibm', 'coursera']} height={40} />
+// ==========================================================
+import { LOGOS } from '../data/logos';
+
+interface Props { keys?: string[]; height?: number; class?: string }
+const { keys = [], height = 44, class: cls = '' } = Astro.props;
+const items = keys.map((k) => LOGOS[k]).filter(Boolean);
+---
+{items.length > 0 && (
+  <span class={`logos ${cls}`} style={`--h:${height}px`}>
+    {items.map((l) => (
+      <span class="logo-tag" title={l.name}>
+        <img src={l.src} alt={`${l.name} logo`} loading="lazy" decoding="async" />
+      </span>
+    ))}
+  </span>
+)}
+
+<style>
+  .logos { display: inline-flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .logo-tag {
+    display: inline-grid; place-items: center; height: calc(var(--h) + 12px); min-width: calc(var(--h) + 12px);
+    padding: 6px; background: #fff; border: 2.5px solid var(--ink); border-radius: 12px; box-shadow: 3px 3px 0 var(--ink);
+  }
+  .logo-tag:nth-child(odd) { transform: rotate(-2deg); }
+  .logo-tag:nth-child(even) { transform: rotate(2deg); }
+  /* the logo itself: scaled to fit, never stretched or recolored */
+  .logo-tag img { display: block; height: var(--h); width: auto; max-width: calc(var(--h) * 3); object-fit: contain; }
+</style>
