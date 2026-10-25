@@ -1,20 +1,22 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Doodle from '../../components/Doodle.astro';
+import Shot from '../../components/Shot.astro';
+import Lightbox from '../../components/Lightbox.astro';
 
 const steps = [
-  { doodle: 'paw', color: 'peach', title: 'A student joins', text: 'They land in a welcome channel with one big Register button.' },
+  { doodle: 'paw', color: 'peach', title: 'A student joins', text: 'They land in a welcome channel and click Register, or their section\'s button.' },
   { doodle: 'notebook', color: 'butter', title: 'They fill in a form', text: 'First name, middle name, last name, suffix, and email.' },
   { doodle: 'book', color: 'lilac', title: 'Mingming checks the list', text: 'Their name is matched against my official class list.' },
   { doodle: 'sparkle', color: 'sage', title: 'Done!', text: 'Nickname set to "Last, First", and their section\'s channels unlock.' },
 ];
 
 const features = [
-  { title: 'Class-list verification', text: 'Sections are assigned from the official class list, not chosen by students.', color: 'sage' },
+  { title: 'Class-list verification', text: 'With my class list uploaded, Mingming checks each name and assigns the section itself.', color: 'sage' },
   { title: 'Section channels unlock automatically', text: 'Once registered, students get access to their own section\'s channels, so each class only sees what\'s meant for them.', color: 'sky' },
   { title: 'Typos get flagged, not fixed', text: 'If a name doesn\'t match the list, the student\'s own spelling is kept and I get pinged to review it.', color: 'butter' },
   { title: 'Emails collected', text: 'So I can reach students about grades outside Discord.', color: 'lilac' },
-  { title: 'Instructor commands', text: '<code>/unregistered</code> shows who hasn\'t signed up, and <code>/reset-student</code> lets someone redo their registration.', color: 'peach' },
+  { title: 'Instructor commands', text: 'Twelve slash commands just for me, like <code>/unregistered</code> and <code>/export-roster</code>.', color: 'peach' },
 ];
 
 const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Discord Interactions API'];
@@ -92,12 +94,17 @@ const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Disco
       ))}
     </div>
 
-    <!-- SCREENSHOTS (placeholder) -->
-    <h2 class="section-title">screenshots</h2>
-    <div class="placeholder sticker">
-      <Doodle name="camera" color="sky" size={60} />
-      <p>[Add screenshots here: the welcome panel, the form, and the #join-log alert. Blur student names and emails first!]</p>
+    <!-- SCREENSHOTS -->
+    <h2 class="section-title">what students see <span class="hint">(tap to zoom)</span></h2>
+    <div class="shots">
+      <div class="reveal wide"><Shot src="/projects/mingming/welcome-panel.webp" device="plain" caption="The welcome panel in my IT 113 server. Students pick their section, then fill in a short form." /></div>
+      <div class="phones">
+        <div class="reveal"><Shot src="/projects/mingming/phone-panel.webp" device="plain" caption="On a phone: the panel I posted when I tidied up my ITC 120 server." /></div>
+        <div class="reveal"><Shot src="/projects/mingming/phone-form.webp" device="plain" caption="The form. The examples nudge students to use their complete names." /></div>
+      </div>
     </div>
+    <h2 class="section-title">what i see</h2>
+    <div class="reveal cmds"><Shot src="/projects/mingming/commands.webp" device="plain" caption="My instructor-only commands, for setting up a server, managing sections, and keeping the roster tidy." /></div>
 
     <!-- WHAT I LEARNED -->
     <h2 class="section-title">what it meant to me</h2>
@@ -111,6 +118,7 @@ const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Disco
       </p>
     </div>
   </div>
+  <Lightbox />
 </Base>
 
 <style>
@@ -158,7 +166,12 @@ const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Disco
   .feature.in:nth-child(odd) { transform: rotate(-1deg); }
   .feature.in:nth-child(even) { transform: rotate(1deg); }
 
-  .placeholder { display: flex; align-items: center; gap: 18px; padding: 24px; font-size: 20px; border-style: dashed; box-shadow: none; }
+  .hint { font-size: 18px; font-weight: 400; opacity: .6; }
+  .shots { display: flex; flex-direction: column; gap: 50px; }
+  .shots .wide { max-width: 760px; margin: 0 auto; width: 100%; }
+  .phones { display: grid; grid-template-columns: repeat(2, minmax(0, 300px)); justify-content: center; gap: 50px; align-items: start; }
+  .cmds { max-width: 860px; margin: 0 auto; }
+  @media (max-width: 560px) { .phones { grid-template-columns: minmax(0, 300px); } }
   .journal-card { position: relative; padding: 32px 30px 26px; font-size: 22px; max-width: 760px; }
 
   @media (max-width: 860px) {

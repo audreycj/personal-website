@@ -15,3 +15,6 @@ assets/
 
 # private source files: thesis, slides, original project images (the site uses web copies in public/)
 /private/
+
+# raw screenshots for the Mingming page (the site uses the cropped copies in public/projects/mingming/)
+/mingming bot/
