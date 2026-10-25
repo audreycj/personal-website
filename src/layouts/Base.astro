@@ -45,7 +45,10 @@ const isLastTab = here === nav.length - 1;
   <header class="wrap top">
     {cozy
       ? <a href="/" class="brand">← back to the professional stuff</a>
-      : <a href="/" class="brand">audrey nanual</a>}
+      : <a href="/" class="brand" aria-label="Audrey Nanual, home">
+          <img src="/favicon.svg" alt="" width="44" height="33" class="brand-cat" />
+          {path !== '/' && <span>audrey nanual</span>}
+        </a>}
     {!cozy && (
       <nav aria-label="Main">
         {nav.map((item) => (
@@ -134,6 +137,9 @@ const isLastTab = here === nav.length - 1;
 </html>
 
 <style>
+  .brand { display: inline-flex; align-items: center; gap: 10px; }
+  .brand-cat { display: block; transition: transform .3s cubic-bezier(.3,2,.5,1); }
+  .brand:hover .brand-cat { transform: rotate(-12deg) scale(1.12); }
   .top {
     display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
     padding-top: 30px; font-family: var(--font-display); font-weight: 600; font-size: 18px;
