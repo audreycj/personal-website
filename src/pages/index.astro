@@ -131,6 +131,9 @@ const chapterColors = ['peach', 'sky', 'lilac', 'sage', 'butter'];
     setTimeout(() => big.classList.remove('squish'), 150);
   });
 
+  // tap the scrolling band to pause or resume it
+  document.querySelector('.band')?.addEventListener('click', (e) => (e.currentTarget as HTMLElement).classList.toggle('paused'));
+
   // split the big name into letters that bounce on hover
   document.querySelectorAll('.split').forEach((h) => {
     h.innerHTML = h.innerHTML.split(/(<br[^>]*>)/).map((part) =>
@@ -197,9 +200,15 @@ const chapterColors = ['peach', 'sky', 'lilac', 'sage', 'butter'];
     width: 112vw; margin: 80px 0 0 calc(50% - 56vw); background: var(--ink); color: var(--pink-soft); transform: rotate(-2deg);
     padding: 14px 0; overflow: hidden; font-family: var(--font-display); font-weight: 600; font-size: 22px; white-space: nowrap;
   }
-  .band .track { display: inline-block; animation: slide 40s linear infinite; will-change: transform; -webkit-transform: translateZ(0); }
+  .band .track { display: inline-block; animation: slide 40s linear infinite; will-change: transform; }
   .band b { color: var(--butter); font-weight: 600; margin: 0 18px; }
   @keyframes slide { to { transform: translateX(-50%); } }
+  .band.paused .track { animation-play-state: paused !important; }
+  /* phones with "Reduce Motion" on: still drift, but slowly (tap to pause) */
+  @media (prefers-reduced-motion: reduce) {
+    .band .track { animation: slide 120s linear infinite !important; }
+    .band.paused .track { animation-play-state: paused !important; }
+  }
 
   /* journey teaser */
   .journey-teaser { display: block; padding: 30px 24px 26px; text-align: center; transition: transform .3s cubic-bezier(.3,1.6,.5,1); }
