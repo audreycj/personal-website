@@ -44,7 +44,7 @@ import { schools } from '../data/resume';
 
             {s.story && (
               <details>
-                <summary>looking back</summary>
+                <summary>{s.end === 'Present' ? "why i'm here" : 'looking back'}</summary>
                 <div class="journal">{s.story.map((p) => <p>{p}</p>)}</div>
               </details>
             )}
