@@ -71,7 +71,7 @@ export const chapters: Chapter[] = [
         meta: 'Computing Students Society Secretary, A.Y. 2020–2021',
         takeaway: 'I asked my mom to choose my program. Finding my own reasons to care about it took time.' }),
       fromJob('mmcm-assistant', { place: 'MMCM Admissions Office · part-time',
-        takeaway: 'I learned to talk to people in their language, literally: Bisaya, Tagalog, or English.' }),
+        takeaway: 'My first real workplace: paid work, actual colleagues, and strangers I was responsible for serving. Not a classroom anymore.' }),
       {
         when: 'Jun 2021',
         doodle: 'seedling',
@@ -79,8 +79,8 @@ export const chapters: Chapter[] = [
         title: 'Champion: Reimagined, Advocacies in the New Normal',
         place: 'MMCM Center for Service-Learning and Community Engagement',
         meta: 'A project proposal for community development',
-        takeaway: 'Where I first thought about using technology intentionally to solve a problem.',
-        story: ['A classmate recruited me during the pandemic and I thought, why not? It introduced me to the idea of using technology intentionally to solve a problem.'],
+        takeaway: 'The first time I thought about using technology intentionally to solve a problem, not as an everyday user, but as a computing student on the way to becoming a computing professional.',
+        story: ['A classmate recruited me during the pandemic and I thought, why not? Until then, technology to me was mostly the everyday stuff, like MS Office. This was the first time I looked at a real problem as a computing student and asked how technology could help solve it.'],
       },
       {
         when: 'Jun 2022',
@@ -89,11 +89,14 @@ export const chapters: Chapter[] = [
         title: '2nd Runner-Up: Philippine Junior Data Science Challenge',
         place: 'University of the Philippines Data Science Society',
         meta: 'A month-long exploratory data analysis competition',
-        takeaway: 'My first taste of data analytics, and I\'m still learning it.',
-        story: ['A classmate recruited me and two others. This was my first taste of data analytics, and I\'m still learning it through online courses today.'],
+        takeaway: 'My first taste of data analytics, and I liked it enough that I\'m still learning it today.',
+        story: [
+          'A classmate recruited me and two others. This was my first taste of data analytics, and I\'m still learning it through online courses today.',
+          'I\'ve liked math subjects ever since I was in school (though I\'m certainly not the best at it), mostly for the problem-solving and the satisfaction of figuring something out. Data hits that same spot in a particular way: organizing numbers, finding what they\'re saying, and turning them into visuals. It\'s oddly satisfying.',
+        ],
       },
       fromJob('chatchatabc', { when: 'Mar – May 2023',
-        takeaway: 'Programming languages stopped being scary once I saw they mostly say the same things differently.' }),
+        takeaway: 'Programming languages stopped being so scary and intimidating once I saw they mostly do the same things, just with different words and symbols.' }),
       {
         when: 'May 2023',
         doodle: 'mic',
@@ -101,8 +104,8 @@ export const chapters: Chapter[] = [
         title: 'Champion: Paper Presentation, Mindanao Conference for IT Students 2023',
         place: 'Philippine Society of IT Educators (PSITE), Davao Region',
         meta: 'First among 16 presenters, representing my school and our thesis duo',
-        takeaway: 'Nerve-wracking after two years at home. Got it done anyway.',
-        story: ['Speaking in front of a crowd after two years of being stuck at home during the pandemic was nerve-wracking. But I got it done and conquered!'],
+        takeaway: 'Nerve-wracking to present in front of a big audience after two years of being a hermit at home. Got it done anyway, and brought home gold.',
+        story: ['Speaking in front of a crowd after two years of being a hermit at home during the pandemic was nerve-wracking. But I got it done and conquered!'],
       },
       {
         when: 'Jul 2023',
@@ -140,8 +143,8 @@ export const chapters: Chapter[] = [
     blurb: 'You can\'t teach what you don\'t understand.',
     stops: [
       fromJob('dorsu', { story: job('dorsu').story?.slice(0, 2),
-        takeaway: 'Teaching out loud made concepts that never stuck in college finally click.' }),
-      fromSchool('mapua-mit', { takeaway: 'Back in school to strengthen my foundations and explore the application side of technology more deeply.' }),
+        takeaway: 'Explaining concepts out loud finally made them stick, even the ones that never stuck back in college.' }),
+      fromSchool('mapua-mit', { takeaway: 'Partly for promotion at DOrSU, but deep inside, I wanted to keep learning: to strengthen my foundations and explore the application side of technology more deeply.' }),
       {
         when: 'launched Oct 2026',
         doodle: 'bot',

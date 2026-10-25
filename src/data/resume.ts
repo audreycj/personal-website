@@ -139,6 +139,7 @@ export const jobs: Job[] = [
     skills: ['Communication', 'Customer service', 'Data entry', 'Bisaya · Filipino · English'],
     story: [
       'I was having a bit of an existential crisis: I didn\'t want to be "just an academic nut" and I worried about surviving the real world. So I applied for an actual job at school and landed in the admissions office.',
+      'It was my first real workplace. Even though it was my own school, I worked with actual hired colleagues, had real responsibilities, and got paid to do the work. Outside the controlled academic setting, I had to deal with people beyond my classmates and family: strangers I was responsible for serving as part of my job.',
       'I talked with people from all walks of life and learned to adjust my language, wording, and tone to whoever was in front of me: Bisaya, Tagalog, or English. I also used a real information management system for the first time and thought, "oh, so the databases in my lectures turn into this? Cool."',
     ],
   },
