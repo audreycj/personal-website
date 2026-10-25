@@ -61,16 +61,27 @@ const ICONS: Record<string, string> = {
     <path class="m" d="M6 30 L40 16 L74 30 L40 44Z"/>
     <path class="n" d="M66 34 V52"/><circle class="a1" cx="66" cy="56" r="4.5"/>`,
   phone: `
-    <rect class="p" x="22" y="6" width="36" height="68" rx="8"/>
-    <rect class="m" x="28" y="15" width="24" height="14" rx="2"/>
-    <rect class="a1" x="28" y="34" width="24" height="7" rx="2"/>
-    <rect class="a2" x="28" y="45" width="15" height="7" rx="2"/>
-    <path class="n" d="M36 65 H44"/>`,
+    <rect class="k" x="20" y="4" width="40" height="72" rx="9"/>
+    <rect class="m" x="24" y="9" width="32" height="62" rx="6"/>
+    <rect class="k" x="34" y="11" width="12" height="3.5" rx="1.75" style="stroke-width:1"/>
+    <circle class="p" cx="31" cy="23" r="4" style="stroke-width:2"/>
+    <path class="n" d="M38 21.5 H50 M38 25.5 H46" style="stroke-width:2"/>
+    <rect class="p" x="28" y="31" width="24" height="16" rx="3" style="stroke-width:2"/>
+    <path class="a2" d="M40 42 C34 38 34 34 37 34 C38.5 34 39.5 35 40 36 C40.5 35 41.5 34 43 34 C46 34 46 38 40 42Z" style="stroke-width:1.6"/>
+    <rect class="a1" x="28" y="51" width="24" height="6" rx="3" style="stroke-width:2"/>
+    <path class="n" d="M30 65 H50" style="stroke-width:2"/>
+    <circle class="k" cx="33" cy="65" r="1.4" style="stroke-width:1"/><circle class="k" cx="40" cy="65" r="1.4" style="stroke-width:1"/><circle class="k" cx="47" cy="65" r="1.4" style="stroke-width:1"/>`,
   chalkboard: `
     <path class="n" d="M20 72 L26 54 M60 72 L54 54"/>
     <rect class="m" x="8" y="10" width="64" height="46" rx="4"/>
     <path class="w" d="M18 26 L22 38 L26 26 M17 34 H27 M34 32 H42 M38 28 V36 M48 26 C56 24 56 32 49 32 C58 32 58 40 48 39 Z"/>
     <rect class="p" x="48" y="50" width="14" height="5" rx="1"/>`,
+  javaboard: `
+    <path class="n" d="M24 72 L29 58 M56 72 L51 58"/>
+    <rect class="m" x="9" y="16" width="62" height="42" rx="4"/>
+    <text x="14" y="34" textLength="50" lengthAdjust="spacingAndGlyphs">int[] cats</text>
+    <text x="14" y="47" textLength="50" lengthAdjust="spacingAndGlyphs">= {1,2,3};</text>
+    <rect class="p" x="52" y="52.5" width="12" height="4" rx="1"/>`,
   book: `
     <path class="m" d="M8 20 C21 13 32 15 40 22 V66 C32 59 21 57 8 64Z"/>
     <path class="p" d="M72 20 C59 13 48 15 40 22 V66 C48 59 59 57 72 64Z"/>
@@ -129,5 +140,6 @@ const body = ICONS[name] ?? ICONS.sparkle;
   .doodle .a2 { fill: #f4a9b8; }
   .doodle .n { fill: none; }
   .doodle .w { fill: none; stroke: #fff; stroke-width: 2.5; }
+  .doodle text { stroke: none; fill: #fff; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 8.6px; font-weight: 700; }
   .doodle g { fill: var(--c); }
 </style>

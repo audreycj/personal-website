@@ -15,7 +15,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     name: 'MingMing bot',
-    blurb: 'A Discord bot that registers students in my class servers with their proper names, checked against the class list.',
+    blurb: 'A Discord bot that registers students in my class servers with their proper names, checks them against the class list, and unlocks their section\'s channels.',
     tags: ['Discord', 'Cloudflare Workers', 'personal project'],
     color: 'sage',
     doodle: 'bot',

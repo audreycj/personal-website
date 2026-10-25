@@ -22,7 +22,7 @@ const current = jobs.find((j) => j.end === 'Present');
           </div>
           <div class="sheet">
             <aside class="side">
-              <div class="badge"><Doodle name={j.doodle} color={j.color} size={74} /></div>
+              <div class="badge"><Doodle name={j.doodle} color={j.color} size={100} /></div>
               <span class="chip">{j.type}</span>
               <span class="chip">{j.setup}</span>
               <p class="loc">{j.location}</p>
@@ -51,7 +51,6 @@ const current = jobs.find((j) => j.end === 'Present');
       ))}
     </div>
 
-    <p class="more">Want the story in between? <a href="/journey">Walk the whole journey →</a></p>
   </div>
 </Base>
 
@@ -73,7 +72,7 @@ const current = jobs.find((j) => j.end === 'Present');
   }
   @keyframes wiggle { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
   .sheet {
-    display: grid; grid-template-columns: 200px 1fr; gap: 30px; padding: 30px 30px 26px;
+    display: grid; grid-template-columns: 190px 1fr; gap: 30px; padding: 30px 30px 26px;
     background: var(--paper); border: 3px solid var(--ink); border-radius: 0 20px 20px 20px; box-shadow: 7px 7px 0 var(--ink);
     border-top: 14px solid var(--c);
     box-shadow: 7px 7px 0 var(--ink), inset 0 3px 0 var(--ink);
@@ -81,7 +80,7 @@ const current = jobs.find((j) => j.end === 'Present');
 
   .side { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
   .badge {
-    width: 110px; height: 110px; border-radius: 50%; background: var(--c); border: 3px solid var(--ink);
+    width: 132px; height: 132px; border-radius: 50%; background: var(--c); border: 3px solid var(--ink);
     display: grid; place-items: center; box-shadow: 4px 4px 0 var(--ink); margin-bottom: 8px;
     transition: transform .4s cubic-bezier(.3,1.8,.5,1);
   }
@@ -110,8 +109,8 @@ const current = jobs.find((j) => j.end === 'Present');
   @media (max-width: 760px) {
     .sheet { grid-template-columns: 1fr; gap: 16px; padding: 22px 20px; }
     .side { flex-direction: row; flex-wrap: wrap; align-items: center; }
-    .badge { width: 80px; height: 80px; margin-bottom: 0; }
-    .badge :global(.doodle) { width: 54px; height: 54px; }
+    .badge { width: 104px; height: 104px; margin-bottom: 0; }
+    .badge :global(.doodle) { width: 80px; height: 80px; }
     .loc { width: 100%; }
     .tab { margin-left: 14px; font-size: 15px; }
   }

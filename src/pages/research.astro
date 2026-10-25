@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import Doodle from '../components/Doodle.astro';
+import { site } from '../data/site';
+import { papers } from '../data/research';
+
+const orcid = site.links.find((l) => l.label === 'ORCID');
+---
+<Base title="Research" description="Audrey's research papers and academic work.">
+  <div class="wrap">
+    <h1 class="page-title">Research</h1>
+    <p class="page-intro">
+      Papers I've written or co-written. Just one for now, with more on the way as I go through my
+      <mark style="--c:var(--lilac)">master's</mark>.
+    </p>
+
+    <div class="papers">
+      {papers.map((p) => (
+        <article class="paper reveal" style={`--c:var(--${p.color})`}>
+          <span class="clip" aria-hidden="true"></span>
+          <div class="top-row">
+            <span class="type">{p.type}</span>
+            <span class="year">{p.year}</span>
+          </div>
+          <h2>{p.title}</h2>
+          <p class="authors">{p.authors}</p>
+          <p class="venue">{p.venue}</p>
+          <p class="summary">{p.summary}</p>
+          {p.recognition && (
+            <div class="stamps">
+              {p.recognition.map((r) => <span class="stamp"><Doodle name="medal" color="peach" size={26} />{r}</span>)}
+            </div>
+          )}
+          {p.link && <a class="btn" style={`--c:var(--${p.color})`} href={p.link} target="_blank" rel="noopener">read the paper ↗</a>}
+        </article>
+      ))}
+
+      <div class="paper placeholder reveal">
+        <Doodle name="book" color="lilac" size={60} />
+        <p>More papers coming soon<br />(grad school, here I come).</p>
+      </div>
+    </div>
+
+    {orcid && (
+      <div class="orcid sticker reveal">
+        <Doodle name="sparkle" color="sky" size={44} />
+        <div>
+          <h2>Find all my work on ORCID</h2>
+          <p>ORCID is a free ID for researchers that keeps track of everything I publish.</p>
+        </div>
+        <a class="btn" style="--c:var(--sky)" href={orcid.url} target="_blank" rel="noopener">my ORCID profile ↗</a>
+      </div>
+    )}
+  </div>
+</Base>
+
+<style>
+  .papers { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 70px; align-items: start; }
+
+  /* a printed paper with a binder clip and a colored top edge */
+  .paper {
+    position: relative; background: var(--paper); border: 3px solid var(--ink); border-top: 14px solid var(--c);
+    border-radius: 6px; padding: 30px 28px 26px; box-shadow: 7px 7px 0 var(--ink), 14px 14px 0 -3px var(--paper), 14px 14px 0 0 var(--ink);
+  }
+  .paper.in { transform: rotate(-1deg); }
+  .clip {
+    position: absolute; top: -30px; left: 50%; width: 54px; height: 30px; margin-left: -27px;
+    border: 3px solid var(--ink); border-bottom: 0; border-radius: 10px 10px 0 0; background: #c9c3cf;
+  }
+  .top-row { display: flex; justify-content: space-between; gap: 10px; font-family: var(--font-display); font-weight: 600; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; opacity: .75; }
+  .paper h2 { font-family: var(--font-display); font-size: 26px; line-height: 1.15; margin-top: 8px; }
+  .authors { font-size: 19px; font-style: italic; margin-top: 4px; }
+  .venue { font-size: 18px; opacity: .85; }
+  .summary { font-size: 20px; margin-top: 12px; }
+  .stamps { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 16px; }
+  .stamp {
+    display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-display); font-weight: 600; font-size: 15px;
+    background: var(--butter); border: 2.5px solid var(--ink); border-radius: 999px; padding: 2px 14px 2px 6px;
+  }
+  .stamp:nth-child(even) { background: var(--peach); transform: rotate(1deg); }
+  .stamp:nth-child(odd) { transform: rotate(-1deg); }
+  .paper .btn { margin-top: 16px; }
+
+  .placeholder {
+    border-style: dashed; border-top: 3px dashed var(--ink); box-shadow: none; text-align: center; font-size: 21px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px; background: transparent;
+  }
+  .placeholder.in { transform: rotate(1deg); }
+
+  .orcid { display: flex; align-items: center; gap: 20px; padding: 24px 28px; margin-top: 70px; flex-wrap: wrap; }
+  .orcid h2 { font-family: var(--font-display); font-size: 24px; }
+  .orcid p { font-size: 19px; }
+  .orcid div { flex: 1; min-width: 220px; }
+</style>

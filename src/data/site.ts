@@ -20,13 +20,16 @@ export const site = {
 };
 
 // main navigation (professional side)
-export const nav = [
+// The order here is also the order of the "next up" link at the bottom of each page.
+// `special: true` gives a tab the highlighted sticker look.
+export const nav: { label: string; href: string; special?: boolean }[] = [
   { label: 'home', href: '/' },
-  { label: 'journey', href: '/journey' },
   { label: 'work', href: '/work' },
   { label: 'education', href: '/education' },
   { label: 'projects', href: '/projects' },
+  { label: 'research', href: '/research' },
   { label: 'credentials', href: '/credentials' },
+  { label: 'my journey', href: '/journey', special: true },
 ];
 
 // the scrolling band on the home page

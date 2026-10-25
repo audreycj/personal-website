@@ -6,10 +6,15 @@ import '../styles/global.css';
 import Cat from '../components/Cat.astro';
 import { site, nav } from '../data/site';
 
-interface Props { title?: string; description?: string; cozy?: boolean }
-const { title, description = site.description, cozy = false } = Astro.props;
+interface Props { title?: string; description?: string; cozy?: boolean; journal?: boolean }
+const { title, description = site.description, cozy = false, journal = false } = Astro.props;
 const pageTitle = title ? `${title} · ${site.name}` : site.name;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+// "next up" link: the tab after this one in the nav (home has its own links)
+const here = nav.findIndex((n) => n.href !== '/' && (path === n.href || path.startsWith(n.href + '/')));
+const nextTab = here >= 0 ? nav[here + 1] : undefined;
+const isLastTab = here === nav.length - 1;
 ---
 <!doctype html>
 <html lang="en">
@@ -23,7 +28,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet" />
 </head>
-<body class={cozy ? 'is-cozy' : ''}>
+<body class={cozy ? 'is-cozy' : journal ? 'is-journal' : ''}>
   <!-- line-boil filters: slow wobble + fine crayon roughness. JS below cycles them. -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
@@ -45,7 +50,9 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     {!cozy && (
       <nav aria-label="Main">
         {nav.map((item) => (
-          <a href={item.href} class={path === item.href ? 'active' : ''}>{item.label}</a>
+          <a href={item.href} class:list={[{ active: path === item.href || (item.href !== '/' && path.startsWith(item.href + '/')) }, { special: item.special }]}>
+            {item.special && <span aria-hidden="true">✦ </span>}{item.label}
+          </a>
         ))}
       </nav>
     )}
@@ -54,6 +61,17 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
   <main>
     <slot />
   </main>
+
+  {!cozy && nextTab && (
+    <div class="wrap next-up">
+      <a href={nextTab.href}>next up: <b>{nextTab.label}</b> →</a>
+    </div>
+  )}
+  {!cozy && isLastTab && (
+    <div class="wrap next-up">
+      <a href="/cozy" data-wipe>that's the story so far. <b>follow the yarn to the cozy side</b> →</a>
+    </div>
+  )}
 
   <footer class="wrap foot">
     <div class="foot-cats" aria-hidden="true">
@@ -127,6 +145,27 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
   .top nav { display: flex; gap: 4px; flex-wrap: wrap; }
   .top nav a { padding: 4px 14px; border-radius: 999px; transition: background .2s, color .2s; }
   .top nav a:hover, .top nav a.active { background: var(--ink); color: var(--pink-soft); }
+  /* the Journey tab: a cream sticker, like "part-time cat butler" on the home page */
+  .top nav a.special {
+    background: var(--cream); border: 2.5px solid var(--ink); transform: rotate(-3deg); margin-left: 6px;
+    box-shadow: 3px 3px 0 var(--ink); transition: transform .3s cubic-bezier(.3,1.8,.5,1), box-shadow .2s;
+  }
+  .top nav a.special:hover { transform: rotate(2deg) scale(1.06); background: var(--cream); color: var(--ink); }
+  .top nav a.special.active { background: var(--ink); color: var(--cream); }
+
+  /* the Journey page: journal paper (cream with a faint grid), same ink and accents */
+  .is-journal {
+    background-color: #fbf3e8;
+    background-image:
+      linear-gradient(rgba(150, 170, 200, .18) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(150, 170, 200, .18) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .next-up { text-align: center; margin-top: 80px; font-size: 23px; }
+  .next-up a { display: inline-block; padding: 10px 24px; border: 3px dashed var(--ink); border-radius: 999px; transition: transform .3s cubic-bezier(.3,1.8,.5,1); }
+  .next-up a:hover { transform: rotate(-2deg) scale(1.04); border-style: solid; background: var(--paper); }
+  .next-up b { text-decoration: underline wavy; text-underline-offset: 5px; }
   .is-cozy { background: var(--cream) radial-gradient(#ecc6cf 2px, transparent 2px) 0 0 / 30px 30px; }
 
   main { min-height: 70vh; }

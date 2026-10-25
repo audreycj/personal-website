@@ -6,14 +6,15 @@ const steps = [
   { doodle: 'paw', color: 'peach', title: 'A student joins', text: 'They land in a welcome channel with one big Register button.' },
   { doodle: 'notebook', color: 'butter', title: 'They fill in a form', text: 'First name, middle name, last name, suffix, and email.' },
   { doodle: 'book', color: 'lilac', title: 'MingMing checks the list', text: 'Their name is matched against my official class list.' },
-  { doodle: 'sparkle', color: 'sage', title: 'Done!', text: 'Nickname set to "Last, First" and their section role assigned.' },
+  { doodle: 'sparkle', color: 'sage', title: 'Done!', text: 'Nickname set to "Last, First", and their section\'s channels unlock.' },
 ];
 
 const features = [
   { title: 'Class-list verification', text: 'Sections are assigned from the official class list, not chosen by students.', color: 'sage' },
+  { title: 'Section channels unlock automatically', text: 'Once registered, students get access to their own section\'s channels, so each class only sees what\'s meant for them.', color: 'sky' },
   { title: 'Typos get flagged, not fixed', text: 'If a name doesn\'t match the list, the student\'s own spelling is kept and I get pinged to review it.', color: 'butter' },
   { title: 'Emails collected', text: 'So I can reach students about grades outside Discord.', color: 'lilac' },
-  { title: 'Instructor commands', text: '/unregistered shows who hasn\'t signed up, and /reset-student lets someone redo their registration.', color: 'peach' },
+  { title: 'Instructor commands', text: '<code>/unregistered</code> shows who hasn\'t signed up, and <code>/reset-student</code> lets someone redo their registration.', color: 'peach' },
 ];
 
 const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Discord Interactions API'];
@@ -86,7 +87,7 @@ const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Disco
       {features.map((f) => (
         <div class="feature sticker reveal" style={`--c:var(--${f.color})`}>
           <h3>{f.title}</h3>
-          <p>{f.text}</p>
+          <p set:html={f.text} />
         </div>
       ))}
     </div>
@@ -148,7 +149,7 @@ const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Disco
   .step p { font-size: 18px; line-height: 1.4; }
   .aside { font-size: 20px; max-width: 760px; margin-top: 30px; }
 
-  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 22px; }
   .feature { padding: 22px; background: var(--c); }
   .feature h3 { font-family: var(--font-display); font-size: 22px; }
   .feature p { font-size: 19px; line-height: 1.4; margin-top: 4px; }

@@ -51,7 +51,7 @@ export const jobs: Job[] = [
     location: 'Mati City, Davao Oriental',
     start: 'Jun 2026',
     end: 'Present',
-    doodle: 'chalkboard',
+    doodle: 'javaboard',
     color: 'butter',
     bullets: [
       'Teach courses in the Bachelor of Science in Information Technology program',
@@ -107,8 +107,10 @@ export const jobs: Job[] = [
     ],
     skills: ['Java', 'Spring Boot', 'JUnit 5', 'OpenAI API', 'Picocli', 'GraalVM', 'Slidev'],
     story: [
-      'Our curriculum leaned on Python, so this was my introduction to Java. It gave me a big "aha!" moment: most programming languages do the same things with different words and symbols.',
-      'Once you learn a lot (a LOT) of things, you notice the concepts build on each other and carry over. That made new languages much less intimidating for someone who didn\'t walk into Computer Science as a "techy" person.',
+      'Our curriculum focused more on Python, though we were also taught C# and C++. This internship was my introduction to Java, and it made me realize that being exposed to different programming languages makes learning new things in computing a lot less intimidating.',
+      'When I started college, everything was overwhelming and abstract. But as you learn a lot (a lot, A LOT) of things, you realize many concepts build on top of each other or carry over. Programming languages mostly do the same things, just with different words and symbols. To display something in Python, you write print("hi"). In Java, you write System.out.println("hi");.',
+      'You also realize different languages exist for different purposes. Python is great for math and analytics, and it\'s versatile and easy to learn because it reads almost like English. Java runs a lot of the apps and systems we use every day, like Netflix, banking systems, and Android apps.',
+      'This internship gave me my "aha!" moment about programming languages, something I\'d struggled to wrap my head around as someone who wasn\'t tech-savvy (at least not in the programmer way) going into Computer Science.',
     ],
   },
   {
@@ -130,7 +132,7 @@ export const jobs: Job[] = [
     ],
     skills: ['Communication', 'Customer service', 'Data entry', 'Bisaya · Filipino · English'],
     story: [
-      'I was having a bit of an existential crisis: I didn\'t want to be "just an academic nut" and I worried about surviving the real world. So I applied for an actual job at school and landed in admissions.',
+      'I was having a bit of an existential crisis: I didn\'t want to be "just an academic nut" and I worried about surviving the real world. So I applied for an actual job at school and landed in the admissions office.',
       'I talked with people from all walks of life and learned to adjust my language, wording, and tone to whoever was in front of me: Bisaya, Tagalog, or English. I also used a real information management system for the first time and thought, "oh, so the databases in my lectures turn into this? Cool."',
     ],
   },
@@ -148,8 +150,10 @@ export const schools: School[] = [
     doodle: 'book',
     color: 'lilac',
     story: [
-      'I want to relearn the foundations properly. Between the newness of everything in undergrad and the pandemic, I often couldn\'t see the whys and so-whats of what I was learning. I\'m in the "I feel like I understand it, but maybe I don\'t" boat, and I want to get past that.',
-      'I chose IT over CS because I teach BSIT students, and because I\'m now more interested in applying technology than in the theory behind it.',
+      'Part of it is for promotion in my job as a BSIT instructor at DOrSU. But I also wanted to keep learning, and to broaden and deepen my understanding of the field.',
+      'In undergrad, I was overwhelmed by how new everything was, and the pandemic brought a kind of intellectual sluggishness during my second and third years. (Shifting programs wasn\'t an option. I just wanted to graduate, lol.) I couldn\'t get the whys and so-whats of the concepts being fed to me, or see how they connected to the real world.',
+      'So I\'m not confident in the foundations of some areas of computing. I\'m in the "I feel like I understand them, but maybe I don\'t" boat. I want to get past that uncertainty: relearn what needs relearning, and learn more of what there is to learn.',
+      'For my master\'s, I chose Information Technology over something closer to my Computer Science degree for two reasons: I teach BSIT students, and I\'m now more interested in the application side of technology than in inventing and discovering the theories, math, and algorithms behind it.',
     ],
   },
   {
@@ -164,7 +168,7 @@ export const schools: School[] = [
     honors: ['Magna Cum Laude', 'Gold Medal Awardee', 'Consistent Dean\'s Lister and President\'s Lister'],
     activities: ['Computing Students Society (Secretary, A.Y. 2020–2021)'],
     story: [
-      'I wanted to be closer to home, so I went back to Davao for college. I had no specific passion at the time, so I asked my mom to choose my program for me. I got thrown into a world of tech that turned out to be a lot more than Microsoft Office.',
+      'I wanted to be closer to home, so I went back to Davao for college. I had no specific passion at the time, so I asked my mom to choose my program for me. I got thrown into a world of tech that turned out to be a lot more than just Microsoft Office.',
       'The pandemic hit during my second and third years. Self-studying brand-new, abstract concepts was a real struggle, and it taught me how much a structured class with a mentor helps things stick.',
       'Looking back, I appreciate my instructors and professors so much. They went above and beyond to teach us through a really hard time, on top of their own lives. Now that I teach, I understand what that took.',
     ],
@@ -181,8 +185,8 @@ export const schools: School[] = [
     honors: ['Consistent high honors student'],
     activities: ['Red Cross Youth', 'Hijos de Davao'],
     story: [
-      'I moved from my hometown in southeastern Mindanao all the way to the Visayas. It was two years of new perspectives, values, belief systems, and a whole new world. Like a fish from a small pond thrown into a lake.',
-      'I met people from different countries, languages, provinces, and life situations. I deconstructed what I originally believed and formed my own set of morals. Being pushed out of my comfort zone made me adaptable and level-headed, and that has stayed with me.',
+      'I moved from my hometown in southeastern Mindanao all the way to Visayas. It was two years of new perspectives, values, belief systems, and a whole new world. Like a fish from a small pond thrown into a lake.',
+      'I met people from different countries, languages, provinces, and life situations. I deconstructed what I originally believed and formed my own set of morals. Being pushed out of my comfort zone made me more adaptable and level-headed, and that has stayed with me.',
     ],
   },
   {
@@ -201,7 +205,7 @@ export const schools: School[] = [
     ],
     story: [
       'My foundational life experiences happened here. My work ethic, standards, exploration of the arts (music and art), and foundational knowledge in the core subjects were built and honed in this institution.',
-      'Most of my teachers here were exceptional. The opportunities, school culture, learning environment, and structure they gave us shaped largely who I am now, even years after leaving.',
+      'I had exceptional teachers here. The opportunities, school culture, learning environment, and structure they gave us shaped largely who I am now, even years after leaving.',
     ],
   },
 ];

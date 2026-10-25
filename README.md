@@ -25,6 +25,7 @@ personal-website/
 │   │   ├── resume.ts       work experience + education (also feeds the journey)
 │   │   ├── journey.ts      chapters + stops on the journey page
 │   │   ├── projects.ts     project cards
+│   │   ├── research.ts     research papers
 │   │   └── credentials.ts  certificates, awards, languages
 │   ├── pages/         ← one file = one page (the file path is the URL)
 │   │   ├── index.astro         /            home
@@ -33,6 +34,7 @@ personal-website/
 │   │   ├── education.astro     /education
 │   │   ├── projects/index.astro      /projects
 │   │   ├── projects/mingming.astro   /projects/mingming
+│   │   ├── research.astro      /research
 │   │   ├── credentials.astro   /credentials
 │   │   └── cozy.astro          /cozy        the back room
 │   ├── components/    ← reusable pieces
@@ -53,6 +55,7 @@ personal-website/
 - **Add your email:** `src/data/site.ts` → `email: 'you@example.com'`
 - **Update a job or school:** edit it once in `src/data/resume.ts`. The Work, Education, and Journey pages all update.
 - **Add a journey stop:** copy one `{ ... }` block in `src/data/journey.ts` and change the text.
+- **Reorder the tabs:** change the order in `nav` in `src/data/site.ts`. The "next up" links follow the same order.
 - **Change a color:** the variables at the top of `src/styles/global.css`.
 - **Add one of your cats:** add a line to `COATS` in `src/components/Cat.astro`, e.g. `mochi: { fur: '#e8d9c4' }`, then use `<Cat coat="mochi" />`.
 

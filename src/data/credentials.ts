@@ -44,7 +44,7 @@ export type Award = { place: string; event: string; issuer: string; date: string
 
 export const awards: Award[] = [
   { place: 'Finalist', event: 'Outstanding Student Research Awards 2023', issuer: 'Mapúa Malayan Colleges Mindanao', date: 'Jul 2023', note: 'Our thesis was one of the top three in the College of Computer and Information Science, presented alongside other colleges\' finalists to a panel of judges.' },
-  { place: 'Champion', event: 'MCITS 2023 Paper Presentation', issuer: 'PSITE Davao Region', date: 'May 2023', note: 'Placed first among 16 presenters at the Mindanao Conference for IT Students.' },
+  { place: 'Champion', event: 'Mindanao Conference for IT Students (MCITS) 2023: Paper Presentation', issuer: 'PSITE Davao Region', date: 'May 2023', note: 'Placed first among 16 presenters from IT programs across Mindanao.' },
   { place: '2nd Runner-Up', event: 'Philippine Junior Data Science Challenge 2022', issuer: 'UP Data Science Society', date: 'Jun 2022', note: 'A month-long exploratory data analysis competition for undergraduates.' },
   { place: 'Champion', event: 'Reimagined: Advocacies in the New Normal', issuer: 'MMCM Center for Service-Learning and Community Engagement', date: 'Jun 2021', note: 'A project proposal for community development through technology.' },
 ];

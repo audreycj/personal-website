@@ -69,6 +69,12 @@ mark {
   padding: 0 3px;
 }
 
+/* bot commands and bits of code: <code>/command</code> */
+code {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: .85em; font-weight: 600;
+  background: var(--ink); color: var(--pink-soft); border-radius: 6px; padding: 1px 7px; white-space: nowrap;
+}
+
 /* little label above a card's text */
 .label {
   font-family: var(--font-display); font-weight: 600; font-size: 15px;
