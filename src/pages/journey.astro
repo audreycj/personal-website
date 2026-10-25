@@ -44,7 +44,7 @@ let stopIndex = 0; // used to alternate left/right
                 <div class="card sticker reveal">
                   <span class="when" style={`--c:var(--${s.color})`}>{s.when}</span>
                   <h3>{s.title}</h3>
-                  <p class="place">{s.place}</p>
+                  <p class="place">{s.place.split(' · ').map((part, k) => <>{k > 0 && <span class="sep">•</span>}<span class="nowrap">{part}</span></>)}</p>
                   {s.meta && <p class="meta">✦ {s.meta}</p>}
                   {s.takeaway && <p class="takeaway" style={`--c:var(--${s.color})`}>{s.takeaway}</p>}
                   {s.visible && s.visible.map((para) => <p class="visible">{para}</p>)}
@@ -152,7 +152,8 @@ let stopIndex = 0; // used to alternate left/right
     padding: 0 12px; font-family: var(--font-display); font-weight: 600; font-size: 16px; transform: rotate(-3deg);
   }
   .card h3 { font-family: var(--font-display); font-size: 26px; line-height: 1.15; }
-  .place { font-size: 19px; opacity: .85; }
+  .place { font-family: var(--font-display); font-weight: 600; font-size: 15px; letter-spacing: 1px; text-transform: uppercase; opacity: .7; line-height: 1.5; margin-top: 6px; }
+  .place .nowrap { white-space: normal; }
   .meta { font-size: 17px; margin-top: 2px; opacity: .85; }
   /* the one line that's always visible: the "so what" of each stop */
   .takeaway {
