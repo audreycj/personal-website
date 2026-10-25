@@ -7,6 +7,7 @@
 //   m = main color (the `color` prop)   p = paper
 //   k = ink fill    a1 = butter accent  a2 = pink accent
 //   n = no fill     w = white "chalk" line
+//   d = a darker shade of the main color
 // ==========================================================
 interface Props { name: string; size?: number; color?: string; class?: string }
 const { name, size = 64, color = 'sage', class: cls = '' } = Astro.props;
@@ -17,7 +18,7 @@ const ICONS: Record<string, string> = {
     <path class="m" d="M59 32 C66 42 66 56 62 67 L56 65 C59 55 59 43 56 36Z"/>
     <path class="n" d="M33 15 C33 7 47 7 47 15"/>
     <path class="m" d="M23 26 C23 17 30 13 40 13 C50 13 57 17 57 26 V66 C57 70 54 72 50 72 H30 C26 72 23 70 23 66Z"/>
-    <path class="p" d="M23 26 C23 17 30 13 40 13 C50 13 57 17 57 26 V35 C49 41 31 41 23 35Z"/>
+    <path class="d" d="M23 26 C23 17 30 13 40 13 C50 13 57 17 57 26 V35 C49 41 31 41 23 35Z"/>
     <rect class="a1" x="36" y="34" width="8" height="10" rx="2"/>
     <path class="p" d="M28 51 H52 V64 C52 66 50 68 48 68 H32 C30 68 28 66 28 64Z"/>
     <path class="n" d="M28 56 H52 M46 56 V61"/>`,
@@ -138,6 +139,7 @@ const body = ICONS[name] ?? ICONS.sparkle;
   .doodle * { stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
   .doodle .m, .doodle .m * { fill: var(--c); }
   .doodle .p { fill: var(--paper); }
+  .doodle .d { fill: color-mix(in srgb, var(--c) 80%, var(--ink)); }
   .doodle .k { fill: var(--ink); }
   .doodle .a1 { fill: var(--butter); }
   .doodle .a2 { fill: #f4a9b8; }
