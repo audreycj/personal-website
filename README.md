@@ -4,7 +4,7 @@ Built with [Astro](https://astro.build). Pink, scrapbooky, and full of cats.
 
 ## Run it on your Mac
 
-You need Node.js 22.13 or newer (you already have it from MingMing).
+You need Node.js 22.13 or newer (you already have it from Mingming).
 
 ```bash
 cd ~/Documents/Projects/personal-website

@@ -65,7 +65,7 @@ export const jobs: Job[] = [
     story: [
       'Teaching built a habit of explaining everything as if the listener is a beginner, and pushed me to get creative with abstract topics, especially in Data Structures and Algorithms.',
       'Teaching out loud also forced me to finally understand concepts that didn\'t stick when I was a student myself, because you can\'t teach something you don\'t understand.',
-      'It also made me put my tech skills to use in real life. MingMing, my Discord registration bot, was the first time I asked, "what can I make to fix a problem I\'m personally facing?"',
+      'It also made me put my tech skills to use in real life. Mingming, my Discord registration bot, was the first time I asked, "what can I make to fix a problem I\'m personally facing?"',
     ],
   },
   {

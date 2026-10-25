@@ -5,7 +5,7 @@ import Doodle from '../../components/Doodle.astro';
 const steps = [
   { doodle: 'paw', color: 'peach', title: 'A student joins', text: 'They land in a welcome channel with one big Register button.' },
   { doodle: 'notebook', color: 'butter', title: 'They fill in a form', text: 'First name, middle name, last name, suffix, and email.' },
-  { doodle: 'book', color: 'lilac', title: 'MingMing checks the list', text: 'Their name is matched against my official class list.' },
+  { doodle: 'book', color: 'lilac', title: 'Mingming checks the list', text: 'Their name is matched against my official class list.' },
   { doodle: 'sparkle', color: 'sage', title: 'Done!', text: 'Nickname set to "Last, First", and their section\'s channels unlock.' },
 ];
 
@@ -19,13 +19,13 @@ const features = [
 
 const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Discord Interactions API'];
 ---
-<Base title="MingMing bot" description="A cat-themed Discord bot Audrey built to register students in her class servers.">
+<Base title="Mingming bot" description="A cat-themed Discord bot Audrey built to register students in her class servers.">
   <div class="wrap">
     <a href="/projects" class="back">← all projects</a>
     <section class="hero">
       <div>
         <span class="label">project 01 · personal project · 2026</span>
-        <h1 class="page-title">MingMing</h1>
+        <h1 class="page-title">Mingming</h1>
         <p class="page-intro">A Discord bot that gets students registered with their proper names, so I can actually find them.</p>
         <p class="tags">{stack.map((t) => <span class="chip">{t}</span>)}</p>
       </div>
@@ -47,7 +47,7 @@ const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Disco
         <p>
           It turns out I <mark style="--c:var(--peach)">overestimated a group of humans' ability to be uniform</mark>.
           The nicknames were a mess, and looking up a student to message them took forever.
-          No existing bot did exactly what I needed, so I thought: <mark style="--c:var(--sage)">why don't I just make one?</mark>
+          No existing bot did exactly what I needed, so I thought: <mark style="--c:var(--sage)">why don't I make one for this?</mark>
         </p>
       </div>
       <div class="messy reveal" aria-label="Examples of messy nicknames">
@@ -56,7 +56,7 @@ const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Disco
         <span class="nick" style="--r:2deg">ana 2E</span>
         <span class="nick" style="--r:-1deg">BSIT-1A rey</span>
         <span class="nick" style="--r:3deg">🍓kaykay🍓</span>
-        <span class="arrow">↓ after MingMing ↓</span>
+        <span class="arrow">↓ after Mingming ↓</span>
         <span class="nick clean">Dela Cruz, Juan</span>
         <span class="nick clean">Santos, Ana</span>
       </div>
@@ -77,7 +77,7 @@ const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Disco
       ))}
     </ol>
     <p class="aside">
-      Behind the scenes: when a student clicks the button, Discord sends a request to MingMing on Cloudflare. MingMing wakes up,
+      Behind the scenes: when a student clicks the button, Discord sends a request to Mingming on Cloudflare. Mingming wakes up,
       does the job, saves the record to a small SQL database, and goes back to sleep. Nothing runs on my laptop, and it costs nothing.
     </p>
 
@@ -104,8 +104,9 @@ const stack = ['JavaScript', 'Cloudflare Workers', 'Cloudflare D1 (SQL)', 'Disco
     <div class="sticker journal-card reveal">
       <span class="tape" style="--c:var(--lilac)"></span>
       <p>
-        For a long time I did "tech things" to graduate, then to get a job. MingMing was the first time I asked,
-        "what can I make to fix a problem I'm personally facing?" It was a turning point for me.
+        For a long time I did "tech things" to graduate, then to get a job. Mingming was the first time I asked,
+        "what can I make to fix a problem I'm personally facing?" It finally made me appreciate the
+        <mark style="--c:var(--sage)">beauty and fun of the computing field</mark>. It was a turning point for me.
         Maybe it came late, but late is better than never.
       </p>
     </div>

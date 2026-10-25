@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Cat from '../components/Cat.astro';
 import Doodle from '../components/Doodle.astro';
-import { chapters } from '../data/journey';
+import { chapters, thread } from '../data/journey';
 
 let stopIndex = 0; // used to alternate left/right
 ---
@@ -11,7 +11,7 @@ let stopIndex = 0; // used to alternate left/right
     <h1 class="page-title">The<br />Journey</h1>
     <p class="page-intro">
       How a girl who asked her mom to pick her college program ended up teaching IT, and is now exploring what she can make on her own.
-      Scroll down the path. Tap <mark style="--c:var(--lilac)">read the long version</mark> on any stop for the story behind it.
+      Scroll down the path. Each stop has <mark style="--c:var(--lilac)">the full story</mark> behind it if you want more.
     </p>
   </div>
 
@@ -40,26 +40,31 @@ let stopIndex = 0; // used to alternate left/right
                   <h3>{s.title}</h3>
                   <p class="place">{s.place}</p>
                   {s.meta && <p class="meta">✦ {s.meta}</p>}
-                  {s.bullets && (
-                    <ul>{s.bullets.map((b) => <li>{b}</li>)}</ul>
-                  )}
-                  {s.tags && (
-                    <p class="tags">{s.tags.map((t) => <span class="chip">{t}</span>)}</p>
-                  )}
+                  {s.takeaway && <p class="takeaway" style={`--c:var(--${s.color})`}>{s.takeaway}</p>}
+                  {s.visible && s.visible.map((para) => <p class="visible">{para}</p>)}
                   {s.story && (
                     <details>
-                      <summary>read the long version</summary>
+                      <summary>the full story</summary>
                       <div class="journal">
                         {s.story.map((para) => <p>{para}</p>)}
                       </div>
                     </details>
                   )}
+                  {s.more && <a class="more" href={s.more.href}>{s.more.label} →</a>}
                 </div>
               </article>
             );
           })}
         </section>
       ))}
+
+      {thread && (
+        <div class="thread sticker reveal">
+          <span class="tape" style="--c:var(--peach)"></span>
+          <span class="label">the thread</span>
+          <p>{thread}</p>
+        </div>
+      )}
 
       <div class="end reveal">
         <Doodle name="sparkle" color="butter" size={40} />
@@ -140,12 +145,21 @@ let stopIndex = 0; // used to alternate left/right
   }
   .card h3 { font-family: var(--font-display); font-size: 26px; line-height: 1.15; }
   .place { font-size: 19px; opacity: .85; }
-  .meta { font-size: 18px; font-weight: 700; margin-top: 4px; }
-  .card ul { margin: 10px 0 0 22px; font-size: 19px; line-height: 1.45; }
-  .card li { margin-bottom: 4px; }
-  .card li::marker { content: '✦  '; color: var(--line); font-size: 14px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-  .tags .chip { font-size: 15px; }
+  .meta { font-size: 17px; margin-top: 2px; opacity: .85; }
+  /* the one line that's always visible: the "so what" of each stop */
+  .takeaway {
+    position: relative; margin-top: 14px; padding: 10px 14px 10px 16px; font-size: 21px; font-weight: 700; line-height: 1.4;
+    background: color-mix(in srgb, var(--c) 45%, var(--paper)); border-left: 5px solid var(--c); border-radius: 4px 12px 12px 4px;
+  }
+  .visible { font-size: 19px; line-height: 1.5; margin-top: 12px; }
+  .more { display: inline-block; margin-top: 12px; font-size: 17px; opacity: .8; text-decoration: underline; text-underline-offset: 4px; }
+  .more:hover { opacity: 1; }
+  .thread {
+    position: relative; z-index: 2; width: min(640px, 100%); margin: 30px auto 0; padding: 30px 30px 24px; text-align: center;
+    font-size: 22px; line-height: 1.5; transform: rotate(-1deg);
+  }
+  .thread .tape { left: 50%; margin-left: -55px; }
+  .thread p { margin-top: 6px; }
 
 
   .end { position: relative; z-index: 2; text-align: center; padding-top: 30px; font-size: 21px; }
