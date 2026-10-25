@@ -1,0 +1,39 @@
+---
+// ==========================================================
+// LIGHTBOX: clicking any element with data-zoom="<image url>"
+// opens that image full-size. Put <Lightbox /> once on a page.
+// ==========================================================
+---
+<dialog class="lightbox" id="lightbox" aria-label="Image preview">
+  <button type="button" class="close" aria-label="Close">✕</button>
+  <img alt="" />
+</dialog>
+
+<script>
+  const box = document.getElementById('lightbox') as HTMLDialogElement;
+  const img = box.querySelector('img')!;
+  document.addEventListener('click', (e) => {
+    const t = (e.target as HTMLElement).closest<HTMLElement>('[data-zoom]');
+    if (!t) return;
+    img.src = t.dataset.zoom!;
+    img.alt = t.querySelector('img')?.alt ?? '';
+    box.showModal();
+  });
+  // close on the button, on the backdrop, or with Escape (built in)
+  box.addEventListener('click', (e) => {
+    if (e.target === box || (e.target as HTMLElement).closest('.close')) box.close();
+  });
+</script>
+
+<style>
+  .lightbox {
+    max-width: min(1200px, 94vw); max-height: 92vh; padding: 14px; border: 3px solid var(--ink); border-radius: 18px;
+    background: var(--paper); box-shadow: 8px 8px 0 var(--ink); overflow: visible;
+  }
+  .lightbox::backdrop { background: rgba(61, 26, 34, .55); }
+  .lightbox img { display: block; max-width: 100%; max-height: calc(92vh - 40px); margin: 0 auto; border-radius: 8px; }
+  .close {
+    position: absolute; top: -16px; right: -16px; width: 40px; height: 40px; border-radius: 50%;
+    background: var(--butter); border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); font-size: 18px; font-weight: 700;
+  }
+</style>

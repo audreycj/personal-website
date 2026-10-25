@@ -1,0 +1,41 @@
+---
+// ==========================================================
+// SCREENSHOT FRAME: puts a project image in a browser window,
+// a phone, or a plain sticker frame. Click it to see it bigger.
+// Usage: <Shot src="/projects/x/01.webp" caption="..." device="browser" />
+// ==========================================================
+interface Props { src: string; caption?: string; device?: 'browser' | 'phone' | 'plain'; alt?: string }
+const { src, caption, device = 'browser', alt } = Astro.props;
+---
+<figure class={`shot ${device}`}>
+  <button type="button" class="frame" data-zoom={src} aria-label={`View larger: ${caption ?? alt ?? 'screenshot'}`}>
+    {device === 'browser' && <span class="bar" aria-hidden="true"><i></i><i></i><i></i></span>}
+    <img src={src} alt={alt ?? caption ?? ''} loading="lazy" decoding="async" />
+  </button>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .shot { margin: 0; }
+  .frame {
+    display: block; width: 100%; padding: 0; cursor: zoom-in; overflow: hidden; background: #fff;
+    border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); transition: transform .3s cubic-bezier(.3,1.6,.5,1);
+  }
+  .frame:hover { transform: translateY(-4px) rotate(-.5deg); }
+  .frame img { display: block; width: 100%; height: auto; }
+
+  .browser .frame { border-radius: 14px; }
+  .bar { display: flex; gap: 6px; padding: 9px 12px; background: var(--cream); border-bottom: 3px solid var(--ink); }
+  .bar i { width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--ink); background: var(--peach); }
+  .bar i:nth-child(2) { background: var(--butter); }
+  .bar i:nth-child(3) { background: var(--sage); }
+
+  /* phone screenshots already include the phone, so no extra frame: just the image */
+  .phone { max-width: 250px; margin-inline: auto; }
+  .phone .frame { border: 0; box-shadow: none; background: none; overflow: visible; }
+  .phone .frame img { filter: drop-shadow(5px 5px 0 var(--ink)); }
+
+  .plain .frame { border-radius: 18px; }
+
+  figcaption { font-size: 18px; line-height: 1.45; margin-top: 14px; text-align: center; padding: 0 6px; }
+</style>
