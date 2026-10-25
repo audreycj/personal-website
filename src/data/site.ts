@@ -13,7 +13,7 @@ export const site = {
   // contact (leave email empty '' to hide it)
   email: '', // e.g. 'hello@audreynanual.com'
   // shown on the Research page
-  orcid: 'https://orcid.org/0009-0002-5036-2934',
+  orcid: '', // hidden for now; to show it on the Research page later: 'https://orcid.org/0009-0002-5036-2934'
 
   // footer links (the footer's "say hi!" only shows once there's an email or a link here)
   links: [
