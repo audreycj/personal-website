@@ -204,7 +204,7 @@ export const schools: School[] = [
     school: 'Immaculate Heart of Mary Academy',
     program: 'Kindergarten, Elementary, and Junior High School',
     location: '',
-    start: '',
+    start: 'Jun 2005',
     end: '2017',
     doodle: 'backpack',
     color: 'peach',
