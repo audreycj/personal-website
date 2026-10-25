@@ -22,8 +22,8 @@ const items = keys.map((k) => LOGOS[k]).filter(Boolean);
 <style>
   .logos { display: inline-flex; flex-wrap: wrap; gap: 8px; align-items: center; }
   .logo-tag {
-    display: inline-grid; place-items: center; height: calc(var(--h) + 12px); min-width: calc(var(--h) + 12px);
-    padding: 6px; background: #fff; border: 2.5px solid var(--ink); border-radius: 12px; box-shadow: 3px 3px 0 var(--ink);
+    display: inline-grid; place-items: center; box-sizing: content-box; height: var(--h); min-width: var(--h);
+    padding: 6px 8px; background: #fff; border: 2.5px solid var(--ink); border-radius: 12px; box-shadow: 3px 3px 0 var(--ink);
   }
   .logo-tag:nth-child(odd) { transform: rotate(-2deg); }
   .logo-tag:nth-child(even) { transform: rotate(2deg); }

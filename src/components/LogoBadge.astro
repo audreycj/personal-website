@@ -1,0 +1,24 @@
+---
+// ==========================================================
+// ROUND LOGO BADGE
+// Shows the circle-ready version of a logo (public/logos/badge/<key>.png).
+// Falls back to a doodle if the logo is missing.
+// Usage: <LogoBadge logo="dorsu" size={104} />
+// ==========================================================
+import Doodle from './Doodle.astro';
+import { LOGOS } from '../data/logos';
+
+interface Props { logo?: string; size?: number; doodle?: string; color?: string }
+const { logo, size = 100, doodle = 'sparkle', color = 'sage' } = Astro.props;
+const info = logo ? LOGOS[logo] : undefined;
+---
+{info
+  ? <img class="logo-badge" src={`/logos/badge/${logo}.png`} alt={`${info.name} logo`} width={size} height={size} loading="lazy" decoding="async" style={`--s:${size}px`} />
+  : <Doodle name={doodle} color={color} size={size * 0.8} />}
+
+<style>
+  .logo-badge {
+    display: block; width: var(--s); height: var(--s); border-radius: 50%; object-fit: cover;
+    border: 2.5px solid var(--ink); background: #fff;
+  }
+</style>

@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Doodle from '../components/Doodle.astro';
-import Logos from '../components/Logos.astro';
+import LogoBadge from '../components/LogoBadge.astro';
 import { schools } from '../data/resume';
 ---
 <Base title="Education" description="Audrey's education: Master's in IT at Mapúa, BS Computer Science (Magna Cum Laude), and earlier schooling.">
@@ -16,13 +16,12 @@ import { schools } from '../data/resume';
       {schools.map((s, i) => (
         <article class={`card reveal ${i % 2 ? 'right' : 'left'}`} style={`--c:var(--${s.color})`}>
           <header class="head">
-            <div class="crest"><Doodle name={s.doodle} color={s.color} size={64} /></div>
+            <div class="crest"><LogoBadge logo={s.logos?.[0]} doodle={s.doodle} color={s.color} size={84} /></div>
             <div>
               <p class="when">{s.start ? `${s.start} – ${s.end}` : `until ${s.end}`}{s.end === 'Present' && <b class="now">in progress</b>}</p>
               <h2>{s.school}</h2>
               {s.location && <p class="loc">{s.location}</p>}
             </div>
-            <Logos keys={s.logos} height={56} class="head-logo" />
           </header>
 
           <div class="body">
@@ -76,8 +75,8 @@ import { schools } from '../data/resume';
     border-bottom: 3px solid var(--ink);
   }
   .crest {
-    flex: none; width: 92px; height: 92px; border-radius: 50% 50% 46% 46% / 40% 40% 60% 60%; /* shield-ish */
-    background: var(--paper); border: 3px solid var(--ink); display: grid; place-items: center;
+    flex: none; width: 104px; height: 104px; border-radius: 50%;
+    background: var(--paper); border: 3px solid var(--ink); display: grid; place-items: center; box-shadow: 3px 3px 0 var(--ink);
     transition: transform .4s cubic-bezier(.3,1.8,.5,1);
   }
   .card:hover .crest { transform: rotate(-8deg) scale(1.06); }
@@ -110,11 +109,8 @@ import { schools } from '../data/resume';
 
   @media (max-width: 760px) {
     .head { padding: 16px 18px; gap: 14px; }
-    .crest { width: 68px; height: 68px; }
-    .head { position: relative; padding-right: 84px; }
-    .head :global(.head-logo) { position: absolute; top: 14px; right: 12px; }
-    .head :global(.logo-tag img) { height: 40px; }
-    .crest :global(.doodle) { width: 46px; height: 46px; }
+    .crest { width: 80px; height: 80px; }
+    .crest :global(.logo-badge) { width: 64px; height: 64px; }
     .body { padding: 18px 18px 20px; }
   }
 </style>
