@@ -11,8 +11,8 @@ export type ToolGroup = {
 };
 
 export const toolGroups: ToolGroup[] = [
-  { title: 'design', color: 'lilac', doodle: 'brush', tools: ['Figma', 'Framer'] },
-  { title: 'data', color: 'peach', doodle: 'chart', tools: ['Power BI', 'Looker Studio', 'PostgreSQL', 'Google BigQuery', 'Excel'] },
-  { title: 'code', color: 'sage', doodle: 'laptop', tools: ['VS Code', 'GitHub', 'Java', 'Python', 'JavaScript', 'Astro', 'Cloudflare Workers'] },
-  { title: 'class', color: 'butter', doodle: 'chalkboard', tools: ['Discord'] },
+  { title: 'design', color: 'lilac', doodle: 'brush', tools: ['Figma', 'Canva', 'Framer'] },
+  { title: 'data', color: 'peach', doodle: 'chart', tools: ['Power BI', 'Looker Studio', 'PostgreSQL', 'Google BigQuery', 'Excel', 'Google Sheets'] },
+  { title: 'code', color: 'sage', doodle: 'laptop', tools: ['VS Code', 'GitHub', 'Java', 'Python', 'JavaScript', 'Astro', 'Cloudflare Workers', 'Claude'] },
+  { title: 'class', color: 'butter', doodle: 'chalkboard', tools: ['Discord', 'Claude'] },
 ];
