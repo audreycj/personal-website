@@ -1,74 +1,122 @@
-# Audrey's personal website
+# audrey nanual ✦ personal website
 
-Built with [Astro](https://astro.build). Pink, scrapbooky, and full of cats.
+My little corner of the internet: a portfolio on the front, a cozy back room for cats and hobbies on the side.
+Pink, scrapbooky, and full of cats.
 
-## Run it on your Mac
+**Live site:** https://audrey-carmel-jay.audreycj.workers.dev
 
-You need Node.js 22.13 or newer (you already have it from Mingming).
+![Home page: big pink poster-style name, a boop-able chibi cat, and a taped-on "about me" card](docs/screenshots/home.png)
+
+## What's inside
+
+| Page | What it is |
+|---|---|
+| **Home** | Who I am, at a glance |
+| **Work** | Teaching at DOrSU, UI/UX design, a software dev internship, and my first campus job |
+| **Education** | From Immaculate Heart of Mary Academy to my Master's in IT at Mapúa |
+| **Projects** | Things I've made, starting with Mingming, a Discord bot for my class servers |
+| **Research** | My undergraduate thesis, with more to come |
+| **Credentials** | Awards, certificates, and the languages in my life |
+| **My Journey** | The whole story as a scrollable path, with a little cat that walks it with you |
+| **The cozy side** | The not-work part: blog, cats, cat rescue, art (rooms still being furnished) |
+
+![Journey page: a dashed path down a grid-paper background, with chapter labels and story cards](docs/screenshots/journey.png)
+
+## Little details
+
+- **Hand-drawn wobble:** outlines gently "boil" like a cartoon, using SVG noise filters swapped about 8 times a second.
+- **Cats everywhere:** the chibi cats are drawn in SVG, blink on their own, and follow your cursor with their eyes. Boop the big one.
+- **Scrapbook styling:** washi tape, sticker shadows, marker highlights, and folded-corner certificate cards.
+- **Respects your settings:** if your device asks for reduced motion, the animations turn off.
+- **Fast and simple:** a static site with no framework running in the browser, just HTML, CSS, and a bit of JavaScript.
+
+## Built with
+
+[Astro](https://astro.build) · TypeScript · CSS · SVG · deployed on [Cloudflare Workers](https://workers.cloudflare.com)
+
+Fonts: [Fredoka](https://fonts.google.com/specimen/Fredoka) and [Kalam](https://fonts.google.com/specimen/Kalam).
+School, company, and certificate logos belong to their respective organizations and are used only to identify them.
+
+---
+
+## Working on the site
+
+### Run it locally
+
+You need Node.js 22.13 or newer.
 
 ```bash
-cd ~/Documents/Projects/personal-website
 npm install      # first time only: downloads Astro into node_modules/
 npm run dev      # starts a local preview at http://localhost:4321
 ```
 
 Leave `npm run dev` running while you edit. The page in your browser updates every time you save a file.
-Press `Ctrl + C` in Terminal to stop it.
+Press `Control + C` in the terminal to stop it.
 
-## Where things live
+### Publishing
+
+Pushing to `main` on GitHub is all it takes. Cloudflare rebuilds and redeploys the site on its own (`npx astro build`, then `npx wrangler deploy`).
+
+```bash
+git add .
+git commit -m "type: what changed"
+git push
+```
+
+Commit types I use: `feat` (new page or feature), `fix` (something broken), `style` (looks only), `content` (text, photos, data), `docs` (README), `chore` (setup).
+
+### Where things live
 
 ```
 personal-website/
 ├── src/
-│   ├── data/          ← YOUR CONTENT. Start here.
+│   ├── data/          ← THE CONTENT. Start here.
 │   │   ├── site.ts         name, email, links, nav, the scrolling band
 │   │   ├── resume.ts       work experience + education (also feeds the journey)
 │   │   ├── journey.ts      chapters + stops on the journey page
 │   │   ├── projects.ts     project cards
 │   │   ├── research.ts     research papers
-│   │   └── credentials.ts  certificates, awards, languages
+│   │   ├── credentials.ts  certificates, awards, languages
+│   │   └── logos.ts        which logo file belongs to which organization
 │   ├── pages/         ← one file = one page (the file path is the URL)
 │   │   ├── index.astro         /            home
-│   │   ├── journey.astro       /journey
 │   │   ├── work.astro          /work
 │   │   ├── education.astro     /education
 │   │   ├── projects/index.astro      /projects
 │   │   ├── projects/mingming.astro   /projects/mingming
 │   │   ├── research.astro      /research
 │   │   ├── credentials.astro   /credentials
-│   │   └── cozy.astro          /cozy        the back room
+│   │   ├── journey.astro       /journey
+│   │   ├── cozy.astro          /cozy        the back room
+│   │   └── 404.astro           page-not-found
 │   ├── components/    ← reusable pieces
-│   │   ├── Cat.astro       the chibi cats (add your cats' coats here)
-│   │   └── Doodle.astro    all the little drawings (trophy, boat, laptop…)
+│   │   ├── Cat.astro       the chibi cats (add new coats here)
+│   │   ├── Doodle.astro    all the little drawings (trophy, boat, laptop…)
+│   │   ├── LogoBadge.astro round logo badges (work, education, awards)
+│   │   └── Logos.astro     small logo tags (certificates)
 │   ├── layouts/
 │   │   └── Base.astro      wraps every page: nav, footer, shared animations
 │   └── styles/
 │       └── global.css      colors, fonts, reusable styles (.sticker, .tape, .chip…)
-├── public/            ← files served as-is (favicon, and later your photos)
-├── mockups/           ← the original homepage mockup, for reference
-└── credentials/       ← your certificate PDFs (private: not uploaded to GitHub)
+├── public/            ← files served as-is (favicon, logos)
+├── docs/screenshots/  ← images for this README
+└── wrangler.jsonc     ← Cloudflare settings
 ```
 
-## Easy first edits
+### Easy edits
 
 - **Fill a placeholder:** search the project for `[` to find every placeholder in square brackets.
-- **Add your email:** `src/data/site.ts` → `email: 'you@example.com'`
+- **Add an email or footer link:** `src/data/site.ts`
 - **Update a job or school:** edit it once in `src/data/resume.ts`. The Work, Education, and Journey pages all update.
 - **Add a journey stop:** copy one `{ ... }` block in `src/data/journey.ts` and change the text.
 - **Reorder the tabs:** change the order in `nav` in `src/data/site.ts`. The "next up" links follow the same order.
 - **Change a color:** the variables at the top of `src/styles/global.css`.
-- **Add one of your cats:** add a line to `COATS` in `src/components/Cat.astro`, e.g. `mochi: { fur: '#e8d9c4' }`, then use `<Cat coat="mochi" />`.
+- **Add a cat:** add a line to `COATS` in `src/components/Cat.astro`, e.g. `mochi: { fur: '#e8d9c4' }`, then use `<Cat coat="mochi" />`.
 
-## Concepts you'll see
+### Concepts you'll see
 
 - **`.astro` files** have two parts. The top, between `---` lines, is JavaScript that runs when the site is built
   (importing data, looping over lists). Below it is HTML, with `{curly braces}` to drop in values.
 - **Components** are like functions for HTML: `<Doodle name="trophy" />` reuses one drawing everywhere.
 - **Scoped styles:** a `<style>` inside a page only affects that page.
-- **Data files:** keeping content in `src/data/` means you can update the site without touching the design.
-- **Line boil:** the wobbly-line effect. Three SVG noise filters in `Base.astro` are swapped about 8 times a second.
-
-## Later: putting it online
-
-`npm run build` creates a `dist/` folder with the finished site. Cloudflare Pages or GitHub Pages can host it for free,
-and rebuild automatically every time you push to GitHub.
+- **Data files:** keeping content in `src/data/` means the site can be updated without touching the design.
