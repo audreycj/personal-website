@@ -10,7 +10,7 @@ const orcid = site.orcid ? { url: site.orcid } : undefined;
   <div class="wrap">
     <h1 class="page-title">Research</h1>
     <p class="page-intro">
-      Papers I've written or co-written. Just one for now, explained in plain language too, with more on the way as I go through my
+      Papers I've written or co-written. Just one for now, explained in plain language too, with more on the way as I go through my{' '}
       <mark style="--c:var(--lilac)">master's</mark>.
     </p>
 
@@ -24,7 +24,7 @@ const orcid = site.orcid ? { url: site.orcid } : undefined;
           </div>
           <h2>{p.title}</h2>
           <p class="authors">{p.authors.split(', ').map((name, i) => <>{i > 0 && <span class="sep">•</span>}<span class="nowrap">{name}</span></>)}</p>
-          <p class="venue">{p.venue.split(' · ').map((part, i) => <>{i > 0 && <span class="sep">•</span>}{part}</>)}</p>
+          <p class="venue">{p.venue.split(' · ').map((part, i) => <>{i > 0 && <span class="sep">•</span>}<span class="nowrap">{part}</span></>)}</p>
           <p class="summary">{p.summary}</p>
           {p.origin && <p class="origin">{p.origin}</p>}
           {p.recognition && (
@@ -78,7 +78,11 @@ const orcid = site.orcid ? { url: site.orcid } : undefined;
     margin-top: 14px; font-family: var(--font-display); font-weight: 600; font-size: 14px; line-height: 1.6;
     text-transform: uppercase; letter-spacing: .8px; opacity: .75;
   }
-  .venue { font-size: 18px; opacity: .85; margin-top: 4px; }
+  /* school + program: same label style as the authors, in a muted green */
+  .venue {
+    margin-top: 4px; font-family: var(--font-display); font-weight: 600; font-size: 14px; line-height: 1.6;
+    text-transform: uppercase; letter-spacing: .8px; color: #5b7a50;
+  }
   .summary { font-size: 20px; line-height: 1.55; margin-top: 20px; padding-top: 18px; border-top: 2px dashed rgba(61, 26, 34, .25); }
   .stamps { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 24px; }
   .stamp {
