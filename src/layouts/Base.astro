@@ -73,10 +73,10 @@ const isLastTab = here === nav.length - 1;
   )}
 
   <footer class="wrap foot">
-    {(site.email || site.links.length > 0) && <>
-      <p class="foot-hello">say hi!</p>
+    {path !== '/contact' && <>
+      <p class="foot-hello"><a href="/contact">say hi!</a></p>
       <p class="foot-links">
-        {site.email && <a href={`mailto:${site.email}`}>{site.email}</a>}
+        <a href="/contact">send me a message</a>
         {site.links.map((l) => <a href={l.url} target="_blank" rel="noopener">{l.label} ↗</a>)}
       </p>
     </>}

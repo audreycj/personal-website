@@ -6,6 +6,7 @@ import { site, bandItems } from '../data/site';
 import { projects } from '../data/projects';
 import { chapters } from '../data/journey';
 import { certGroups, awards } from '../data/credentials';
+import { toolGroups } from '../data/tools';
 
 const certCount = certGroups.reduce((n, g) => n + g.certs.length, 0);
 const chapterDoodles = ['backpack', 'boat', 'laptop', 'phone', 'chalkboard'];
@@ -87,6 +88,19 @@ const chapterColors = ['peach', 'sky', 'lilac', 'sage', 'butter'];
       ))}
     </div>
 
+    <!-- TOOLBOX -->
+    <h2 class="section-title">my toolbox <Doodle name="sparkle" color="sage" size={30} /></h2>
+    <p class="tool-intro">The tools I reach for most, grouped by what I use them for.</p>
+    <div class="toolbox">
+      {toolGroups.map((g, i) => (
+        <div class="toolgroup sticker reveal" style={`--c:var(--${g.color}); --tilt:${['-1deg', '1deg', '-.6deg', '1.2deg'][i % 4]}`}>
+          <span class="tape" style={`--c:var(--${g.color})`}></span>
+          <h3><Doodle name={g.doodle} color={g.color} size={34} /> {g.title}</h3>
+          <p class="tools">{g.tools.map((t) => <span class="tool">{t}</span>)}</p>
+        </div>
+      ))}
+    </div>
+
     <!-- CREDENTIALS TEASER -->
     <h2 class="section-title">receipts <Doodle name="medal" color="peach" size={36} /></h2>
     <div class="stats">
@@ -126,6 +140,19 @@ const chapterColors = ['peach', 'sky', 'lilac', 'sage', 'butter'];
 </script>
 
 <style>
+  /* toolbox */
+  .tool-intro { font-size: 21px; margin: -4px 0 34px; }
+  .toolbox { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 34px 28px; align-items: start; }
+  .toolgroup { position: relative; padding: 30px 22px 24px; }
+  .toolgroup.in { transform: rotate(var(--tilt)); }
+  .toolgroup h3 { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 24px; }
+  .tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .tool {
+    font-family: var(--font-display); font-weight: 600; font-size: 16px; padding: 4px 12px; background: var(--c);
+    border: 2.5px solid var(--ink); border-radius: 999px; transition: transform .2s;
+  }
+  .tool:hover { transform: translateY(-2px) rotate(-3deg); }
+
   /* hero */
   .hero { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 30px; margin-top: 40px; }
   h1 {

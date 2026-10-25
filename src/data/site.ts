@@ -15,10 +15,14 @@ export const site = {
   // shown on the Research page
   orcid: '', // hidden for now; to show it on the Research page later: 'https://orcid.org/0009-0002-5036-2934'
 
-  // footer links (the footer's "say hi!" only shows once there's an email or a link here)
+  // the contact form sends messages to your inbox through Web3Forms (web3forms.com).
+  // This key only lets people send messages TO you, so it's fine for it to be public.
+  web3formsKey: '4f2efb1a-4e61-4867-8a0b-90c88dfc04d2',
+
+  // shown on the Contact page and in the footer
   links: [
-    // { label: 'GitHub', url: 'https://github.com/[your-username]' },
-    // { label: 'LinkedIn', url: 'https://www.linkedin.com/in/[your-profile]' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/audrey-nanual/' },
+    { label: 'GitHub', url: 'https://github.com/audreycj' },
   ],
 };
 
@@ -32,6 +36,7 @@ export const nav: { label: string; href: string; special?: boolean }[] = [
   { label: 'projects', href: '/projects' },
   { label: 'research', href: '/research' },
   { label: 'credentials', href: '/credentials' },
+  { label: 'contact', href: '/contact' },
   { label: 'my journey', href: '/journey', special: true },
 ];
 
