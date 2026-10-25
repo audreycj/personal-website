@@ -42,6 +42,6 @@ export const nav: { label: string; href: string; special?: boolean }[] = [
 
 // the scrolling band on the home page
 export const bandItems = [
-  'data structures', 'human-computer interaction', 'UI/UX design',
+  'data structures and algorithms', 'human-computer interaction', 'UI/UX design',
   'data analytics', 'discord bots', 'cat rescue', 'learning japanese',
 ];
