@@ -1,0 +1,115 @@
+---
+import Base from '../layouts/Base.astro';
+import Doodle from '../components/Doodle.astro';
+import { schools } from '../data/resume';
+---
+<Base title="Education" description="Audrey's education: Master's in IT at Mapúa, BS Computer Science (Magna Cum Laude), and earlier schooling.">
+  <div class="wrap">
+    <h1 class="page-title">School<br />Days</h1>
+    <p class="page-intro">
+      Four schools, a move from Mindanao to the Visayas and back, and one program my mom picked for me.
+      Now I'm back in school as a <mark style="--c:var(--lilac)">grad student</mark> while teaching.
+    </p>
+
+    <div class="cards">
+      {schools.map((s, i) => (
+        <article class={`card reveal ${i % 2 ? 'right' : 'left'}`} style={`--c:var(--${s.color})`}>
+          <header class="head">
+            <div class="crest"><Doodle name={s.doodle} color={s.color} size={64} /></div>
+            <div>
+              <p class="when">{s.start ? `${s.start} – ${s.end}` : `until ${s.end}`}{s.end === 'Present' && <b class="now">in progress</b>}</p>
+              <h2>{s.school}</h2>
+              {s.location && <p class="loc">{s.location}</p>}
+            </div>
+          </header>
+
+          <div class="body">
+            <p class="program">{s.program}</p>
+
+            {s.honors && (
+              <div class="ribbons">
+                {s.honors.map((h, k) => (
+                  <span class={`ribbon ${k === 0 ? 'top' : ''}`}>
+                    {k === 0 && <Doodle name="medal" color="peach" size={28} />}{h}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {s.activities && <>
+              <h3 class="label">activities & societies</h3>
+              <p class="acts">{s.activities.map((a) => <span class="chip">{a}</span>)}</p>
+            </>}
+
+            {s.story && (
+              <details>
+                <summary>looking back</summary>
+                <div class="journal">{s.story.map((p) => <p>{p}</p>)}</div>
+              </details>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <p class="more">Certificates and awards live on the <a href="/credentials">credentials page →</a></p>
+  </div>
+</Base>
+
+<style>
+  .cards { display: grid; gap: 50px; margin-top: 70px; }
+
+  /* report-card look: colored header strip with a crest, ruled body */
+  .card {
+    width: min(880px, 100%); background: var(--paper); border: 3px solid var(--ink); border-radius: 22px;
+    box-shadow: 7px 7px 0 var(--ink); overflow: hidden;
+  }
+  .card.left { justify-self: start; }
+  .card.right { justify-self: end; }
+  .card.left.in { transform: rotate(-.8deg); }
+  .card.right.in { transform: rotate(.8deg); }
+
+  .head {
+    display: flex; align-items: center; gap: 20px; padding: 20px 26px;
+    background: var(--c) radial-gradient(rgba(255,255,255,.45) 2px, transparent 2px) 0 0 / 18px 18px;
+    border-bottom: 3px solid var(--ink);
+  }
+  .crest {
+    flex: none; width: 92px; height: 92px; border-radius: 50% 50% 46% 46% / 40% 40% 60% 60%; /* shield-ish */
+    background: var(--paper); border: 3px solid var(--ink); display: grid; place-items: center;
+    transition: transform .4s cubic-bezier(.3,1.8,.5,1);
+  }
+  .card:hover .crest { transform: rotate(-8deg) scale(1.06); }
+  .when { font-family: var(--font-display); font-weight: 600; font-size: 16px; display: flex; gap: 10px; align-items: center; }
+  .now { background: var(--paper); border: 2.5px solid var(--ink); border-radius: 999px; padding: 0 10px; font-size: 13px; }
+  .head h2 { font-family: var(--font-display); font-size: clamp(24px, 3.6vw, 34px); line-height: 1.1; }
+  .loc { font-size: 18px; }
+
+  .body {
+    padding: 22px 28px 24px;
+    background: repeating-linear-gradient(var(--paper) 0 35px, #eadfd0 35px 36px);
+  }
+  .program { font-size: 23px; font-weight: 700; }
+
+  .ribbons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .ribbon {
+    display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-display); font-weight: 600; font-size: 16px;
+    background: #fff; border: 2.5px solid var(--ink); border-radius: 999px; padding: 2px 14px;
+  }
+  .ribbon.top { background: var(--butter); font-size: 18px; padding: 2px 16px 2px 6px; animation: shine 3s ease-in-out infinite; }
+  @keyframes shine { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg) scale(1.04); } }
+
+  .body .label { display: block; margin-top: 18px; }
+  .acts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .acts .chip { font-size: 16px; background: #fff; }
+
+  .more { margin-top: 60px; font-size: 22px; text-align: center; }
+  .more a { font-weight: 700; text-decoration: underline wavy; text-underline-offset: 5px; }
+
+  @media (max-width: 760px) {
+    .head { padding: 16px 18px; gap: 14px; }
+    .crest { width: 68px; height: 68px; }
+    .crest :global(.doodle) { width: 46px; height: 46px; }
+    .body { padding: 18px 18px 20px; }
+  }
+</style>

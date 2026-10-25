@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audrey Nanual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#f3d3dc;      /* page background */
+    --pink-soft:#fbe9ee; /* hover text, accents */
+    --ink:#3d1a22;       /* deep maroon "ink" for text and lines */
+    --cream:#f5ead9;
+    --line:#6e2a2a;      /* cat outline, like the crayon reference */
+    /* muted accent colors: used for highlights, stickers, and badges */
+    --sage:#bcd2b0;
+    --butter:#f5e2a6;
+    --lilac:#d3c7ea;
+    --peach:#f6c6ae;
+    --paper:#fffaf3;
+    --boil:url(#boil0);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{overflow-x:clip}
+  body{font-family:Kalam,cursive;color:var(--ink);background:var(--pink) radial-gradient(#eec3cf 1.6px,transparent 1.6px) 0 0/28px 28px;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .boil{filter:var(--boil)}
+
+  main{max-width:1150px;margin:0 auto;padding:36px 32px 90px;position:relative;min-height:100vh}
+
+  /* top bar */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-family:Fredoka,sans-serif;font-weight:600;font-size:18px}
+  .top nav{display:flex;gap:6px;flex-wrap:wrap}
+  .top nav a{padding:4px 14px;border-radius:999px;transition:background .2s,color .2s}
+  .top nav a:hover{background:var(--ink);color:var(--pink)}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1fr auto;align-items:center;gap:30px;margin-top:40px}
+  h1{font-family:Fredoka,sans-serif;font-weight:700;font-size:clamp(64px,12vw,170px);line-height:.85;letter-spacing:-2px;text-transform:uppercase;text-shadow:6px 6px 0 var(--paper)}
+  h1 .ch{display:inline-block;transition:transform .35s cubic-bezier(.3,2,.5,1)}
+  h1 .ch:hover{transform:translateY(-14px) rotate(-8deg) scale(1.08)}
+  .sub{font-size:30px;font-weight:700;margin-top:18px}
+  .sub em{font-style:normal;background:var(--cream);padding:0 10px;border-radius:8px;display:inline-block;transform:rotate(-2deg)}
+  /* about: bio card + fact stickers */
+  .about{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;margin-top:40px}
+  .bio-card{position:relative;background:var(--paper);border:3px solid var(--ink);border-radius:20px;box-shadow:7px 7px 0 var(--ink);
+    padding:30px 32px;max-width:700px;transform:rotate(-1deg)}
+  .bio-card .tape{position:absolute;top:-16px;left:44px;width:110px;height:30px;background:var(--lilac);opacity:.9;transform:rotate(-4deg);
+    border-left:3px dashed rgba(255,255,255,.7);border-right:3px dashed rgba(255,255,255,.7)}
+  .bio-card .label{font-family:Fredoka,sans-serif;font-weight:600;font-size:16px;letter-spacing:1px;text-transform:uppercase;opacity:.7}
+  .bio{font-size:25px;line-height:1.5;margin-top:6px}
+  .bio mark{color:inherit;background:linear-gradient(transparent 52%,var(--c) 52%,var(--c) 92%,transparent 92%);padding:0 3px}
+  .facts{display:flex;flex-direction:column;gap:18px}
+  .fact{display:flex;align-items:center;gap:12px;background:var(--c);border:3px solid var(--ink);border-radius:999px;box-shadow:4px 4px 0 var(--ink);
+    padding:8px 20px 8px 10px;font-family:Fredoka,sans-serif;font-weight:600;font-size:19px;transition:transform .3s cubic-bezier(.3,1.8,.5,1)}
+  .fact:nth-child(1){transform:rotate(2deg)}
+  .fact:nth-child(2){transform:rotate(-2deg) translateX(18px)}
+  .fact:nth-child(3){transform:rotate(1.5deg)}
+  .fact:hover{transform:rotate(0) scale(1.06)}
+  .fact svg{flex:none;background:var(--paper);border:2.5px solid var(--ink);border-radius:50%;padding:4px}
+
+  /* sparkles around the cat */
+  .spark{position:absolute;z-index:1;animation:twinkle 2.4s ease-in-out infinite}
+  .spark:nth-of-type(2){animation-delay:.8s}
+  .spark:nth-of-type(3){animation-delay:1.6s}
+  @keyframes twinkle{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(.6) rotate(25deg)}}
+
+  /* scrolling band */
+  .band{width:112vw;margin:80px 0 0 calc(50% - 56vw);background:var(--ink);color:var(--pink-soft);transform:rotate(-2deg);
+    padding:14px 0;overflow:hidden;font-family:Fredoka,sans-serif;font-weight:600;font-size:22px;white-space:nowrap}
+  .band .track{display:inline-block;animation:slide 30s linear infinite}
+  .band .track span{padding-right:0}
+  .band b{color:var(--butter);font-weight:600;margin:0 18px}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* section heading */
+  .section-title{display:flex;align-items:flex-end;gap:10px;margin-top:80px;font-size:34px;font-weight:700}
+  .section-title svg{margin-bottom:-6px}
+
+  /* big boop-able cat */
+  .catbox{position:relative;cursor:pointer;user-select:none}
+  .catbox .cat{display:block;transition:transform .15s}
+  .catbox.squish .cat{transform:scale(1.15,.82) translateY(16px)}
+  .catbox .hint{text-align:center;font-size:21px;margin-top:4px}
+  .bubble{position:absolute;background:#fff;border:3px solid var(--ink);border-radius:16px;padding:2px 14px;
+    font-size:22px;font-weight:700;opacity:0;transform:scale(.4) rotate(-6deg);
+    transition:.25s cubic-bezier(.3,1.8,.5,1);pointer-events:none;white-space:nowrap}
+  .bubble.show{opacity:1;transform:scale(1) rotate(-6deg)}
+  .catbox .bubble{left:-20px;top:-10px}
+
+  /* cat parts animation */
+  .cat .eyes{transform-box:fill-box;transform-origin:center;animation:blink 4.5s infinite}
+  @keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+
+  /* project list */
+  .list{margin-top:18px;border-top:3px solid var(--ink)}
+  .row{display:grid;grid-template-columns:auto 1fr auto auto;gap:20px;align-items:center;padding:18px 12px;border-bottom:3px solid var(--ink);
+    position:relative;overflow:hidden}
+  .row::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .35s cubic-bezier(.7,0,.2,1)}
+  .row:hover::before{transform:translateY(0)}
+  .row > *{position:relative;transition:color .25s}
+  .row:hover > *{color:var(--pink-soft)}
+  .row b{font-family:Fredoka,sans-serif;font-size:clamp(26px,4vw,40px);font-weight:600}
+  .row .num{font-style:normal;font-family:Fredoka,sans-serif;font-weight:600;font-size:18px;width:50px;height:50px;border-radius:50%;
+    display:grid;place-items:center;background:var(--c);border:3px solid var(--ink);color:var(--ink)!important;transition:transform .35s cubic-bezier(.3,1.8,.5,1)}
+  .row:hover .num{transform:rotate(-12deg) scale(1.1)}
+  .row span{font-size:18px;border:2.5px solid currentColor;border-radius:999px;padding:0 14px}
+  .row i{font-style:normal;font-family:Fredoka,sans-serif;font-size:30px;transition:transform .3s}
+  .row:hover i{transform:translateX(8px) rotate(-10deg)}
+
+  /* cozy-side button */
+  .cozy{display:inline-flex;align-items:center;gap:10px;margin-top:46px;font-size:25px;font-weight:700}
+  .cozy .yarn{animation:roll 3s ease-in-out infinite}
+  .cozy:hover .label{text-decoration:underline wavy}
+  @keyframes roll{0%,100%{transform:translateX(0) rotate(0)}50%{transform:translateX(10px) rotate(180deg)}}
+
+  /* the crew: cats peeking up from the bottom edge */
+  .crew{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:clamp(2px,2vw,26px);pointer-events:none;z-index:5}
+  .crew .peek{pointer-events:auto;position:relative;transform:translateY(24%);transition:transform .35s cubic-bezier(.3,1.8,.5,1)}
+  .crew .peek:hover{transform:translateY(8%)}
+  .crew .peek .bubble{left:50%;top:-34px;margin-left:-40px}
+  .crew .peek:hover .bubble{opacity:1;transform:scale(1) rotate(-6deg)}
+  .crew svg{width:clamp(70px,11vw,130px);height:auto;display:block}
+
+  /* cozy side overlay */
+  .cozyside{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:24px;overflow:auto;
+    clip-path:circle(0 at var(--x,10%) var(--y,90%));transition:clip-path .8s cubic-bezier(.7,0,.2,1);
+    background:var(--cream) radial-gradient(#ecc0cd 2px,transparent 2px) 0 0/30px 30px}
+  .cozyside.open{clip-path:circle(150% at var(--x,10%) var(--y,90%))}
+  .cozyside .inner{max-width:900px;width:100%;text-align:center}
+  .cozyside h2{font-family:Fredoka,sans-serif;font-size:clamp(42px,7vw,72px);line-height:1}
+  .cozyside p{font-size:25px;margin-top:10px}
+  .cozyside .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:18px;margin-top:34px}
+  .cozyside .grid a{background:#fff;border:3px solid var(--ink);border-radius:18px;box-shadow:5px 5px 0 var(--ink);padding:20px 10px;
+    font-family:Fredoka,sans-serif;font-weight:600;font-size:22px;transition:transform .3s cubic-bezier(.3,1.8,.5,1)}
+  .cozyside .grid a:nth-child(odd){transform:rotate(-2deg)}
+  .cozyside .grid a:nth-child(even){transform:rotate(2deg)}
+  .cozyside .grid a:hover{transform:rotate(0) translateY(-6px)}
+  .cozyside .grid small{display:block;font-family:Kalam,cursive;font-weight:400;font-size:18px;margin-top:4px}
+  .cozyside .back{margin-top:34px;font-size:24px;font-weight:700;text-decoration:underline wavy}
+
+  @media (max-width:760px){
+    main{padding:24px 18px 70px}
+    .hero{grid-template-columns:1fr}
+    .catbox{justify-self:center}
+    .row{grid-template-columns:auto 1fr auto}
+    .row span{display:none}
+    .about{grid-template-columns:1fr}
+    .facts{align-items:flex-start}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .boil{filter:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- Filters: each one adds a slow "wobble" (line boil) plus fine "crayon" roughness.
+     JavaScript swaps between them ~8 times a second so the lines feel hand-drawn and alive. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="boil0"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="1" result="w"/><feDisplacementMap in="SourceGraphic" in2="w" scale="4" result="a"/><feTurbulence type="fractalNoise" baseFrequency="0.7" seed="3" result="c"/><feDisplacementMap in="a" in2="c" scale="2.5"/></filter>
+    <filter id="boil1"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="7" result="w"/><feDisplacementMap in="SourceGraphic" in2="w" scale="4" result="a"/><feTurbulence type="fractalNoise" baseFrequency="0.7" seed="9" result="c"/><feDisplacementMap in="a" in2="c" scale="2.5"/></filter>
+    <filter id="boil2"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="13" result="w"/><feDisplacementMap in="SourceGraphic" in2="w" scale="4" result="a"/><feTurbulence type="fractalNoise" baseFrequency="0.7" seed="15" result="c"/><feDisplacementMap in="a" in2="c" scale="2.5"/></filter>
+  </defs>
+</svg>
+
+<main>
+  <div class="top">
+    <span>audrey nanual</span>
+    <nav><a href="#">work</a><a href="#">teaching</a><a href="#">research</a><a href="#">contact</a></nav>
+  </div>
+
+  <section class="hero">
+    <div>
+      <h1 class="split">Audrey<br>Nanual</h1>
+      <p class="sub">IT instructor, <em>part-time cat butler</em></p>
+    </div>
+    <div class="catbox" id="bigcat">
+      <div class="bubble">mrrp!</div>
+      <svg class="spark boil" style="top:10px;right:-14px" width="46" height="46" viewBox="0 0 30 30"><path d="M15 1 C16.5 9 21 13.5 29 15 C21 16.5 16.5 21 15 29 C13.5 21 9 16.5 1 15 C9 13.5 13.5 9 15 1Z" style="fill:var(--butter);stroke:var(--ink)" stroke-width="2.2" stroke-linejoin="round"/></svg>
+      <svg class="spark boil" style="bottom:80px;left:-34px" width="36" height="36" viewBox="0 0 30 30"><path d="M15 1 C16.5 9 21 13.5 29 15 C21 16.5 16.5 21 15 29 C13.5 21 9 16.5 1 15 C9 13.5 13.5 9 15 1Z" style="fill:var(--sage);stroke:var(--ink)" stroke-width="2.4" stroke-linejoin="round"/></svg>
+      <svg class="spark boil" style="bottom:44px;right:-6px" width="28" height="28" viewBox="0 0 30 30"><path d="M15 1 C16.5 9 21 13.5 29 15 C21 16.5 16.5 21 15 29 C13.5 21 9 16.5 1 15 C9 13.5 13.5 9 15 1Z" style="fill:var(--lilac);stroke:var(--ink)" stroke-width="2.6" stroke-linejoin="round"/></svg>
+      <div data-cat="tabby" data-size="300"></div>
+      <div class="hint">(boop it)</div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="bio-card">
+      <span class="tape"></span>
+      <div class="label">hello, a bit about me</div>
+      <p class="bio">I teach at <mark style="--c:var(--sage)">Davao Oriental State University</mark> and I'm taking my <mark style="--c:var(--butter)">Master's in IT</mark>. Before teaching I did <mark style="--c:var(--lilac)">UI/UX design</mark> and <mark style="--c:var(--peach)">data analytics</mark>. Now I mostly build things that help my students.</p>
+    </div>
+    <div class="facts">
+      <div class="fact" style="--c:var(--sage)">
+        <svg width="38" height="38" viewBox="0 0 30 30"><path d="M3 12 L15 6 L27 12 L15 18 Z" style="fill:var(--sage);stroke:var(--ink)" stroke-width="2" stroke-linejoin="round"/><path d="M8 15 V21 C11 24 19 24 22 21 V15" fill="none" style="stroke:var(--ink)" stroke-width="2"/></svg>
+        teaching BSIT
+      </div>
+      <div class="fact" style="--c:var(--butter)">
+        <svg width="38" height="38" viewBox="0 0 30 30"><rect x="5" y="7" width="20" height="13" rx="2" style="fill:var(--butter);stroke:var(--ink)" stroke-width="2"/><path d="M3 23 H27" style="stroke:var(--ink)" stroke-width="2.5" stroke-linecap="round"/><path d="M11 12 L9 14 L11 16 M19 12 L21 14 L19 16" fill="none" style="stroke:var(--ink)" stroke-width="1.8" stroke-linecap="round"/></svg>
+        building tools for class
+      </div>
+      <div class="fact" style="--c:var(--peach)">
+        <svg width="38" height="38" viewBox="0 0 30 30"><g style="fill:var(--peach);stroke:var(--ink)" stroke-width="1.8"><ellipse cx="15" cy="19" rx="6.5" ry="5.5"/><circle cx="7" cy="12" r="2.8"/><circle cx="12" cy="7.5" r="2.8"/><circle cx="18" cy="7.5" r="2.8"/><circle cx="23" cy="12" r="2.8"/></g></svg>
+        cat rescuer
+      </div>
+    </div>
+  </section>
+
+  <div class="band" aria-hidden="true"><div class="track">
+    <span>data structures<b>✦</b>human-computer interaction<b>✦</b>UI/UX design<b>✦</b>data analytics<b>✦</b>discord bots<b>✦</b>cat rescue<b>✦</b></span><span>data structures<b>✦</b>human-computer interaction<b>✦</b>UI/UX design<b>✦</b>data analytics<b>✦</b>discord bots<b>✦</b>cat rescue<b>✦</b></span>
+  </div></div>
+
+  <h2 class="section-title">things i've made
+    <svg class="boil" width="54" height="40" viewBox="0 0 54 40"><path d="M4 8 C18 6 34 14 42 32 M32 30 L42 33 L45 22" fill="none" style="stroke:var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </h2>
+
+  <div class="list">
+    <a class="row" href="#"><em class="num" style="--c:var(--sage)">01</em><b>MingMing bot</b><span>Discord · personal project</span><i>→</i></a>
+    <a class="row" href="#"><em class="num" style="--c:var(--lilac)">02</em><b>UI/UX design</b><span>interfaces · prototypes</span><i>→</i></a>
+    <a class="row" href="#"><em class="num" style="--c:var(--peach)">03</em><b>Data analytics</b><span>dashboards · analysis</span><i>→</i></a>
+  </div>
+
+  <button class="cozy" id="cozybtn">
+    <svg class="yarn boil" width="42" height="42" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="#b7aed0" stroke="#3d1a22" stroke-width="3"/><path d="M8 12 C18 18 22 28 18 36 M14 6 C26 14 30 24 30 32 M6 24 C14 22 26 26 34 22" fill="none" stroke="#3d1a22" stroke-width="2.5"/></svg>
+    <span class="label">follow the yarn to the cozy side →</span>
+  </button>
+</main>
+
+
+<div class="cozyside" id="cozyside" aria-hidden="true">
+  <div class="inner">
+    <div data-cat="calico" data-size="140" style="display:inline-block"></div>
+    <h2>welcome to the back room</h2>
+    <p>This is the not-work part. Shoes off, mind the cats.</p>
+    <div class="grid">
+      <a href="#">Blog<small>hobbies & rambles</small></a>
+      <a href="#">Cats<small>the gallery</small></a>
+      <a href="#">Cat rescue<small>stories & updates</small></a>
+      <a href="#">Art<small>coming someday</small></a>
+      <a href="#">Now<small>what i'm up to</small></a>
+    </div>
+    <button class="back" id="back">← back to the professional stuff</button>
+  </div>
+</div>
+
+<script>
+/* ---------- chibi cat generator ----------
+   One function draws every cat. Each "coat" just changes colors and adds a pattern,
+   so adding a new cat is one line in COATS. */
+const COATS = {
+  cream:  {fur:'#fde39a'},
+  tabby:  {fur:'#ffb072', stripes:'#d9773a'},
+  calico: {fur:'#ffffff', patches:true},
+  gray:   {fur:'#8d8d93'},
+  white:  {fur:'#ffffff'},
+  black:  {fur:'#2f2a2c', eye:'#f3d23c', mouth:'#ffffff'},
+};
+// head + ears as one rounded silhouette (wide and squishy, chibi proportions)
+const HEAD = 'M38 98 C33 70 40 40 54 22 C68 28 83 40 93 50 C111 46 129 46 147 50 C157 40 172 28 186 22 C200 40 207 70 202 98 C214 114 212 150 180 162 C150 172 90 172 60 162 C28 150 26 114 38 98 Z';
+let catId = 0;
+function makeCat(coat){
+  const c = COATS[coat], id = 'clip' + (catId++);
+  const eye = c.eye || '#4a1d1d', mouth = c.mouth || '#4a1d1d', L = 'var(--line)';
+  let pattern = '';
+  if (c.stripes) pattern = `<path d="M108 52 L111 72 M120 50 L120 72 M132 52 L129 72" stroke="${c.stripes}" stroke-width="6" stroke-linecap="round"/>`;
+  if (c.patches) pattern = `<path d="M20 10 L110 10 C104 40 84 70 40 84 L20 84Z" fill="#2f2a2c"/><path d="M150 46 C170 40 210 50 220 70 L220 96 C190 102 160 90 150 70Z" fill="#c98a5c"/>`;
+  return `<svg class="cat boil" viewBox="0 0 240 180">
+    <defs><clipPath id="${id}"><path d="${HEAD}"/></clipPath></defs>
+    <path d="${HEAD}" fill="${c.fur}"/>
+    <g clip-path="url(#${id})">${pattern}</g>
+    <path d="${HEAD}" fill="none" stroke="${L}" stroke-width="6" stroke-linejoin="round"/>
+    <g stroke="${L}" stroke-width="4" stroke-linecap="round">
+      <path d="M42 110 L12 104 M42 124 L12 128 M198 110 L228 104 M198 124 L228 128"/>
+    </g>
+    <ellipse cx="70" cy="128" rx="13" ry="7" fill="#f7a1a8" opacity=".9"/>
+    <ellipse cx="170" cy="128" rx="13" ry="7" fill="#f7a1a8" opacity=".9"/>
+    <g class="eyes">
+      <ellipse class="pupil" cx="88" cy="110" rx="7.5" ry="9.5" fill="${eye}"/>
+      <ellipse class="pupil" cx="152" cy="110" rx="7.5" ry="9.5" fill="${eye}"/>
+    </g>
+    <path d="M110 120 q5 8 10 1 q5 7 10 -1" fill="none" stroke="${mouth}" stroke-width="3.5" stroke-linecap="round"/>
+  </svg>`;
+}
+document.querySelectorAll('[data-cat]').forEach(el=>{
+  el.innerHTML = makeCat(el.dataset.cat);
+  if (el.dataset.size) el.querySelector('svg').style.width = el.dataset.size + 'px';
+});
+
+/* ---------- line boil: cycle the three filters ---------- */
+let bi = 0;
+setInterval(()=>{ bi=(bi+1)%3; document.documentElement.style.setProperty('--boil',`url(#boil${bi})`); },130);
+
+/* ---------- eyes follow the cursor ---------- */
+addEventListener('pointermove',e=>{
+  document.querySelectorAll('.cat .pupil').forEach(p=>{
+    const r = p.ownerSVGElement.getBoundingClientRect(), s = r.width/240;
+    const cx = r.left + p.cx.baseVal.value*s, cy = r.top + p.cy.baseVal.value*s;
+    const a = Math.atan2(e.clientY-cy, e.clientX-cx);
+    const d = Math.min(5, Math.hypot(e.clientX-cx, e.clientY-cy)/40);
+    p.setAttribute('transform',`translate(${Math.cos(a)*d} ${Math.sin(a)*d})`);
+  });
+});
+
+/* ---------- big cat: bubble on hover, squish on boop ---------- */
+const big = document.getElementById('bigcat'), bub = big.querySelector('.bubble');
+big.addEventListener('mouseenter',()=>bub.classList.add('show'));
+big.addEventListener('mouseleave',()=>bub.classList.remove('show'));
+big.addEventListener('click',()=>{
+  big.classList.add('squish');
+  bub.textContent = ['mrrp!','mew!','prrt?','purrrr','boop!'][Math.floor(Math.random()*5)];
+  bub.classList.add('show');
+  setTimeout(()=>big.classList.remove('squish'),150);
+});
+
+
+
+/* ---------- bouncy letters in the big name ---------- */
+document.querySelectorAll('.split').forEach(h=>{
+  h.innerHTML = h.innerHTML.split(/(<br>)/).map(part =>
+    part==='<br>' ? part : [...part].map(ch=>`<span class="ch">${ch}</span>`).join('')
+  ).join('');
+});
+
+/* ---------- cozy side: circle wipe from the yarn button ---------- */
+const cs = document.getElementById('cozyside');
+document.getElementById('cozybtn').addEventListener('click',e=>{
+  const r = e.currentTarget.getBoundingClientRect();
+  cs.style.setProperty('--x',(r.left+20)+'px');
+  cs.style.setProperty('--y',(r.top+r.height/2)+'px');
+  cs.classList.add('open'); cs.setAttribute('aria-hidden','false');
+});
+document.getElementById('back').onclick = ()=>{ cs.classList.remove('open'); cs.setAttribute('aria-hidden','true'); };
+</script>
+</body>
+</html>

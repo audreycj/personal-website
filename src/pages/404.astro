@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import Cat from '../components/Cat.astro';
+---
+<Base title="Page not found">
+  <div class="wrap lost">
+    <Cat coat="gray" size={200} />
+    <h1 class="page-title">404</h1>
+    <p class="page-intro">This page wandered off like a cat at 3 a.m. Let's get you back home.</p>
+    <a href="/" class="btn" style="--c:var(--butter)">← back to home</a>
+  </div>
+</Base>
+
+<style>
+  .lost { text-align: center; padding-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .lost .page-intro { margin: 0 auto 20px; }
+</style>

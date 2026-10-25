@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import Cat from '../components/Cat.astro';
+import Doodle from '../components/Doodle.astro';
+
+// the rooms of the cozy side. Add `href` once a page exists.
+const rooms = [
+  { name: 'Blog', note: 'hobbies & rambles', doodle: 'notebook', color: 'lilac' },
+  { name: 'Cats', note: 'the gallery', doodle: 'camera', color: 'sky' },
+  { name: 'Cat rescue', note: 'stories & updates', doodle: 'heart', color: 'peach' },
+  { name: 'Art', note: 'coming someday', doodle: 'brush', color: 'butter' },
+  { name: 'Now', note: "what i'm up to", doodle: 'sun', color: 'sage' },
+];
+---
+<Base title="The cozy side" cozy>
+  <div class="wrap cozy">
+    <Cat coat="calico" size={170} />
+    <h1>welcome to the back room</h1>
+    <p class="intro">This is the not-work part. Shoes off, mind the cats.</p>
+
+    <div class="rooms">
+      {rooms.map((r) => (
+        <div class="room sticker reveal">
+          <span class="stamp">soon</span>
+          <Doodle name={r.doodle} color={r.color} size={70} />
+          <h2>{r.name}</h2>
+          <p>{r.note}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .cozy { text-align: center; padding-top: 40px; }
+  h1 { font-family: var(--font-display); font-size: clamp(42px, 7vw, 76px); line-height: 1; margin-top: 10px; }
+  .intro { font-size: 25px; margin-top: 10px; }
+  .rooms { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 24px; margin-top: 50px; }
+  .room { position: relative; padding: 26px 14px 20px; background: #fff; }
+  .room.in:nth-child(odd) { transform: rotate(-2deg); }
+  .room.in:nth-child(even) { transform: rotate(2deg); }
+  .room:hover { transform: rotate(0) translateY(-6px) !important; transition: transform .3s cubic-bezier(.3,1.8,.5,1); }
+  .room h2 { font-family: var(--font-display); font-size: 24px; margin-top: 6px; }
+  .room p { font-size: 18px; }
+  .stamp {
+    position: absolute; top: 10px; right: 10px; transform: rotate(12deg); font-family: var(--font-display); font-weight: 700;
+    font-size: 13px; text-transform: uppercase; border: 2.5px solid var(--ink); border-radius: 6px; padding: 0 6px; background: var(--butter);
+  }
+</style>

@@ -1,0 +1,50 @@
+---
+// ==========================================================
+// CHIBI CAT
+// Usage: <Cat coat="tabby" size={300} />
+// To add a cat that looks like one of yours, add a coat to COATS.
+// ==========================================================
+interface Props {
+  coat?: keyof typeof COATS;
+  size?: number;
+  class?: string;
+}
+
+const COATS = {
+  cream:  { fur: '#fde39a' },
+  tabby:  { fur: '#ffb072', stripes: '#d9773a' },
+  calico: { fur: '#ffffff', patches: true },
+  gray:   { fur: '#8d8d93' },
+  white:  { fur: '#ffffff' },
+  black:  { fur: '#2f2a2c', eye: '#f3d23c', mouth: '#ffffff' },
+} as const;
+
+const { coat = 'tabby', size = 120, class: className = '' } = Astro.props;
+const c: { fur: string; stripes?: string; patches?: boolean; eye?: string; mouth?: string } = COATS[coat];
+const eye = c.eye ?? '#4a1d1d';
+const mouth = c.mouth ?? '#4a1d1d';
+const clipId = `cat-${Math.random().toString(36).slice(2, 9)}`;
+
+// head + ears as one squishy silhouette
+const HEAD = 'M38 98 C33 70 40 40 54 22 C68 28 83 40 93 50 C111 46 129 46 147 50 C157 40 172 28 186 22 C200 40 207 70 202 98 C214 114 212 150 180 162 C150 172 90 172 60 162 C28 150 26 114 38 98 Z';
+---
+<svg class={`cat boil ${className}`} width={size} viewBox="0 0 240 180" aria-hidden="true">
+  <defs><clipPath id={clipId}><path d={HEAD} /></clipPath></defs>
+  <path d={HEAD} fill={c.fur} />
+  <g clip-path={`url(#${clipId})`}>
+    {c.stripes && <path d="M108 52 L111 72 M120 50 L120 72 M132 52 L129 72" stroke={c.stripes} stroke-width="6" stroke-linecap="round" />}
+    {c.patches && <>
+      <path d="M20 10 L110 10 C104 40 84 70 40 84 L20 84Z" fill="#2f2a2c" />
+      <path d="M150 46 C170 40 210 50 220 70 L220 96 C190 102 160 90 150 70Z" fill="#c98a5c" />
+    </>}
+  </g>
+  <path d={HEAD} fill="none" stroke="#6e2a2a" stroke-width="6" stroke-linejoin="round" />
+  <path d="M42 110 L12 104 M42 124 L12 128 M198 110 L228 104 M198 124 L228 128" stroke="#6e2a2a" stroke-width="4" stroke-linecap="round" />
+  <ellipse cx="70" cy="128" rx="13" ry="7" fill="#f7a1a8" opacity=".9" />
+  <ellipse cx="170" cy="128" rx="13" ry="7" fill="#f7a1a8" opacity=".9" />
+  <g class="eyes">
+    <ellipse class="pupil" cx="88" cy="110" rx="7.5" ry="9.5" fill={eye} />
+    <ellipse class="pupil" cx="152" cy="110" rx="7.5" ry="9.5" fill={eye} />
+  </g>
+  <path d="M110 120 q5 8 10 1 q5 7 10 -1" fill="none" stroke={mouth} stroke-width="3.5" stroke-linecap="round" />
+</svg>

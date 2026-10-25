@@ -1,0 +1,11 @@
+# build output and dependencies (recreated by `npm install` / `npm run build`)
+dist/
+node_modules/
+.astro/
+
+# private: your certificate PDFs and your content draft stay on your laptop only
+credentials/
+personal-website-content.docx
+
+# macOS
+.DS_Store

@@ -1,0 +1,165 @@
+---
+import Base from '../layouts/Base.astro';
+import Cat from '../components/Cat.astro';
+import Doodle from '../components/Doodle.astro';
+import { chapters } from '../data/journey';
+
+let stopIndex = 0; // used to alternate left/right
+---
+<Base title="Journey" description="Audrey's path so far: school, computer science, UI/UX design, and teaching.">
+  <div class="wrap">
+    <h1 class="page-title">The<br />Journey</h1>
+    <p class="page-intro">
+      How a girl who asked her mom to pick her college program ended up teaching IT and building bots for her class.
+      Scroll down the path. Tap <mark style="--c:var(--lilac)">read the long version</mark> on any stop for the story behind it.
+    </p>
+  </div>
+
+  <div class="wrap">
+    <div class="path" id="path">
+      <div class="walker" id="walker" aria-hidden="true"><Cat coat="tabby" size={70} /></div>
+
+      {chapters.map((ch) => (
+        <section class="chapter">
+          <div class="chapter-label reveal">
+            <span class="tape" style="--c:var(--butter)"></span>
+            <span class="label">chapter {ch.number}</span>
+            <h2>{ch.title}</h2>
+            <p>{ch.blurb}</p>
+          </div>
+
+          {ch.stops.map((s) => {
+            const side = stopIndex++ % 2 === 0 ? 'left' : 'right';
+            return (
+              <article class={`stop ${side}`}>
+                <div class="node reveal" style={`--c:var(--${s.color})`}>
+                  <Doodle name={s.doodle} color={s.color} size={66} />
+                </div>
+                <div class="card sticker reveal">
+                  <span class="when" style={`--c:var(--${s.color})`}>{s.when}</span>
+                  <h3>{s.title}</h3>
+                  <p class="place">{s.place}</p>
+                  {s.meta && <p class="meta">✦ {s.meta}</p>}
+                  {s.bullets && (
+                    <ul>{s.bullets.map((b) => <li>{b}</li>)}</ul>
+                  )}
+                  {s.tags && (
+                    <p class="tags">{s.tags.map((t) => <span class="chip">{t}</span>)}</p>
+                  )}
+                  {s.story && (
+                    <details>
+                      <summary>read the long version</summary>
+                      <div class="journal">
+                        {s.story.map((para) => <p>{para}</p>)}
+                      </div>
+                    </details>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </section>
+      ))}
+
+      <div class="end reveal">
+        <Doodle name="sparkle" color="butter" size={40} />
+        <p class="tbc">to be continued…</p>
+        <p>The next stop hasn't been drawn yet.</p>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script>
+  // the little cat walks down the path as you scroll
+  const path = document.getElementById('path')!;
+  const walker = document.getElementById('walker')!;
+  function move() {
+    const r = path.getBoundingClientRect();
+    const progress = Math.min(1, Math.max(0, (innerHeight * 0.5 - r.top) / r.height));
+    walker.style.top = `${progress * (r.height - 60)}px`;
+    walker.classList.toggle('flip', Math.floor(progress * 40) % 2 === 0); // little waddle
+  }
+  addEventListener('scroll', move, { passive: true });
+  addEventListener('resize', move);
+  move();
+</script>
+
+<style>
+  .path { position: relative; margin-top: 70px; padding-bottom: 20px; }
+  /* the dashed trail down the middle */
+  .path::before {
+    content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 0;
+    border-left: 5px dashed var(--ink); opacity: .3; transform: translateX(-50%);
+  }
+  .walker { position: absolute; left: 50%; top: 0; z-index: 3; transform: translateX(-50%); transition: top .15s linear; pointer-events: none; }
+  .walker :global(.cat) { display: block; transition: transform .2s; }
+  .walker.flip :global(.cat) { transform: rotate(-8deg); }
+  .walker:not(.flip) :global(.cat) { transform: rotate(8deg); }
+
+  /* chapter labels sit on the trail */
+  .chapter { position: relative; padding-top: 40px; }
+  .chapter-label {
+    position: relative; z-index: 2; width: min(520px, 100%); margin: 30px auto 50px; text-align: center;
+    background: var(--ink); color: var(--pink-soft); border-radius: 20px; padding: 26px 24px 20px;
+    box-shadow: 6px 6px 0 var(--paper);
+  }
+  .chapter-label .tape { left: 50%; margin-left: -55px; }
+  .chapter-label .label { opacity: .8; }
+  .chapter-label h2 { font-family: var(--font-display); font-size: clamp(30px, 5vw, 44px); line-height: 1.05; }
+  .chapter-label p { font-size: 20px; margin-top: 4px; }
+  .chapter-label.in { transform: rotate(-1.5deg); }
+  .chapter:nth-child(odd) .chapter-label.in { transform: rotate(1.5deg); }
+
+  /* each stop: card | node | (empty), alternating */
+  .stop { display: grid; grid-template-columns: 1fr 110px 1fr; align-items: start; margin-bottom: 46px; position: relative; }
+  .node {
+    grid-column: 2; grid-row: 1; justify-self: center; z-index: 2; width: 96px; height: 96px; border-radius: 50%;
+    background: var(--paper); border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink);
+    display: grid; place-items: center; margin-top: 10px;
+  }
+  .node.in { animation: bob 3s ease-in-out infinite; }
+  .stop:nth-child(odd) .node.in { animation-delay: -1.5s; }
+  @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-6px) rotate(4deg); } }
+  .card { grid-row: 1; padding: 30px 26px 22px; position: relative; }
+  .stop.left .card { grid-column: 1; }
+  .stop.right .card { grid-column: 3; }
+  .stop.left .card.in { transform: rotate(-1deg); }
+  .stop.right .card.in { transform: rotate(1deg); }
+  /* little arrow pointing at the node */
+  .card::after {
+    content: ''; position: absolute; top: 46px; width: 22px; height: 22px; background: var(--paper);
+    border: 3px solid var(--ink); transform: rotate(45deg);
+  }
+  .stop.left .card::after { right: -14px; border-left: 0; border-bottom: 0; }
+  .stop.right .card::after { left: -14px; border-right: 0; border-top: 0; }
+
+  .when {
+    position: absolute; top: -16px; left: 22px; background: var(--c); border: 2.5px solid var(--ink); border-radius: 8px;
+    padding: 0 12px; font-family: var(--font-display); font-weight: 600; font-size: 16px; transform: rotate(-3deg);
+  }
+  .card h3 { font-family: var(--font-display); font-size: 26px; line-height: 1.15; }
+  .place { font-size: 19px; opacity: .85; }
+  .meta { font-size: 18px; font-weight: 700; margin-top: 4px; }
+  .card ul { margin: 10px 0 0 22px; font-size: 19px; line-height: 1.45; }
+  .card li { margin-bottom: 4px; }
+  .card li::marker { content: '✦  '; color: var(--line); font-size: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .tags .chip { font-size: 15px; }
+
+
+  .end { position: relative; z-index: 2; text-align: center; padding-top: 30px; font-size: 21px; }
+  .end .tbc { font-family: var(--font-display); font-weight: 700; font-size: 36px; }
+  .end { background: var(--pink); }
+
+  @media (max-width: 860px) {
+    .path::before { left: 34px; }
+    .walker { left: 34px; }
+    .stop { grid-template-columns: 70px 1fr; }
+    .node { grid-column: 1; width: 64px; height: 64px; justify-self: start; }
+    .node :global(.doodle) { width: 44px; height: 44px; }
+    .stop.left .card, .stop.right .card { grid-column: 2; margin-left: 14px; }
+    .stop.left .card::after { right: auto; left: -14px; border: 3px solid var(--ink); border-right: 0; border-top: 0; }
+    .chapter-label { margin-left: 0; }
+  }
+</style>

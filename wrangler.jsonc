@@ -1,0 +1,10 @@
+// Cloudflare settings for hosting this site.
+// `npx astro build` puts the finished site in ./dist, and Cloudflare serves those files.
+{
+  "name": "audrey-nanual",
+  "compatibility_date": "2026-10-25",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
