@@ -1,0 +1,286 @@
+---
+// ==========================================================
+// PLAIN-LANGUAGE EXPLAINER: the bacteria colony counting paper
+// The drawings are inline SVG, so they wobble with the rest of the site.
+// ==========================================================
+import Base from '../../layouts/Base.astro';
+import Doodle from '../../components/Doodle.astro';
+import { papers } from '../../data/research';
+
+const paper = papers[0];
+
+// dots on the dish illustrations (fixed positions so the drawing never changes)
+const dots = [
+  [62, 70], [88, 54], [110, 80], [140, 62], [70, 104], [98, 112], [130, 100], [158, 92],
+  [80, 140], [112, 136], [146, 130], [60, 128], [124, 160], [92, 166], [154, 150], [136, 44],
+];
+const ink = '#3d1a22';
+---
+<Base title="Counting bacteria, explained" description="A plain-language explanation of Audrey's research on automatically counting bacteria colonies with AI.">
+  <div class="wrap">
+    <a href="/research" class="back">← all research</a>
+    <span class="label kicker">research, explained simply</span>
+    <h1 class="page-title">Counting<br />Bacteria</h1>
+    <p class="page-intro">
+      My undergraduate thesis, explained for anyone, no science or tech background needed.
+      The short version: <mark style="--c:var(--sage)">we taught a computer to count bacteria</mark> so people don't have to do it by eye.
+    </p>
+
+    <!-- 1. THE PROBLEM -->
+    <section class="block">
+      <div class="text">
+        <span class="step-tag" style="--c:var(--peach)">the problem</span>
+        <h2>Counting dots by hand</h2>
+        <p>
+          To check if water or food is contaminated, labs put a sample on a dish of jelly (called <b>agar</b>)
+          and let any bacteria grow. Each bacterium multiplies into a little dot you can see, called a <b>colony</b>.
+        </p>
+        <p>
+          Count the dots, and you know roughly how much bacteria was in the sample. Today, people usually count them
+          <mark style="--c:var(--peach)">by eye</mark>. It's slow and tiring, and two people counting the same dish
+          often get different numbers.
+        </p>
+      </div>
+      <figure class="art sticker reveal">
+        <svg class="boil" viewBox="0 0 260 224" aria-label="A petri dish with bacteria dots, a magnifying glass, and a confused tally">
+          <ellipse cx="110" cy="112" rx="88" ry="88" fill="#fbe9ee" stroke={ink} stroke-width="4" />
+          <ellipse cx="110" cy="112" rx="76" ry="76" fill="#f6c6ae" stroke={ink} stroke-width="2" opacity=".55" />
+          {dots.map(([x, y], i) => <circle cx={x} cy={y} r={i % 3 === 0 ? 7 : 5} fill="#b5476a" stroke={ink} stroke-width="1.5" />)}
+          <circle cx="196" cy="70" r="26" fill="rgba(255,255,255,.55)" stroke={ink} stroke-width="5" />
+          <path d="M215 89 L244 120" stroke={ink} stroke-width="9" stroke-linecap="round" />
+          <text x="130" y="214" text-anchor="middle" class="hand">1, 2, 3… wait, was that 47?</text>
+        </svg>
+      </figure>
+    </section>
+
+    <!-- 2. THE GOAL -->
+    <section class="goal sticker reveal">
+      <span class="tape" style="--c:var(--sage)"></span>
+      <Doodle name="sparkle" color="butter" size={40} />
+      <p>
+        <b>Our goal:</b> a program that looks at a photo of the dish and counts the dots for you.
+        We focused on <b>E. coli</b>, a common bacterium used to check for contamination.
+      </p>
+    </section>
+
+    <!-- 3. WHAT WE DID -->
+    <h2 class="section-title">what we did, in three steps</h2>
+
+    <section class="block">
+      <div class="text">
+        <span class="step-tag" style="--c:var(--sky)">step 1</span>
+        <h2>We made our own photo collection</h2>
+        <p>
+          Lab staff at Davao Oriental State University grew E. coli from water samples taken from campus faucets,
+          and we photographed the dishes.
+        </p>
+        <p>
+          We then went through every photo, threw out the blurry, repeated, and overcrowded ones, and drew a box around
+          every single dot on 130 of them. That's how you show a computer what the right answer looks like.
+        </p>
+      </div>
+      <figure class="art sticker reveal">
+        <svg class="boil" viewBox="0 0 280 210" aria-label="Photos narrowing down: about 1,900 taken, 364 usable, 130 labeled by hand">
+          {[[22, '#c4dbea', '~1,900', 'photos taken'], [110, '#bcd2b0', '364', 'good enough'], [198, '#f5e2a6', '130', 'labeled by hand']].map(([x, c, n, l], i) => (
+            <g transform={`translate(${x} ${30 + i * 8}) rotate(${i === 1 ? 3 : -3})`}>
+              <rect x="0" y="0" width="64" height="76" rx="3" fill="#fffaf3" stroke={ink} stroke-width="3" />
+              <rect x="7" y="7" width="50" height="44" fill={c} stroke={ink} stroke-width="2" />
+              <circle cx="32" cy="29" r="15" fill="#fbe9ee" stroke={ink} stroke-width="2" />
+              <circle cx="27" cy="25" r="3" fill="#b5476a" /><circle cx="37" cy="31" r="3" fill="#b5476a" /><circle cx="30" cy="35" r="2.5" fill="#b5476a" />
+              {i === 2 && <><rect x="22" y="20" width="10" height="10" fill="none" stroke="#2f6d3a" stroke-width="1.6" /><rect x="32" y="26" width="10" height="10" fill="none" stroke="#2f6d3a" stroke-width="1.6" /></>}
+            </g>
+          ))}
+          <path d="M92 70 l12 0 m-5 -5 l5 5 l-5 5 M180 78 l12 0 m-5 -5 l5 5 l-5 5" stroke={ink} stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          {[[54, '~1,900', 'photos taken'], [142, '364', 'usable'], [230, '130', 'labeled']].map(([x, n, l]) => (
+            <><text x={x} y="150" text-anchor="middle" class="num">{n}</text><text x={x} y="172" text-anchor="middle" class="hand small">{l}</text></>
+          ))}
+        </svg>
+      </figure>
+    </section>
+
+    <section class="block flip">
+      <div class="text">
+        <span class="step-tag" style="--c:var(--lilac)">step 2</span>
+        <h2>We made the dots easier to tell apart</h2>
+        <p>Dots often touch or look smudgy, which confuses a computer. So we designed a two-part cleanup:</p>
+        <p>
+          <b>Watershed:</b> picture the photo as a landscape where each dot is a little hill. Slowly flood it with water.
+          The lines where water from two hills meets show where one dot ends and the next begins.
+        </p>
+        <p>
+          <b>Falling-Ball:</b> picture rolling a tiny ball around each shape. It smooths rough edges and fills small gaps,
+          so each dot becomes one clean blob instead of a broken one.
+        </p>
+      </div>
+      <figure class="art sticker reveal">
+        <svg class="boil" viewBox="0 0 280 230" aria-label="Two hills with water rising between them, and a ball rolling around a blob to smooth it">
+          <text x="140" y="22" text-anchor="middle" class="hand">watershed</text>
+          <path d="M20 100 Q70 30 120 100 Q170 30 240 100" fill="#f6c6ae" stroke={ink} stroke-width="3" />
+          <path d="M20 100 L20 108 L260 108 L260 100" fill="none" stroke={ink} stroke-width="3" />
+          <path d="M84 86 Q104 92 120 100 Q136 92 156 86 L156 100 L84 100Z" fill="#9cc3e0" stroke={ink} stroke-width="2" opacity=".9" />
+          <path d="M120 44 L120 104" stroke="#b5476a" stroke-width="3" stroke-dasharray="5 5" />
+          <text x="128" y="52" class="hand small">dot ends here</text>
+          <text x="140" y="140" text-anchor="middle" class="hand">falling-ball</text>
+          <path d="M60 196 C50 168 92 156 108 168 C118 158 150 160 146 182 C160 196 130 214 112 204 C96 216 66 214 60 196Z" fill="#d3c7ea" stroke={ink} stroke-width="3" />
+          <path d="M98 176 l6 6 M120 194 l5 -4" stroke={ink} stroke-width="2.5" stroke-linecap="round" />
+          <path d="M170 186 l14 0 m-5 -5 l5 5 l-5 5" stroke={ink} stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          <ellipse cx="226" cy="186" rx="40" ry="26" fill="#d3c7ea" stroke={ink} stroke-width="3" />
+          <circle cx="264" cy="164" r="9" fill="#f5e2a6" stroke={ink} stroke-width="2.5" />
+          <path d="M248 150 q10 -6 22 2" fill="none" stroke={ink} stroke-width="2" stroke-dasharray="3 4" />
+        </svg>
+      </figure>
+    </section>
+
+    <section class="block">
+      <div class="text">
+        <span class="step-tag" style="--c:var(--butter)">step 3</span>
+        <h2>We trained an AI to spot the dots</h2>
+        <p>
+          We used <b>YOLOv5</b>, an AI model that's already good at finding objects in photos. Instead of teaching it from
+          scratch, we gave it extra training on our bacteria photos.
+        </p>
+        <p>
+          Think of hiring someone who's already great at <mark style="--c:var(--butter)">"Where's Waldo"</mark>, then
+          teaching them to find bacteria dots instead. This is called <b>transfer learning</b>.
+        </p>
+      </div>
+      <figure class="art sticker reveal">
+        <svg class="boil" viewBox="0 0 260 210" aria-label="A dish with boxes drawn around each dot by the AI, which shows a count of 16">
+          <ellipse cx="110" cy="112" rx="88" ry="88" fill="#fbe9ee" stroke={ink} stroke-width="4" />
+          {dots.map(([x, y], i) => <>
+            <circle cx={x} cy={y} r={i % 3 === 0 ? 7 : 5} fill="#b5476a" stroke={ink} stroke-width="1.5" />
+            <rect x={x - 10} y={y - 10} width="20" height="20" fill="none" stroke="#2f6d3a" stroke-width="2" />
+          </>)}
+          <rect x="176" y="20" width="76" height="46" rx="12" fill="#f5e2a6" stroke={ink} stroke-width="3" />
+          <text x="214" y="40" text-anchor="middle" class="hand small">count:</text>
+          <text x="214" y="60" text-anchor="middle" class="num">16</text>
+        </svg>
+      </figure>
+    </section>
+
+    <!-- 4. RESULTS -->
+    <h2 class="section-title">what we found</h2>
+    <div class="results">
+      <div class="result sticker reveal" style="--c:var(--sage)">
+        <svg class="boil" viewBox="0 0 220 60" aria-label="6 out of 10 flagged dots were real">
+          {Array.from({ length: 10 }, (_, i) => (
+            <circle cx={14 + i * 21} cy="30" r="8" fill={i < 6 ? '#bcd2b0' : '#fffaf3'} stroke={ink} stroke-width="2.5" />
+          ))}
+        </svg>
+        <b>About 6 in 10</b>
+        <p>of the dots the AI flagged were real colonies (its best run).</p>
+      </div>
+      <div class="result sticker reveal" style="--c:var(--sky)">
+        <svg class="boil" viewBox="0 0 220 60" aria-label="Half of the colonies found">
+          <circle cx="110" cy="30" r="24" fill="#fffaf3" stroke={ink} stroke-width="3" />
+          <path d="M110 6 A24 24 0 0 1 110 54 Z" fill="#c4dbea" stroke={ink} stroke-width="3" />
+        </svg>
+        <b>About half</b>
+        <p>of all the colonies on a dish were found.</p>
+      </div>
+      <div class="result sticker reveal" style="--c:var(--butter)">
+        <svg class="boil" viewBox="0 0 220 60" aria-label="Up to 75 percent">
+          <rect x="30" y="20" width="160" height="22" rx="11" fill="#fffaf3" stroke={ink} stroke-width="3" />
+          <rect x="30" y="20" width="120" height="22" rx="11" fill="#f5e2a6" stroke={ink} stroke-width="3" />
+        </svg>
+        <b>Up to 75%</b>
+        <p>detection accuracy at its best, as reported in the paper.</p>
+      </div>
+    </div>
+    <p class="note">
+      That's a promising first version, especially since it learned from only 130 labeled photos. More examples would likely help it improve.
+    </p>
+
+    <!-- 5. WHAT WE COULDN'T FINISH -->
+    <section class="block flip">
+      <div class="text">
+        <span class="step-tag" style="--c:var(--peach)">what we couldn't finish</span>
+        <h2>Our computers weren't big enough</h2>
+        <p>
+          We wanted to train the AI on the cleaned-up photos from step 2, but that needed far more computer memory than we had.
+          Even the basic training needed <b>19 to 24 GB</b> of memory.
+        </p>
+        <p>
+          So the biggest open question, whether the cleanup step makes the AI more accurate, is still waiting for someone
+          with a more powerful computer.
+        </p>
+      </div>
+      <figure class="art sticker reveal">
+        <svg class="boil" viewBox="0 0 260 180" aria-label="A computer memory stick that is overflowing">
+          <rect x="30" y="70" width="200" height="56" rx="6" fill="#bcd2b0" stroke={ink} stroke-width="3" />
+          {[0, 1, 2, 3, 4].map((i) => <rect x={46 + i * 36} y="82" width="24" height="26" rx="2" fill="#2f2a2c" />)}
+          {Array.from({ length: 14 }, (_, i) => <rect x={36 + i * 14} y="126" width="7" height="12" fill="#f5e2a6" stroke={ink} stroke-width="1.5" />)}
+          <path d="M60 64 q-6 -22 10 -30 M130 62 q4 -26 -6 -40 M196 64 q10 -20 0 -34" fill="none" stroke="#b5476a" stroke-width="3" stroke-linecap="round" />
+          <text x="130" y="170" text-anchor="middle" class="hand">needs 19–24 GB… we had less</text>
+        </svg>
+      </figure>
+    </section>
+
+    <!-- 6. WHY IT MATTERS -->
+    <section class="goal sticker reveal">
+      <span class="tape" style="--c:var(--lilac)"></span>
+      <Doodle name="heart" color="peach" size={40} />
+      <p>
+        <b>Why it matters:</b> faster, more consistent counting could help with food safety checks, water testing,
+        and hospital labs, anywhere people still count bacteria by hand.
+      </p>
+    </section>
+
+    <!-- CITATION -->
+    <section class="cite sticker reveal">
+      <span class="label">the published paper</span>
+      <p class="cite-title">{paper.title}</p>
+      <p>{paper.authors}<span class="sep">•</span>{paper.venue.split(' · ').join(', ')}</p>
+      {paper.origin && <p class="origin">{paper.origin}</p>}
+      {paper.link && <a class="btn" style="--c:var(--sage)" href={paper.link} target="_blank" rel="noopener">read the full paper ↗</a>}
+    </section>
+  </div>
+</Base>
+
+<style>
+  .back { display: inline-block; margin-top: 48px; font-size: 20px; font-weight: 700; text-decoration: underline wavy; text-underline-offset: 5px; }
+  .kicker { display: block; margin-top: 22px; }
+  .page-title { margin-top: 8px; }
+
+  .block { display: grid; grid-template-columns: 1.1fr 1fr; gap: 50px; align-items: center; margin-top: 80px; }
+  .block.flip .text { order: 2; }
+  .text h2 { font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 34px); line-height: 1.15; margin-top: 14px; }
+  .text p { font-size: 21px; line-height: 1.6; margin-top: 14px; }
+  .step-tag {
+    display: inline-block; font-family: var(--font-display); font-weight: 600; font-size: 15px; text-transform: uppercase;
+    letter-spacing: 1px; background: var(--c); border: 2.5px solid var(--ink); border-radius: 999px; padding: 2px 14px;
+    transform: rotate(-2deg);
+  }
+
+  .art { margin: 0; padding: 22px; background: var(--paper); }
+  .art.in { transform: rotate(1.5deg); }
+  .block.flip .art.in { transform: rotate(-1.5deg); }
+  .art svg { display: block; width: 100%; height: auto; }
+  .art :global(.hand), .result :global(.hand) { font-family: var(--font-hand); font-size: 15px; fill: var(--ink); }
+  .art :global(.small) { font-size: 13px; }
+  .art :global(.num) { font-family: var(--font-display); font-weight: 700; font-size: 20px; fill: var(--ink); }
+
+  .goal { position: relative; display: flex; gap: 18px; align-items: center; padding: 30px 32px 26px; margin-top: 80px; font-size: 22px; line-height: 1.55; }
+  .goal :global(.doodle) { flex: none; }
+
+  .results { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 28px; }
+  .result { padding: 22px 22px 20px; text-align: center; background: var(--paper); }
+  .result svg { width: 100%; max-width: 220px; height: auto; display: block; margin: 0 auto 8px; }
+  .result b { display: block; font-family: var(--font-display); font-size: 28px; margin-top: 4px; }
+  .result p { font-size: 19px; line-height: 1.45; margin-top: 6px; }
+  .result.in:nth-child(odd) { transform: rotate(-1.5deg); }
+  .result.in:nth-child(even) { transform: rotate(1.5deg); }
+  .note { font-size: 20px; margin-top: 26px; max-width: 760px; }
+
+  .cite { padding: 30px 32px; margin-top: 80px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+  .cite-title { font-family: var(--font-display); font-weight: 600; font-size: 22px; line-height: 1.3; }
+  .cite p { font-size: 18px; }
+  .cite .origin { font-style: italic; opacity: .75; font-size: 16px; }
+  .cite .btn { margin-top: 10px; }
+
+  @media (max-width: 860px) {
+    .block { grid-template-columns: 1fr; gap: 26px; margin-top: 60px; }
+    .block.flip .text { order: 0; }
+    .goal { flex-direction: column; align-items: flex-start; }
+  }
+</style>

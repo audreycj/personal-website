@@ -10,7 +10,7 @@ const orcid = site.orcid ? { url: site.orcid } : undefined;
   <div class="wrap">
     <h1 class="page-title">Research</h1>
     <p class="page-intro">
-      Papers I've written or co-written. Just one for now, with more on the way as I go through my
+      Papers I've written or co-written. Just one for now, explained in plain language too, with more on the way as I go through my
       <mark style="--c:var(--lilac)">master's</mark>.
     </p>
 
@@ -26,12 +26,16 @@ const orcid = site.orcid ? { url: site.orcid } : undefined;
           <p class="authors">{p.authors}</p>
           <p class="venue">{p.venue.split(' · ').map((part, i) => <>{i > 0 && <span class="sep">•</span>}{part}</>)}</p>
           <p class="summary">{p.summary}</p>
+          {p.origin && <p class="origin">{p.origin}</p>}
           {p.recognition && (
             <div class="stamps">
               {p.recognition.map((r) => <span class="stamp"><Doodle name="medal" color="peach" size={26} /><span>{r.split(' · ').map((part, i) => <>{i > 0 && <span class="sep">•</span>}{part}</>)}</span></span>)}
             </div>
           )}
-          {p.link && <a class="btn" style={`--c:var(--${p.color})`} href={p.link} target="_blank" rel="noopener">read the paper ↗</a>}
+          <div class="actions">
+            {p.explainer && <a class="btn" style={`--c:var(--${p.color})`} href={p.explainer}>explain it simply →</a>}
+            {p.link && <a class="btn" style="--c:var(--paper)" href={p.link} target="_blank" rel="noopener">read the paper ↗</a>}
+          </div>
         </article>
       ))}
 
@@ -79,7 +83,8 @@ const orcid = site.orcid ? { url: site.orcid } : undefined;
   }
   .stamp:nth-child(even) { background: var(--peach); transform: rotate(1deg); }
   .stamp:nth-child(odd) { transform: rotate(-1deg); }
-  .paper .btn { margin-top: 22px; }
+  .origin { font-size: 16px; font-style: italic; opacity: .75; margin-top: 14px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 
   .placeholder {
     border-style: dashed; border-top: 3px dashed var(--ink); box-shadow: none; text-align: center; font-size: 21px;
