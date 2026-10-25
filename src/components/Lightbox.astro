@@ -27,11 +27,12 @@
 
 <style>
   .lightbox {
-    max-width: min(1200px, 94vw); max-height: 92vh; padding: 14px; border: 3px solid var(--ink); border-radius: 18px;
+    position: fixed; inset: 0; margin: auto; /* the global reset removes the dialog's built-in centering */
+    max-width: min(1200px, 94vw); max-height: 92vh; padding: 28px; border: 3px solid var(--ink); border-radius: 18px;
     background: var(--paper); box-shadow: 8px 8px 0 var(--ink); overflow: visible;
   }
   .lightbox::backdrop { background: rgba(61, 26, 34, .55); }
-  .lightbox img { display: block; max-width: 100%; max-height: calc(92vh - 40px); margin: 0 auto; border-radius: 8px; }
+  .lightbox img { display: block; max-width: 100%; max-height: calc(92vh - 62px); margin: 0 auto; border-radius: 8px; }
   .close {
     position: absolute; top: -16px; right: -16px; width: 40px; height: 40px; border-radius: 50%;
     background: var(--butter); border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); font-size: 18px; font-weight: 700;
