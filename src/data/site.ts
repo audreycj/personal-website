@@ -6,6 +6,13 @@
 
 export const site = {
   name: 'Audrey Nanual',
+  // full name: shown in the footer and given to search engines, so searches for it find this site
+  fullName: 'Audrey Carmel Jay J. Nanual',
+  otherNames: ['Audrey Carmel Jay Nanual', 'Audrey Carmel Jay J. Nanual'],
+  // the site's web address (update this if you get your own domain)
+  url: 'https://audrey-carmel-jay.audreycj.workers.dev',
+  jobTitle: 'IT Instructor',
+  employer: 'Davao Oriental State University',
   title: 'IT instructor',
   tagline: 'part-time cat butler',
   description: 'Audrey Nanual: BSIT instructor at Davao Oriental State University, UI/UX designer, and cat rescuer.',

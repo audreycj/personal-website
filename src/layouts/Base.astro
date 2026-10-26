@@ -7,7 +7,26 @@ import { site, nav } from '../data/site';
 
 interface Props { title?: string; description?: string; cozy?: boolean; journal?: boolean }
 const { title, description = site.description, cozy = false, journal = false } = Astro.props;
-const pageTitle = title ? `${title} · ${site.name}` : site.name;
+const pageTitle = title ? `${title} · ${site.name}` : `${site.name} · ${site.jobTitle}`;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const shareImage = new URL('/og.png', site.url).href;
+// "Person" data for search engines: who this site belongs to, and their other profiles
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  alternateName: site.otherNames,
+  url: site.url,
+  image: shareImage,
+  jobTitle: site.jobTitle,
+  worksFor: { '@type': 'CollegeOrUniversity', name: site.employer },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Mapúa Malayan Colleges Mindanao' },
+    { '@type': 'CollegeOrUniversity', name: 'Silliman University' },
+  ],
+  address: { '@type': 'PostalAddress', addressLocality: 'Mati City', addressRegion: 'Davao Oriental', addressCountry: 'PH' },
+  sameAs: site.links.map((l) => l.url),
+};
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 // "next up" link: the tab after this one in the nav (home has its own links)
@@ -22,7 +41,21 @@ const isLastTab = here === nav.length - 1;
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{pageTitle}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="sitemap" href="/sitemap.xml" />
+
+  <!-- link previews (Messenger, LinkedIn, Discord, etc.) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={site.name} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={shareImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  {path === '/' && <script type="application/ld+json" set:html={JSON.stringify(person)} />}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet" />
@@ -84,7 +117,7 @@ const isLastTab = here === nav.length - 1;
         {site.links.map((l) => <a href={l.url} target="_blank" rel="noopener">{l.label} ↗</a>)}
       </p>
     </>}
-    <p class="foot-small">© {new Date().getFullYear()} {site.name}<span class="sep">•</span>made with too many cat doodles</p>
+    <p class="foot-small">© {new Date().getFullYear()} {site.fullName}<span class="sep">•</span>made with too many cat doodles</p>
   </footer>
 
   <script>
