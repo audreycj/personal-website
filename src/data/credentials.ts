@@ -4,7 +4,8 @@
 
 // issuer: who made the course · logos: keys from logos.ts (shown in order)
 // image: a picture of the certificate in public/certs/ (opens in a pop-up when there's no verify link)
-export type Cert = { name: string; issuer: string; date: string; url?: string; image?: string; logos?: string[] };
+// several images: separate them with | · caption: shown under the image in the pop-up · detail: a small line under the name
+export type Cert = { name: string; issuer: string; date: string; url?: string; image?: string; caption?: string; detail?: string; logos?: string[] };
 export type CertGroup = { title: string; doodle: string; color: string; certs: Cert[] };
 
 export const certGroups: CertGroup[] = [
@@ -37,7 +38,7 @@ export const certGroups: CertGroup[] = [
     doodle: 'speech',
     color: 'peach',
     certs: [
-      { name: 'TOEIC: C1 CEFR Level', issuer: 'ETS · TOEIC Program', date: 'May 2023', logos: ['toeic'] },
+      { name: 'TOEIC: C1 CEFR Level', issuer: 'ETS · TOEIC Program', date: 'May 2023', detail: 'Listening & Reading 970/990 · Speaking 190/200 · Writing 200/200', image: '/certs/toeic-lr.webp|/certs/toeic-sw.webp', caption: 'Official score reports (birth date and ID number hidden).', logos: ['toeic'] },
     ],
   },
 ];
