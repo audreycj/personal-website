@@ -29,6 +29,14 @@ export const projects: Project[] = [
     href: '/projects/mingming',
   },
   {
+    name: 'MIT study notebook',
+    blurb: 'My Master\'s in IT lessons rewritten in plain English, with interactive diagrams, quizzes, and doodles.',
+    tags: ['Astro', 'interactive visuals', 'personal project'],
+    color: 'butter',
+    doodle: 'notebook',
+    href: '/projects#notebook',
+  },
+  {
     name: 'UI/UX design',
     blurb: 'Web and mobile apps I designed for real clients: a booking system, a members app, an SMS platform, and an online English school.',
     tags: ['Figma', 'web & mobile'],
@@ -43,14 +51,6 @@ export const projects: Project[] = [
     color: 'peach',
     doodle: 'chart',
     href: '/projects#data',
-  },
-  {
-    name: 'MIT study notebook',
-    blurb: 'My Master\'s in IT lessons rewritten in plain English, with interactive diagrams, quizzes, and doodles.',
-    tags: ['Astro', 'interactive visuals', 'personal project'],
-    color: 'butter',
-    doodle: 'notebook',
-    href: '/projects#notebook',
   },
 ];
 
