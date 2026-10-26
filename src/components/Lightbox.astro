@@ -7,16 +7,21 @@
 <dialog class="lightbox" id="lightbox" aria-label="Image preview">
   <button type="button" class="close" aria-label="Close">✕</button>
   <img alt="" />
+  <p class="cap"></p>
 </dialog>
 
 <script>
   const box = document.getElementById('lightbox') as HTMLDialogElement;
   const img = box.querySelector('img')!;
+  const cap = box.querySelector('.cap') as HTMLElement;
   document.addEventListener('click', (e) => {
     const t = (e.target as HTMLElement).closest<HTMLElement>('[data-zoom]');
     if (!t) return;
     img.src = t.dataset.zoom!;
     img.alt = t.querySelector('img')?.alt ?? '';
+    // optional caption: data-caption="..." on the clicked element
+    cap.textContent = t.dataset.caption ?? '';
+    cap.hidden = !t.dataset.caption;
     box.showModal();
   });
   // close on the button, on the backdrop, or with Escape (built in)
@@ -32,7 +37,8 @@
     background: var(--paper); box-shadow: 8px 8px 0 var(--ink); overflow: visible;
   }
   .lightbox::backdrop { background: rgba(61, 26, 34, .55); }
-  .lightbox img { display: block; max-width: 100%; max-height: calc(92vh - 62px); margin: 0 auto; border-radius: 8px; }
+  .lightbox img { display: block; max-width: 100%; max-height: calc(92vh - 110px); margin: 0 auto; border-radius: 8px; }
+  .cap { font-size: 17px; text-align: center; margin: 12px 8px 0; font-style: italic; opacity: .8; }
   .close {
     position: absolute; top: -16px; right: -16px; width: 40px; height: 40px; border-radius: 50%;
     background: var(--butter); border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); font-size: 18px; font-weight: 700;

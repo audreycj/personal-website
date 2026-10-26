@@ -43,13 +43,13 @@ export const certGroups: CertGroup[] = [
 ];
 
 // cert: a picture of the certificate in public/certs/ · post: a public link about it (e.g., an announcement)
-export type Award = { place: string; event: string; issuer: string; date: string; note: string; logos?: string[]; cert?: string; post?: string };
+export type Award = { place: string; event: string; issuer: string; date: string; note: string; logos?: string[]; cert?: string; certLabel?: string; certCaption?: string; post?: string };
 
 export const awards: Award[] = [
   { place: 'Finalist', event: 'Outstanding Student Research Awards 2023', issuer: 'Mapúa Malayan Colleges Mindanao', date: 'Jul 2023', note: 'Our thesis was one of the top three in the College of Computer and Information Science, presented alongside other colleges\' finalists to a panel of judges.', logos: ['mmcm'], cert: '/certs/osra-2023.webp' },
   { place: 'Champion', event: 'Mindanao Conference for IT Students (MCITS) 2023: Paper Presentation', issuer: 'PSITE Davao Region', date: 'May 2023', note: 'Placed first among 16 presenters from IT programs across Mindanao.', logos: ['psite'], cert: '/certs/mcits-2023.webp' },
   { place: '2nd Runner-Up', event: 'Philippine Junior Data Science Challenge 2022', issuer: 'University of the Philippines Data Science Society', date: 'Jun 2022', note: 'A month-long exploratory data analysis competition for undergraduates.', logos: ['updss'] },
-  { place: 'Champion', event: 'Reimagined: Advocacies in the New Normal', issuer: 'MMCM Center for Service-Learning and Community Engagement', date: 'Jun 2021', note: 'A project proposal for community development through technology.', logos: ['mmcm-cslce'], post: 'https://www.facebook.com/mmcmcsce/posts/pfbid02MJfUYjy8zEUGgA7nkEGiR1VM3aFbjHGo8WyXiGKjx5sBSWuSiEwUFYcmM4UYvJQVl' },
+  { place: 'Champion', event: 'Reimagined: Advocacies in the New Normal', issuer: 'MMCM Center for Service-Learning and Community Engagement', date: 'Jun 2021', note: 'A project proposal for community development through technology.', logos: ['mmcm-cslce'], cert: '/certs/reimagined-2021.webp', certLabel: 'see the poster', certCaption: 'Saved from the MMCM Center for Service-Learning and Community Engagement Facebook post, June 25, 2021.', post: 'https://www.facebook.com/mmcmcsce/posts/pfbid02MJfUYjy8zEUGgA7nkEGiR1VM3aFbjHGo8WyXiGKjx5sBSWuSiEwUFYcmM4UYvJQVl' },
 ];
 
 export const languages = [
