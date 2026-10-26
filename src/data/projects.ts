@@ -1,6 +1,6 @@
 // ==========================================================
 // PROJECTS
-//   projects:    the three rows on the home page
+//   projects:    the rows on the home page
 //   caseStudies: full project pages (/projects/<slug>), shown on the Projects page
 //   practice:    smaller guided/practice projects, shown as a gallery
 //
@@ -43,6 +43,14 @@ export const projects: Project[] = [
     color: 'peach',
     doodle: 'chart',
     href: '/projects#data',
+  },
+  {
+    name: 'MIT study notebook',
+    blurb: 'My Master\'s in IT lessons rewritten in plain English, with interactive diagrams, quizzes, and doodles.',
+    tags: ['Astro', 'interactive visuals', 'personal project'],
+    color: 'butter',
+    doodle: 'notebook',
+    href: '/projects#notebook',
   },
 ];
 
