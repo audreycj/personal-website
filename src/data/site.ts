@@ -10,7 +10,7 @@ export const site = {
   fullName: 'Audrey Carmel Jay J. Nanual',
   otherNames: ['Audrey Carmel Jay Nanual', 'Audrey Carmel Jay J. Nanual'],
   // the site's web address (update this if you get your own domain)
-  url: 'https://audrey-carmel-jay.audreycj.workers.dev',
+  url: 'https://audrey-nanual.audreycj.workers.dev',
   jobTitle: 'IT Instructor',
   employer: 'Davao Oriental State University',
   title: 'IT instructor',
