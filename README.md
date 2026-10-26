@@ -44,6 +44,8 @@ Pink, scrapbooky, and full of cats.
 
 [Astro](https://astro.build) · TypeScript · CSS · SVG · deployed on [Cloudflare Workers](https://workers.cloudflare.com)
 
+Built by Audrey Nanual, with help from [Claude](https://claude.ai) (Anthropic) for code and documentation.
+
 Fonts: [Fredoka](https://fonts.google.com/specimen/Fredoka) and [Kalam](https://fonts.google.com/specimen/Kalam).
 School, company, and certificate logos belong to their respective organizations and are used only to identify them.
 
