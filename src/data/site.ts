@@ -15,7 +15,7 @@ export const site = {
   employer: 'Davao Oriental State University',
   title: 'IT instructor',
   tagline: 'part-time cat butler',
-  description: 'Audrey Nanual: BSIT instructor at Davao Oriental State University, UI/UX designer, and cat rescuer.',
+  description: 'Audrey Nanual: BSIT instructor at Davao Oriental State University, UI/UX designer, and lifelong cat person.',
 
   // contact (leave email empty '' to hide it)
   email: '', // e.g. 'hello@audreynanual.com'
@@ -50,5 +50,5 @@ export const nav: { label: string; href: string; special?: boolean }[] = [
 // the scrolling band on the home page
 export const bandItems = [
   'data structures and algorithms', 'human-computer interaction', 'UI/UX design',
-  'data analytics', 'discord bots', 'cat rescue', 'learning japanese',
+  'data analytics', 'discord bots', 'cats', 'learning japanese',
 ];
