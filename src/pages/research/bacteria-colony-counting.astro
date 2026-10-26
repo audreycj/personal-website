@@ -42,13 +42,13 @@ const ink = '#3d1a22';
         </p>
       </div>
       <figure class="art sticker reveal">
-        <svg class="boil" viewBox="0 0 260 224" aria-label="A petri dish with bacteria dots, a magnifying glass, and a confused tally">
+        <svg class="boil" viewBox="0 0 260 244" aria-label="A petri dish with bacteria dots, a magnifying glass, and a confused tally">
           <ellipse cx="110" cy="112" rx="88" ry="88" fill="#fbe9ee" stroke={ink} stroke-width="4" />
           <ellipse cx="110" cy="112" rx="76" ry="76" fill="#f6c6ae" stroke={ink} stroke-width="2" opacity=".55" />
           {dots.map(([x, y], i) => <circle cx={x} cy={y} r={i % 3 === 0 ? 7 : 5} fill="#b5476a" stroke={ink} stroke-width="1.5" />)}
           <circle cx="196" cy="70" r="26" fill="rgba(255,255,255,.55)" stroke={ink} stroke-width="5" />
           <path d="M215 89 L244 120" stroke={ink} stroke-width="9" stroke-linecap="round" />
-          <text x="130" y="214" text-anchor="middle" class="hand">1, 2, 3… wait, was that 47?</text>
+          <text x="130" y="234" text-anchor="middle" class="hand">1, 2, 3… wait, was that 47?</text>
         </svg>
       </figure>
     </section>
