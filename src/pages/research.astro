@@ -24,6 +24,7 @@ const orcid = site.orcid ? { url: site.orcid } : undefined;
           </div>
           <h2>{p.title}</h2>
           <p class="authors">{p.authors.split(', ').map((name, i) => <>{i > 0 && <span class="sep">•</span>}<span class="nowrap">{name}</span></>)}</p>
+          {p.adviser && <p class="authors adviser">thesis adviser: <span class="nowrap">{p.adviser}</span></p>}
           <p class="venue">{p.venue.split(' · ').map((part, i) => <>{i > 0 && <span class="sep">•</span>}<span class="nowrap">{part}</span></>)}</p>
           <p class="summary">{p.summary}</p>
           {p.origin && <p class="origin">{p.origin}</p>}
@@ -78,6 +79,7 @@ const orcid = site.orcid ? { url: site.orcid } : undefined;
     margin-top: 14px; font-family: var(--font-display); font-weight: 600; font-size: 14px; line-height: 1.6;
     text-transform: uppercase; letter-spacing: .8px; opacity: .75;
   }
+  .adviser { margin-top: 2px; }
   /* school + program: same label style as the authors, in a muted green */
   .venue {
     margin-top: 4px; font-family: var(--font-display); font-weight: 600; font-size: 14px; line-height: 1.6;

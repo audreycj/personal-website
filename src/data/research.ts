@@ -8,6 +8,7 @@
 export type Paper = {
   title: string;
   authors: string;
+  adviser?: string;   // thesis adviser
   year: string;
   type: string;
   venue: string;
@@ -23,6 +24,7 @@ export const papers: Paper[] = [
   {
     title: 'Automated Bacteria Colony Counting Using Hybrid Image Segmentation Algorithm Framework and YOLOv5 Transfer Learning Model',
     authors: 'Audrey Carmel Jay J. Nanual, Reznee Mariel R. Galope',
+    adviser: 'Cherry B. Lisondra, MIT',
     year: '2023',
     type: 'Undergraduate thesis',
     venue: 'BS Computer Science · Mapúa Malayan Colleges Mindanao',
