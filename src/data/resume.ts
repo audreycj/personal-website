@@ -40,6 +40,7 @@ export type School = {
   honors?: string[];
   activities?: string[];
   story?: string[];
+  photos?: { src: string; caption: string }[]; // shown as little snapshots on the Education card (files in public/education/)
 };
 
 // newest first
@@ -181,6 +182,11 @@ export const schools: School[] = [
       'The pandemic hit during my second and third years. Self-studying brand-new, abstract concepts was a real struggle, and it taught me how much a structured class with a mentor helps things stick.',
       'Looking back, I appreciate my instructors and professors so much. They went above and beyond to teach us through a really hard time, on top of their own lives. Now that I teach, I understand what that took.',
     ],
+    photos: [
+      { src: '/education/mmcm-1-grad.webp', caption: 'Graduation day on campus' },
+      { src: '/education/mmcm-2-thesis.webp', caption: 'Our bound thesis' },
+      { src: '/education/mmcm-3-honors.webp', caption: "President's List and magna cum laude" },
+    ],
   },
   {
     id: 'silliman',
@@ -197,6 +203,9 @@ export const schools: School[] = [
     story: [
       'I moved from my hometown in southeastern Mindanao all the way to Visayas. It was two years of new perspectives, values, belief systems, and a whole new world. Like a fish from a small pond thrown into a lake.',
       'I met people from different countries, languages, provinces, and life situations. I deconstructed what I originally believed and formed my own set of morals. Being pushed out of my comfort zone made me more adaptable and level-headed, and that has stayed with me.',
+    ],
+    photos: [
+      { src: '/education/silliman-1-grad.webp', caption: 'Senior high graduation night' },
     ],
   },
   {
@@ -217,6 +226,10 @@ export const schools: School[] = [
     story: [
       'My foundational life experiences happened here. My work ethic, standards, exploration of the arts (music and art), and foundational knowledge in the core subjects were built and honed in this institution.',
       'I had exceptional teachers here. The opportunities, school culture, learning environment, and structure they gave us shaped largely who I am now, even years after leaving.',
+    ],
+    photos: [
+      { src: '/education/ihma-1-medals.webp', caption: 'Junior high medals and certificates' },
+      { src: '/education/ihma-2-class.webp', caption: 'My Grade 10 class, S.Y. 2016–2017' },
     ],
   },
 ];
