@@ -11,3 +11,6 @@ node_modules/
 
 # macOS
 .DS_Store
+
+# notes for Claude (local only)
+NOTES-FOR-CLAUDE.md
