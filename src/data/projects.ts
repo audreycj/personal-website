@@ -29,6 +29,14 @@ export const projects: Project[] = [
     href: '/projects/mingming',
   },
   {
+    name: 'Ma\'am Audrey\'s lessons',
+    blurb: 'A self-study website for my classes: lessons in plain English, with pictures students can tap and play with on their phones.',
+    tags: ['Astro', 'interactive visuals', 'for my students'],
+    color: 'sky',
+    doodle: 'chalkboard',
+    href: '/projects#lessons',
+  },
+  {
     name: 'MIT study notebook',
     blurb: 'My Master\'s in IT lessons rewritten in plain English, with interactive diagrams, quizzes, and doodles.',
     tags: ['Astro', 'interactive visuals', 'personal project'],

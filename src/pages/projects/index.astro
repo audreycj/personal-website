@@ -8,7 +8,7 @@ const design = caseStudies.filter((c) => c.category === 'design');
 const data = caseStudies.filter((c) => c.category === 'data');
 const tilt = ['-1.5deg', '1.2deg', '-1deg', '1.5deg'];
 ---
-<Base title="Projects" description="Things Audrey has designed and built: a Discord bot, a study notebook, UI/UX design for real clients, and data analytics work.">
+<Base title="Projects" description="Things Audrey has designed and built: a Discord bot, a lessons website for her students, a study notebook, UI/UX design for real clients, and data analytics work.">
   <div class="wrap">
     <h1 class="page-title">Things<br />I've Made</h1>
     <p class="page-intro">
@@ -31,6 +31,17 @@ const tilt = ['-1.5deg', '1.2deg', '-1deg', '1.5deg'];
         <p>A Discord bot that registers students in my class servers with their proper names, checks them against the class list, and unlocks their section's channels.</p>
         <p class="tags"><span class="chip">Discord</span><span class="chip">Cloudflare Workers</span><span class="chip">JavaScript</span></p>
         <span class="btn" style="--c:var(--sage)">read the story →</span>
+      </div>
+    </a>
+
+    <a href="https://audreycj-lessons.audreycj.workers.dev/" id="lessons" class="feature-card sticker reveal" style="--c:var(--sky)" target="_blank" rel="noopener">
+      <div class="feature-art photo"><img src="/projects/lessons/itc120.webp" alt="The ITC 120 Data Structures and Algorithms page of my lessons website, with prelim and midterm topics" loading="lazy" decoding="async" /></div>
+      <div class="feature-body">
+        <span class="label">for my students · 2026</span>
+        <h3>Ma'am Audrey's lessons</h3>
+        <p>A website that holds the lessons for the courses I teach. Lately we've had a lot of no-class days, and making a PDF module from scratch each time was tedious. PDFs are also basically permanent, so I couldn't add anything I thought of later. Now each lesson is in plain English, with pictures students can tap and play with, paper practice, and self-checks, and I can keep improving it for current and future students.</p>
+        <p class="tags"><span class="chip">Astro</span><span class="chip">Cloudflare Workers</span><span class="chip">interactive visuals</span></p>
+        <span class="btn" style="--c:var(--sky)">open the lessons ↗</span>
       </div>
     </a>
 

@@ -14,7 +14,7 @@ Pink, scrapbooky, and full of cats.
 | **Home** | Who I am, at a glance |
 | **Work** | Teaching at DOrSU, UI/UX design, a software dev internship, and my first campus job |
 | **Education** | From Immaculate Heart of Mary Academy to my Master's in IT at Mapúa |
-| **Projects** | Mingming (a Discord bot for my class servers), UI/UX case studies from Telemondo, and data analytics work |
+| **Projects** | Mingming (a Discord bot for my class servers), my lessons website for students, my MIT study notebook, UI/UX case studies from Telemondo, and data analytics work |
 | **Research** | My undergraduate thesis, plus a plain-language explainer of it |
 | **Credentials** | Awards, certificates, and the languages in my life |
 | **Contact** | A message form that lands in my inbox, plus LinkedIn and GitHub |
