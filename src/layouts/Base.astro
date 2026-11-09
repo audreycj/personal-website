@@ -27,6 +27,15 @@ const person = {
   address: { '@type': 'PostalAddress', addressLocality: 'Mati City', addressRegion: 'Davao Oriental', addressCountry: 'PH' },
   sameAs: site.links.map((l) => l.url),
 };
+// "WebSite" data: tells Google the site's name, so results say "Audrey Nanual"
+// instead of "workers.cloudflare.com"
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: site.name,
+  alternateName: site.otherNames,
+  url: new URL('/', site.url).href,
+};
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 // "next up" link: the tab after this one in the nav (home has its own links)
@@ -57,6 +66,7 @@ const isLastTab = here === nav.length - 1;
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   {path === '/' && <script type="application/ld+json" set:html={JSON.stringify(person)} />}
+  {path === '/' && <script type="application/ld+json" set:html={JSON.stringify(website)} />}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet" />
